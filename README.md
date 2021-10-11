@@ -10,4 +10,5 @@ Coordinator:
 
 Contact information:
 -Tiperciuc Stefan(scrum master): stefantiperciuc@yahoo.com
+
 -Dragoi Stefan: stefandragoi99@gmail.com
