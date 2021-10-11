@@ -2,10 +2,10 @@
 
 Project for the  Advances Technologies in Software Engineering laboratory.
 
-Team members:
+Team members:  
 -Tiperciuc Stefan, Chontas Panagiotis, Cunev Serghei, Damian Alexandru, Dragoi Stefan and Condurache Andrei 
 
-Coordinator:
+Coordinator:  
 -Frasinaru Cristian
 
 Contact information:  
