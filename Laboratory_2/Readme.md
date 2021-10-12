@@ -6,7 +6,7 @@ Each student's part:
 -Tiperciuc Stefan: introduction  
 -Cunev Serghei: what others did  
 -Dragoi Stefan: important names in field  
--Damian Alexandru: resources and tools available
+-Damian Alexandru: resources and tools available  
 -Condurache Andrei: first part of related articles and books  
 -Chontas Panagiotis: second part of related articles and books
 
