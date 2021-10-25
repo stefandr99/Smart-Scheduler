@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/notificationService/src-gen" creationIcons="false"
+    editDirectory="/notificationService.edit/src-gen" editorDirectory="/notificationService.editor/src-gen"
+    modelPluginID="notificationService" modelName="NotificationService" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>notificationService.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="NotificationService" disposableProviderFactory="true" ecorePackage="notificationService.ecore#/">
+    <genClasses image="false" ecoreClass="notificationService.ecore#//INotifyObserver">
+      <genOperations ecoreOperation="notificationService.ecore#//INotifyObserver/notify"/>
+    </genClasses>
+    <genClasses ecoreClass="notificationService.ecore#//EmailNotifier">
+      <genOperations ecoreOperation="notificationService.ecore#//EmailNotifier/notify"/>
+    </genClasses>
+    <genClasses ecoreClass="notificationService.ecore#//AppNotifier">
+      <genOperations ecoreOperation="notificationService.ecore#//AppNotifier/notify"/>
+    </genClasses>
+    <genClasses ecoreClass="notificationService.ecore#//ChromeNotifier">
+      <genOperations ecoreOperation="notificationService.ecore#//ChromeNotifier/notify"/>
+    </genClasses>
+    <genClasses ecoreClass="notificationService.ecore#//NotifyManager">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference notificationService.ecore#//NotifyManager/inotifyobserver"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute notificationService.ecore#//NotifyManager/observersList"/>
+      <genOperations ecoreOperation="notificationService.ecore#//NotifyManager/addService">
+        <genParameters ecoreParameter="notificationService.ecore#//NotifyManager/addService/observer"/>
+      </genOperations>
+      <genOperations ecoreOperation="notificationService.ecore#//NotifyManager/removeService">
+        <genParameters ecoreParameter="notificationService.ecore#//NotifyManager/removeService/observer"/>
+      </genOperations>
+      <genOperations ecoreOperation="notificationService.ecore#//NotifyManager/sendNotifications"/>
+    </genClasses>
+    <genClasses ecoreClass="notificationService.ecore#//CalendarEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute notificationService.ecore#//CalendarEntry/beginningDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute notificationService.ecore#//CalendarEntry/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute notificationService.ecore#//CalendarEntry/endDate"/>
+    </genClasses>
+    <genClasses ecoreClass="notificationService.ecore#//Reminder">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference notificationService.ecore#//Reminder/notifymanager"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference notificationService.ecore#//Reminder/calendarentry"/>
+      <genOperations ecoreOperation="notificationService.ecore#//Reminder/chooseNotificationTypes">
+        <genParameters ecoreParameter="notificationService.ecore#//Reminder/chooseNotificationTypes/types"/>
+      </genOperations>
+      <genOperations ecoreOperation="notificationService.ecore#//Reminder/remind">
+        <genParameters ecoreParameter="notificationService.ecore#//Reminder/remind/entry"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

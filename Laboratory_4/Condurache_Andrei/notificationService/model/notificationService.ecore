@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="notificationService" nsURI="http://www.example.org/notificationService"
+    nsPrefix="notificationService">
+  <eClassifiers xsi:type="ecore:EClass" name="INotifyObserver" abstract="true" interface="true">
+    <eOperations name="notify"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EmailNotifier" eSuperTypes="#//INotifyObserver">
+    <eOperations name="notify"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AppNotifier" eSuperTypes="#//INotifyObserver">
+    <eOperations name="notify"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChromeNotifier" eSuperTypes="#//INotifyObserver">
+    <eOperations name="notify"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NotifyManager">
+    <eOperations name="addService">
+      <eParameters name="observer" eType="#//INotifyObserver"/>
+    </eOperations>
+    <eOperations name="removeService">
+      <eParameters name="observer" eType="#//INotifyObserver"/>
+    </eOperations>
+    <eOperations name="sendNotifications"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inotifyobserver" upperBound="-1"
+        eType="#//INotifyObserver" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="observersList" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//ENTITIES"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CalendarEntry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beginningDate" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Date"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Date"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reminder">
+    <eOperations name="chooseNotificationTypes">
+      <eParameters name="types">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="remind">
+      <eParameters name="entry" eType="#//CalendarEntry"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="notifymanager" eType="#//NotifyManager"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calendarentry" eType="#//CalendarEntry"/>
+  </eClassifiers>
+</ecore:EPackage>
