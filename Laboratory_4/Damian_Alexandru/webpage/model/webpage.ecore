@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="webpage" nsURI="http://www.example.org/webpage" nsPrefix="webpage">
+  <eClassifiers xsi:type="ecore:EClass" name="AdapterInterface" abstract="true" interface="true">
+    <eOperations name="import">
+      <eParameters name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GoogleCalendarImporterAdapter" eSuperTypes="#//AdapterInterface">
+    <eOperations name="import" eType="#//CalendarData">
+      <eParameters name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calendarimporter" eType="#//CalendarMerger"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="merger" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CalendarMerger">
+    <eOperations name="add">
+      <eParameters name="data" eType="#//CalendarData"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CalendarData"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutlookImporterAdapter" eSuperTypes="#//AdapterInterface">
+    <eOperations name="import" eType="#//CalendarData">
+      <eParameters name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="merger" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calendarmerger" eType="#//CalendarMerger"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CalendarExporter">
+    <eOperations name="setExportStrategy">
+      <eParameters name="strategy" eType="#//ExportStrategy"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strategy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exportstrategy" upperBound="-1"
+        eType="#//ExportStrategy" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExportStrategy" abstract="true" interface="true">
+    <eOperations name="export">
+      <eParameters name="data" eType="#//CalendarData"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GoogleCalendarExportStrategy" eSuperTypes="#//ExportStrategy">
+    <eOperations name="export">
+      <eParameters name="data" eType="#//CalendarData"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutlookExportStrategy" eSuperTypes="#//ExportStrategy">
+    <eOperations name="export">
+      <eParameters name="data" eType="#//CalendarData"/>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>
