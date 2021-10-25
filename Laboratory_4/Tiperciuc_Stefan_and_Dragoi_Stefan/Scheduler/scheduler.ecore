@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="scheduler" nsURI="http://www.example.org/scheduler" nsPrefix="scheduler">
+  <eClassifiers xsi:type="ecore:EClass" name="DatabaseConnection">
+    <eOperations name="DatabaseConnection"/>
+    <eOperations name="getInstance" eType="#//DatabaseConnection"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="connection" eType="#//DatabaseConnection"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DatabaseUserEntry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="calendars"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Calendar" instanceClassName="java.lang.Calendar"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DatabaseCalendarEntry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IUserRepository" abstract="true" interface="true">
+    <eOperations name="registerUser">
+      <eParameters name="user" eType="#//DatabaseUserEntry"/>
+    </eOperations>
+    <eOperations name="loginUser" eType="#//DatabaseUserEntry">
+      <eParameters name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserRepository">
+    <eOperations name="registerUser">
+      <eParameters name="user" eType="#//DatabaseUserEntry"/>
+    </eOperations>
+    <eOperations name="loginUser" eType="#//DatabaseUserEntry">
+      <eParameters name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dao&lt;T>" abstract="true" interface="true">
+    <eOperations name="get&lt;T>">
+      <eParameters name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="delete&lt;T>">
+      <eParameters name="obj"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserDao:Dao&lt;DatabaseUserEntry>">
+    <eOperations name="get&lt;DatabaseUserEntry>">
+      <eParameters name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="delete&lt;DatabaseUserEntry>">
+      <eParameters name="obj" eType="#//DatabaseUserEntry"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectPool&lt;T>" abstract="true">
+    <eOperations name="create"/>
+    <eOperations name="validate">
+      <eParameters name="conn"/>
+    </eOperations>
+    <eOperations name="dead">
+      <eParameters name="conn"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JDBCConnectionPool:ObjectPool&lt;Connection>">
+    <eOperations name="create"/>
+    <eOperations name="validate">
+      <eParameters name="conn"/>
+    </eOperations>
+    <eOperations name="dead"/>
+  </eClassifiers>
+</ecore:EPackage>

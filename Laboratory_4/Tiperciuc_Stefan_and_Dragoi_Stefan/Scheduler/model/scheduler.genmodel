@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/Scheduler/src-gen" creationIcons="false" editDirectory="/Scheduler.edit/src-gen"
+    editorDirectory="/Scheduler.editor/src-gen" modelPluginID="Scheduler" modelName="Scheduler"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" copyrightFields="false" importOrganizing="true">
+  <foreignModel>scheduler.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Scheduler" disposableProviderFactory="true" ecorePackage="scheduler.ecore#/">
+    <genDataTypes ecoreDataType="scheduler.ecore#//Calendar"/>
+    <genClasses ecoreClass="scheduler.ecore#//DatabaseConnection">
+      <genOperations ecoreOperation="scheduler.ecore#//DatabaseConnection/DatabaseConnection"/>
+      <genOperations ecoreOperation="scheduler.ecore#//DatabaseConnection/getInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="scheduler.ecore#//DatabaseUserEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scheduler.ecore#//DatabaseUserEntry/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scheduler.ecore#//DatabaseUserEntry/password"/>
+    </genClasses>
+    <genClasses ecoreClass="scheduler.ecore#//DatabaseCalendarEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scheduler.ecore#//DatabaseCalendarEntry/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scheduler.ecore#//DatabaseCalendarEntry/startDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scheduler.ecore#//DatabaseCalendarEntry/endDate"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="scheduler.ecore#//IUserRepository">
+      <genOperations ecoreOperation="scheduler.ecore#//IUserRepository/registerUser">
+        <genParameters ecoreParameter="scheduler.ecore#//IUserRepository/registerUser/user"/>
+      </genOperations>
+      <genOperations ecoreOperation="scheduler.ecore#//IUserRepository/loginUser">
+        <genParameters ecoreParameter="scheduler.ecore#//IUserRepository/loginUser/username"/>
+        <genParameters ecoreParameter="scheduler.ecore#//IUserRepository/loginUser/password"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="scheduler.ecore#//UserRepository">
+      <genOperations ecoreOperation="scheduler.ecore#//UserRepository/registerUser">
+        <genParameters ecoreParameter="scheduler.ecore#//UserRepository/registerUser/user"/>
+      </genOperations>
+      <genOperations ecoreOperation="scheduler.ecore#//UserRepository/loginUser">
+        <genParameters ecoreParameter="scheduler.ecore#//UserRepository/loginUser/username"/>
+        <genParameters ecoreParameter="scheduler.ecore#//UserRepository/loginUser/password"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="scheduler.ecore#//Dao">
+      <genOperations ecoreOperation="scheduler.ecore#//Dao/delete">
+        <genParameters ecoreParameter="scheduler.ecore#//Dao/delete/obj"/>
+      </genOperations>
+      <genOperations ecoreOperation="scheduler.ecore#//Dao/get">
+        <genParameters ecoreParameter="scheduler.ecore#//Dao/get/id"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="scheduler.ecore#//UserDao">
+      <genOperations ecoreOperation="scheduler.ecore#//UserDao/get">
+        <genParameters ecoreParameter="scheduler.ecore#//UserDao/get/id"/>
+      </genOperations>
+      <genOperations ecoreOperation="scheduler.ecore#//UserDao/delete">
+        <genParameters ecoreParameter="scheduler.ecore#//UserDao/delete/obj"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="scheduler.ecore#//ObjectPool">
+      <genOperations ecoreOperation="scheduler.ecore#//ObjectPool/create"/>
+      <genOperations ecoreOperation="scheduler.ecore#//ObjectPool/validate">
+        <genParameters ecoreParameter="scheduler.ecore#//ObjectPool/validate/conn"/>
+      </genOperations>
+      <genOperations ecoreOperation="scheduler.ecore#//ObjectPool/dead">
+        <genParameters ecoreParameter="scheduler.ecore#//ObjectPool/dead/conn"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="scheduler.ecore#//JDBCConnectionPool">
+      <genOperations ecoreOperation="scheduler.ecore#//JDBCConnectionPool/create"/>
+      <genOperations ecoreOperation="scheduler.ecore#//JDBCConnectionPool/validate">
+        <genParameters ecoreParameter="scheduler.ecore#//JDBCConnectionPool/validate/conn"/>
+      </genOperations>
+      <genOperations ecoreOperation="scheduler.ecore#//JDBCConnectionPool/dead">
+        <genParameters ecoreParameter="scheduler.ecore#//JDBCConnectionPool/dead/conn"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
