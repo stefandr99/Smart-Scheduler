@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mergetemplate" nsURI="mergetemplate" nsPrefix="mergetemplate">
+  <eClassifiers xsi:type="ecore:EDataType" name="Calendar" instanceTypeName="calendar"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AddToCurrentCalendar" eSuperTypes="#//MergeTemplate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MergeCalendars" eSuperTypes="#//MergeTemplate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MergeTemplate" abstract="true">
+    <eOperations name="importCalendar">
+      <eParameters name="calendar" eType="ecore:EDataType merge_builder.ecore#//Calendar"/>
+    </eOperations>
+    <eOperations name="parseCalenar">
+      <eParameters name="calendar" eType="ecore:EDataType merge_builder.ecore#//Calendar"/>
+    </eOperations>
+    <eOperations name="addActivity">
+      <eParameters name="calendar" eType="ecore:EDataType merge_builder.ecore#//Calendar"/>
+    </eOperations>
+    <eOperations name="generateCalendar" eType="ecore:EDataType merge_builder.ecore#//Calendar"/>
+    <eOperations name="reset"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultCalendar" eType="ecore:EDataType merge_builder.ecore#//Calendar"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedCalendar" eType="ecore:EDataType merge_builder.ecore#//Calendar"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentCalendar" eType="ecore:EDataType merge_builder.ecore#//Calendar"/>
+  </eClassifiers>
+</ecore:EPackage>

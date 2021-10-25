@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/cunev_serghei/src" modelPluginID="cunev_serghei"
+    modelName="Mergetemplate" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>mergetemplate.ecore</foreignModel>
+  <genPackages prefix="Mergetemplate" basePackage="scheduler" disposableProviderFactory="true"
+      ecorePackage="mergetemplate.ecore#/">
+    <genDataTypes ecoreDataType="mergetemplate.ecore#//Calendar"/>
+    <genClasses ecoreClass="mergetemplate.ecore#//AddToCurrentCalendar"/>
+    <genClasses ecoreClass="mergetemplate.ecore#//MergeCalendars"/>
+    <genClasses image="false" ecoreClass="mergetemplate.ecore#//MergeTemplate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergetemplate.ecore#//MergeTemplate/resultCalendar"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergetemplate.ecore#//MergeTemplate/importedCalendar"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mergetemplate.ecore#//MergeTemplate/currentCalendar"/>
+      <genOperations ecoreOperation="mergetemplate.ecore#//MergeTemplate/importCalendar">
+        <genParameters ecoreParameter="mergetemplate.ecore#//MergeTemplate/importCalendar/calendar"/>
+      </genOperations>
+      <genOperations ecoreOperation="mergetemplate.ecore#//MergeTemplate/parseCalenar">
+        <genParameters ecoreParameter="mergetemplate.ecore#//MergeTemplate/parseCalenar/calendar"/>
+      </genOperations>
+      <genOperations ecoreOperation="mergetemplate.ecore#//MergeTemplate/addActivity">
+        <genParameters ecoreParameter="mergetemplate.ecore#//MergeTemplate/addActivity/calendar"/>
+      </genOperations>
+      <genOperations ecoreOperation="mergetemplate.ecore#//MergeTemplate/generateCalendar"/>
+      <genOperations ecoreOperation="mergetemplate.ecore#//MergeTemplate/reset"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Mergebuilder" basePackage="scheduler" disposableProviderFactory="true"
+      ecorePackage="merge_builder.ecore#/">
+    <genDataTypes ecoreDataType="merge_builder.ecore#//Calendar"/>
+    <genClasses ecoreClass="merge_builder.ecore#//Director">
+      <genOperations ecoreOperation="merge_builder.ecore#//Director/mergeSchedule">
+        <genParameters ecoreParameter="merge_builder.ecore#//Director/mergeSchedule/builder"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="merge_builder.ecore#//Builder">
+      <genOperations ecoreOperation="merge_builder.ecore#//Builder/reset"/>
+      <genOperations ecoreOperation="merge_builder.ecore#//Builder/importCalendar">
+        <genParameters ecoreParameter="merge_builder.ecore#//Builder/importCalendar/calendar"/>
+      </genOperations>
+      <genOperations ecoreOperation="merge_builder.ecore#//Builder/parseCalenar">
+        <genParameters ecoreParameter="merge_builder.ecore#//Builder/parseCalenar/calendar"/>
+      </genOperations>
+      <genOperations ecoreOperation="merge_builder.ecore#//Builder/addActivity">
+        <genParameters ecoreParameter="merge_builder.ecore#//Builder/addActivity/calenar"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="merge_builder.ecore#//MergeSchedule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute merge_builder.ecore#//MergeSchedule/resultCalendar"/>
+      <genOperations ecoreOperation="merge_builder.ecore#//MergeSchedule/generateCalendar"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

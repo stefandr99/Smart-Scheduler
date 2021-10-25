@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:table="http://www.eclipse.org/sirius/table/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/table/description/1.1.0 http://www.eclipse.org/sirius/table/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+  <viewpoint:DAnalysis uid="_pGiXwDWVEeyNwPbWxrBnDg" selectedViews="_pvX5YDWVEeyNwPbWxrBnDg _izXUEDWWEeyNwPbWxrBnDg" version="14.5.1.202106111100">
+    <semanticResources>model/merge_builder.ecore</semanticResources>
+    <semanticResources>model/mergetemplate.ecore</semanticResources>
+    <semanticResources>model/mergetemplate.genmodel</semanticResources>
+    <ownedViews xmi:type="viewpoint:DView" uid="_pvX5YDWVEeyNwPbWxrBnDg">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_sxtB8DWVEeyNwPbWxrBnDg" name="mergebuilder class diagram" repPath="#_sxniYDWVEeyNwPbWxrBnDg" changeId="cb656154-d04c-4c80-ae0c-7f85db138c51">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
+        <target xmi:type="ecore:EPackage" href="model/merge_builder.ecore#/"/>
+      </ownedRepresentationDescriptors>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_SYVA0jWdEeyNwPbWxrBnDg" name="mergetemplate class diagram" repPath="#_SYVA0DWdEeyNwPbWxrBnDg" changeId="a19e8449-590b-4a03-a45a-4c6e46166ca6">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
+      </ownedRepresentationDescriptors>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_6xUy8DWfEey-w6qgGjswVA" name="mergetemplate class diagram" repPath="#_6xTk0DWfEey-w6qgGjswVA" changeId="c4836b59-aa58-4886-a33e-c572a88f6eeb">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
+        <target xmi:type="ecore:EPackage" href="model/mergetemplate.ecore#/"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+    <ownedViews xmi:type="viewpoint:DView" uid="_izXUEDWWEeyNwPbWxrBnDg">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_jHbfkjWWEeyNwPbWxrBnDg" name="Mergebuilder generation table" repPath="#_jHDFEDWWEeyNwPbWxrBnDg" changeId="b2005568-4af5-4d57-9ca7-4853540f076b">
+        <description xmi:type="description_2:EditionTableDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']/@ownedRepresentations[name='GenPackage%20Attributes']"/>
+        <target xmi:type="genmodel:GenPackage" href="model/merge_builder.genmodel#//mergebuilder"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+  </viewpoint:DAnalysis>
+  <diagram:DSemanticDiagram uid="_sxniYDWVEeyNwPbWxrBnDg">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_sxuQEDWVEeyNwPbWxrBnDg" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_sxuQETWVEeyNwPbWxrBnDg" type="Sirius" element="_sxniYDWVEeyNwPbWxrBnDg" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_uen2wDWVEeyNwPbWxrBnDg" type="2003" element="_uelagDWVEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="_ueod0DWVEeyNwPbWxrBnDg" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_ueod0TWVEeyNwPbWxrBnDg" type="7004">
+            <children xmi:type="notation:Node" xmi:id="_vBsHkTWVEeyNwPbWxrBnDg" type="3010" element="_vBprUDWVEeyNwPbWxrBnDg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_vBsHkjWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_vBsHkzWVEeyNwPbWxrBnDg"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_ueod0jWVEeyNwPbWxrBnDg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_ueod0zWVEeyNwPbWxrBnDg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_uen2wTWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uen2wjWVEeyNwPbWxrBnDg" x="750" y="135" width="120" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_xUQnIDWVEeyNwPbWxrBnDg" type="2003" element="_xUOK4DWVEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="_xUQnIzWVEeyNwPbWxrBnDg" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_xUQnJDWVEeyNwPbWxrBnDg" type="7004">
+            <children xmi:type="notation:Node" xmi:id="_xUQnJzWVEeyNwPbWxrBnDg" type="3010" element="_xUQAEDWVEeyNwPbWxrBnDg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_xUQnKDWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8" italic="true"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_xUQnKTWVEeyNwPbWxrBnDg"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_xUQnJTWVEeyNwPbWxrBnDg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_xUQnJjWVEeyNwPbWxrBnDg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_xUQnITWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xUQnIjWVEeyNwPbWxrBnDg" x="255" y="75" width="140" height="50"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_yZaRUDWVEeyNwPbWxrBnDg" type="2003" element="_yZYcIDWVEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="_yZaRUzWVEeyNwPbWxrBnDg" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_yZaRVDWVEeyNwPbWxrBnDg" type="7004">
+            <children xmi:type="notation:Node" xmi:id="_21GZgDWVEeyNwPbWxrBnDg" type="3010" element="_21D9QDWVEeyNwPbWxrBnDg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_21GZgTWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_21GZgjWVEeyNwPbWxrBnDg"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_3feMMTWVEeyNwPbWxrBnDg" type="3010" element="_3fcXADWVEeyNwPbWxrBnDg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_3feMMjWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_3feMMzWVEeyNwPbWxrBnDg"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_5TpfkDWVEeyNwPbWxrBnDg" type="3010" element="_5TnDUDWVEeyNwPbWxrBnDg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_5TpfkTWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_5TpfkjWVEeyNwPbWxrBnDg"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_7x_KQzWVEeyNwPbWxrBnDg" type="3010" element="_7x9VEDWVEeyNwPbWxrBnDg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_7x_KRDWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_7x_KRTWVEeyNwPbWxrBnDg"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_yZaRVTWVEeyNwPbWxrBnDg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_yZaRVjWVEeyNwPbWxrBnDg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_yZaRUTWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yZaRUjWVEeyNwPbWxrBnDg" x="435" y="105" width="183" height="198"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_-Mh6EDWVEeyNwPbWxrBnDg" type="2003" element="_-Mfd0DWVEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="_-MihIDWVEeyNwPbWxrBnDg" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_-MihITWVEeyNwPbWxrBnDg" type="7004">
+            <children xmi:type="notation:Node" xmi:id="_BRTSoDWWEeyNwPbWxrBnDg" type="3010" element="_BRPoQDWWEeyNwPbWxrBnDg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_BRTSoTWWEeyNwPbWxrBnDg" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_BRTSojWWEeyNwPbWxrBnDg"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_EAA7oDWWEeyNwPbWxrBnDg" type="3010" element="_D_94UDWWEeyNwPbWxrBnDg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_EAA7oTWWEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_EAA7ojWWEeyNwPbWxrBnDg"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_-MihIjWVEeyNwPbWxrBnDg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_-MihIzWVEeyNwPbWxrBnDg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_-Mh6ETWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-Mh6EjWVEeyNwPbWxrBnDg" x="150" y="315" width="153" height="138"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_sxuQEjWVEeyNwPbWxrBnDg"/>
+        <edges xmi:type="notation:Edge" xmi:id="__5kDpjWVEeyNwPbWxrBnDg" type="4001" element="__5hnYDWVEeyNwPbWxrBnDg" source="_-Mh6EDWVEeyNwPbWxrBnDg" target="_yZaRUDWVEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="__5kqsDWVEeyNwPbWxrBnDg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="__5kqsTWVEeyNwPbWxrBnDg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="__5kqsjWVEeyNwPbWxrBnDg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="__5kqszWVEeyNwPbWxrBnDg" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="__5kqtDWVEeyNwPbWxrBnDg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="__5kqtTWVEeyNwPbWxrBnDg" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="__5kDpzWVEeyNwPbWxrBnDg" routing="Tree"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="__5kDqDWVEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__5kDqTWVEeyNwPbWxrBnDg" points="[0, 0, -212, 59]$[212, -59, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="__5kqtjWVEeyNwPbWxrBnDg" id="(0.7814569536423841,0.22058823529411764)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="__5kqtzWVEeyNwPbWxrBnDg" id="(0.6657458563535912,0.5)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_sxwsUDWVEeyNwPbWxrBnDg" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_sxxTYDWVEeyNwPbWxrBnDg"/>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_uelagDWVEeyNwPbWxrBnDg" name="Director" tooltipText="" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="model/merge_builder.ecore#//Director"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/merge_builder.ecore#//Director"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_1Fy_ETWVEeyNwPbWxrBnDg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_vBprUDWVEeyNwPbWxrBnDg" name="mergeSchedule(builder Builder)" tooltipText="mergeSchedule(builder)">
+        <target xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//Director/mergeSchedule"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//Director/mergeSchedule"/>
+        <semanticElements xmi:type="ecore:EParameter" href="model/merge_builder.ecore#//Director/mergeSchedule/builder"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_vBqSYDWVEeyNwPbWxrBnDg" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_xUOK4DWVEeyNwPbWxrBnDg" name="Calendar" tooltipText="" width="14" height="5">
+      <target xmi:type="ecore:EDataType" href="model/merge_builder.ecore#//Calendar"/>
+      <semanticElements xmi:type="ecore:EDataType" href="model/merge_builder.ecore#//Calendar"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_xUOK4TWVEeyNwPbWxrBnDg" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="255,250,191">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_xUQAEDWVEeyNwPbWxrBnDg" name="java.lang.Object" tooltipText="">
+        <target xmi:type="ecore:EDataType" href="model/merge_builder.ecore#//Calendar"/>
+        <semanticElements xmi:type="ecore:EDataType" href="model/merge_builder.ecore#//Calendar"/>
+        <decorations xmi:type="viewpoint:Decoration" uid="_xUQAETWVEeyNwPbWxrBnDg">
+          <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
+        </decorations>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_xUQAEjWVEeyNwPbWxrBnDg" showIcon="false">
+          <labelFormat>italic</labelFormat>
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']/@subNodeMappings[name='EC_DataType_InstanceClassName']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']/@subNodeMappings[name='EC_DataType_InstanceClassName']"/>
+      </ownedElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_yZYcIDWVEeyNwPbWxrBnDg" name="Builder" tooltipText="" incomingEdges="__5hnYDWVEeyNwPbWxrBnDg" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="model/merge_builder.ecore#//Builder"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/merge_builder.ecore#//Builder"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_7QxTkzWVEeyNwPbWxrBnDg" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_interface.gif" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="228,228,228">
+        <labelFormat>italic</labelFormat>
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@conditionnalStyles.0/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_21D9QDWVEeyNwPbWxrBnDg" name="reset()" tooltipText="reset()">
+        <target xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//Builder/reset"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//Builder/reset"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_21EkUDWVEeyNwPbWxrBnDg" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_3fcXADWVEeyNwPbWxrBnDg" name="importCalendar(calendar Calendar)" tooltipText="importCalendar(calendar)">
+        <target xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//Builder/importCalendar"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//Builder/importCalendar"/>
+        <semanticElements xmi:type="ecore:EParameter" href="model/merge_builder.ecore#//Builder/importCalendar/calendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_3fcXATWVEeyNwPbWxrBnDg" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_5TnDUDWVEeyNwPbWxrBnDg" name="parseCalenar(calendar Calendar)" tooltipText="parseCalenar(calendar)">
+        <target xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//Builder/parseCalenar"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//Builder/parseCalenar"/>
+        <semanticElements xmi:type="ecore:EParameter" href="model/merge_builder.ecore#//Builder/parseCalenar/calendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_5TnDUTWVEeyNwPbWxrBnDg" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_7x9VEDWVEeyNwPbWxrBnDg" name="addActivity(calenar Calendar)" tooltipText="addActivity(calenar)">
+        <target xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//Builder/addActivity"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//Builder/addActivity"/>
+        <semanticElements xmi:type="ecore:EParameter" href="model/merge_builder.ecore#//Builder/addActivity/calenar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_7x9VETWVEeyNwPbWxrBnDg" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_-Mfd0DWVEeyNwPbWxrBnDg" name="MergeSchedule" tooltipText="" outgoingEdges="__5hnYDWVEeyNwPbWxrBnDg" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="model/merge_builder.ecore#//MergeSchedule"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/merge_builder.ecore#//MergeSchedule"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_VjX5JTWgEey-w6qgGjswVA" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_BRPoQDWWEeyNwPbWxrBnDg" name="resultCalendar : Calendar" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="model/merge_builder.ecore#//MergeSchedule/resultCalendar"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="model/merge_builder.ecore#//MergeSchedule/resultCalendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_CLaKdDWWEeyNwPbWxrBnDg" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_D_94UDWWEeyNwPbWxrBnDg" name="generateCalendar() : Calendar" tooltipText="generateCalendar() : Calendar">
+        <target xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//MergeSchedule/generateCalendar"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/merge_builder.ecore#//MergeSchedule/generateCalendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_D_-fYDWWEeyNwPbWxrBnDg" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="__5hnYDWVEeyNwPbWxrBnDg" sourceNode="_-Mfd0DWVEeyNwPbWxrBnDg" targetNode="_yZYcIDWVEeyNwPbWxrBnDg">
+      <target xmi:type="ecore:EClass" href="model/merge_builder.ecore#//MergeSchedule"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/merge_builder.ecore#//MergeSchedule"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_VjZHQjWgEey-w6qgGjswVA" lineStyle="dash" targetArrow="InputClosedArrow" routingStyle="tree">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@conditionnalStyles.0/@style"/>
+        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_VjZHQzWgEey-w6qgGjswVA" showIcon="false">
+          <labelFormat>italic</labelFormat>
+        </beginLabelStyle>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_VjZHRDWgEey-w6qgGjswVA" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_sxpXkDWVEeyNwPbWxrBnDg"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer"/>
+    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Package']"/>
+    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Validation']"/>
+    <target xmi:type="ecore:EPackage" href="model/merge_builder.ecore#/"/>
+  </diagram:DSemanticDiagram>
+  <table:DTable uid="_jHDFEDWWEeyNwPbWxrBnDg" headerColumnWidth="161">
+    <target xmi:type="genmodel:GenPackage" href="model/merge_builder.genmodel#//mergebuilder"/>
+    <lines xmi:type="table:DLine" uid="_jHQgcDWWEeyNwPbWxrBnDg" label="Director">
+      <target xmi:type="genmodel:GenClass" href="model/merge_builder.genmodel#//mergebuilder/Director"/>
+      <semanticElements xmi:type="genmodel:GenClass" href="model/merge_builder.genmodel#//mergebuilder/Director"/>
+      <originMapping xmi:type="description_2:LineMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']/@ownedRepresentations[name='GenPackage%20Attributes']/@ownedLineMappings[name='GenClass']"/>
+    </lines>
+    <lines xmi:type="table:DLine" uid="_jHS8sDWWEeyNwPbWxrBnDg" label="Builder">
+      <target xmi:type="genmodel:GenClass" href="model/merge_builder.genmodel#//mergebuilder/Builder"/>
+      <semanticElements xmi:type="genmodel:GenClass" href="model/merge_builder.genmodel#//mergebuilder/Builder"/>
+      <originMapping xmi:type="description_2:LineMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']/@ownedRepresentations[name='GenPackage%20Attributes']/@ownedLineMappings[name='GenClass']"/>
+    </lines>
+    <lines xmi:type="table:DLine" uid="_jHS8sjWWEeyNwPbWxrBnDg" label="MergeSchedule">
+      <target xmi:type="genmodel:GenClass" href="model/merge_builder.genmodel#//mergebuilder/MergeSchedule"/>
+      <lines xmi:type="table:DLine" uid="_jHVY8DWWEeyNwPbWxrBnDg" label="resultCalendar">
+        <target xmi:type="genmodel:GenFeature" href="model/merge_builder.genmodel#//mergebuilder/MergeSchedule/resultCalendar"/>
+        <semanticElements xmi:type="genmodel:GenFeature" href="model/merge_builder.genmodel#//mergebuilder/MergeSchedule/resultCalendar"/>
+        <originMapping xmi:type="description_2:LineMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']/@ownedRepresentations[name='GenPackage%20Attributes']/@ownedLineMappings[name='GenClass']/@ownedSubLines[name='GenFeature']"/>
+        <cells xmi:type="table:DCell" uid="_jHaRdjWWEeyNwPbWxrBnDg" column="_jHX1MDWWEeyNwPbWxrBnDg">
+          <target xmi:type="genmodel:GenFeature" href="model/merge_builder.genmodel#//mergebuilder/MergeSchedule/resultCalendar"/>
+          <semanticElements xmi:type="genmodel:GenFeature" href="model/merge_builder.genmodel#//mergebuilder/MergeSchedule/resultCalendar"/>
+        </cells>
+        <cells xmi:type="table:DCell" uid="_jHbfkDWWEeyNwPbWxrBnDg" column="_jHYcQDWWEeyNwPbWxrBnDg">
+          <target xmi:type="genmodel:GenFeature" href="model/merge_builder.genmodel#//mergebuilder/MergeSchedule/resultCalendar"/>
+          <semanticElements xmi:type="genmodel:GenFeature" href="model/merge_builder.genmodel#//mergebuilder/MergeSchedule/resultCalendar"/>
+        </cells>
+      </lines>
+      <semanticElements xmi:type="genmodel:GenClass" href="model/merge_builder.genmodel#//mergebuilder/MergeSchedule"/>
+      <originMapping xmi:type="description_2:LineMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']/@ownedRepresentations[name='GenPackage%20Attributes']/@ownedLineMappings[name='GenClass']"/>
+    </lines>
+    <columns xmi:type="table:DFeatureColumn" uid="_jHX1MDWWEeyNwPbWxrBnDg" label="Category" cells="_jHaRdjWWEeyNwPbWxrBnDg" width="75" featureName="propertyCategory">
+      <originMapping xmi:type="description_2:FeatureColumnMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']/@ownedRepresentations[name='GenPackage%20Attributes']/@ownedColumnMappings[name='Category']"/>
+    </columns>
+    <columns xmi:type="table:DFeatureColumn" uid="_jHYcQDWWEeyNwPbWxrBnDg" label="Description" cells="_jHbfkDWWEeyNwPbWxrBnDg" width="91" featureName="propertyDescription">
+      <originMapping xmi:type="description_2:FeatureColumnMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']/@ownedRepresentations[name='GenPackage%20Attributes']/@ownedColumnMappings[name='Decription']"/>
+    </columns>
+    <description xmi:type="description_2:EditionTableDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']/@ownedRepresentations[name='GenPackage%20Attributes']"/>
+  </table:DTable>
+  <diagram:DSemanticDiagram uid="_SYVA0DWdEeyNwPbWxrBnDg">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_SYWO8DWdEeyNwPbWxrBnDg" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_SYWO8TWdEeyNwPbWxrBnDg" type="Sirius" element="_SYVA0DWdEeyNwPbWxrBnDg" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_T08v0jWdEeyNwPbWxrBnDg" type="2003" element="_T05sgDWdEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="_T09W4jWdEeyNwPbWxrBnDg" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_T09W4zWdEeyNwPbWxrBnDg" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_T09W5DWdEeyNwPbWxrBnDg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_T09W5TWdEeyNwPbWxrBnDg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_T09W4DWdEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_T09W4TWdEeyNwPbWxrBnDg" x="255" y="105" width="288" height="168"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_aAxY4DWdEeyNwPbWxrBnDg" type="2003" element="_aAtHcDWdEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="_aAxY4zWdEeyNwPbWxrBnDg" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_aAxY5DWdEeyNwPbWxrBnDg" type="7004">
+            <children xmi:type="notation:Node" xmi:id="_aAxY5zWdEeyNwPbWxrBnDg" type="3010" element="_aAwx0zWdEeyNwPbWxrBnDg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_aAxY6DWdEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8" italic="true"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_aAxY6TWdEeyNwPbWxrBnDg"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_aAxY5TWdEeyNwPbWxrBnDg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_aAxY5jWdEeyNwPbWxrBnDg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_aAxY4TWdEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aAxY4jWdEeyNwPbWxrBnDg" x="150" y="45" width="140" height="50"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_gVC96TWeEeyNwPbWxrBnDg" type="2003" element="_gU-scDWeEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="_gVDk8DWeEeyNwPbWxrBnDg" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_gVDk8TWeEeyNwPbWxrBnDg" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_gVDk8jWeEeyNwPbWxrBnDg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_gVDk8zWeEeyNwPbWxrBnDg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_gVC96jWeEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gVC96zWeEeyNwPbWxrBnDg" x="435" y="375" width="153" height="70"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_kPWQQDWeEeyNwPbWxrBnDg" type="2003" element="_kPQJoDWeEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="_kPWQQzWeEeyNwPbWxrBnDg" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_kPWQRDWeEeyNwPbWxrBnDg" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_kPWQRTWeEeyNwPbWxrBnDg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_kPWQRjWeEeyNwPbWxrBnDg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_kPWQQTWeEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kPWQQjWeEeyNwPbWxrBnDg" x="170" y="345" width="178" height="100"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_SYWO8jWdEeyNwPbWxrBnDg"/>
+        <edges xmi:type="notation:Edge" xmi:id="_pYLyUDWeEeyNwPbWxrBnDg" type="4001" element="_pYIH8DWeEeyNwPbWxrBnDg" source="_kPWQQDWeEeyNwPbWxrBnDg" target="_T08v0jWdEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="_pYLyVDWeEeyNwPbWxrBnDg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYLyVTWeEeyNwPbWxrBnDg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_pYMZYDWeEeyNwPbWxrBnDg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYMZYTWeEeyNwPbWxrBnDg" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_pYMZYjWeEeyNwPbWxrBnDg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYMZYzWeEeyNwPbWxrBnDg" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_pYLyUTWeEeyNwPbWxrBnDg" routing="Tree"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_pYLyUjWeEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_pYLyUzWeEeyNwPbWxrBnDg" points="[0, 0, -104, 119]$[104, -119, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pYMZZDWeEeyNwPbWxrBnDg" id="(1.0,0.45918367346938777)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pYMZZTWeEeyNwPbWxrBnDg" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_pzhDcDWeEeyNwPbWxrBnDg" type="4001" element="_pzdZEDWeEeyNwPbWxrBnDg" source="_gVC96TWeEeyNwPbWxrBnDg" target="_T08v0jWdEeyNwPbWxrBnDg">
+          <children xmi:type="notation:Node" xmi:id="_pzhDdDWeEeyNwPbWxrBnDg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pzhDdTWeEeyNwPbWxrBnDg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_pzhDdjWeEeyNwPbWxrBnDg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pzhDdzWeEeyNwPbWxrBnDg" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_pzhDeDWeEeyNwPbWxrBnDg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pzhDeTWeEeyNwPbWxrBnDg" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_pzhDcTWeEeyNwPbWxrBnDg" routing="Tree"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_pzhDcjWeEeyNwPbWxrBnDg" fontName="Segoe UI" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_pzhDczWeEeyNwPbWxrBnDg" points="[0, 0, -45, 104]$[45, -104, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pzhqgDWeEeyNwPbWxrBnDg" id="(0.695364238410596,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pzhqgTWeEeyNwPbWxrBnDg" id="(0.5,0.5)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_SYXdEDWdEeyNwPbWxrBnDg" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_SYXdETWdEeyNwPbWxrBnDg"/>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_T05sgDWdEeyNwPbWxrBnDg" name="MergeGeneratorTemplate" tooltipText="" incomingEdges="_pYIH8DWeEeyNwPbWxrBnDg _pzdZEDWeEeyNwPbWxrBnDg" width="12" height="10">
+      <decorations xmi:type="viewpoint:Decoration" uid="_aV30QDWfEeyNwPbWxrBnDg">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
+      </decorations>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_UStNYTWeEeyNwPbWxrBnDg" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_abstract.gif" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="228,228,228">
+        <labelFormat>italic</labelFormat>
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@conditionnalStyles.1/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_aAtHcDWdEeyNwPbWxrBnDg" name="Calenar" tooltipText="" width="14" height="5">
+      <target xmi:type="ecore:EDataType" href="model/mergetemplate.ecore#//Calenar"/>
+      <semanticElements xmi:type="ecore:EDataType" href="model/mergetemplate.ecore#//Calenar"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_aV5CZDWfEeyNwPbWxrBnDg">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
+      </decorations>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_aAtugDWdEeyNwPbWxrBnDg" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="255,250,191">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_aAwx0zWdEeyNwPbWxrBnDg" name="java.lang.Object" tooltipText="">
+        <target xmi:type="ecore:EDataType" href="model/mergetemplate.ecore#//Calenar"/>
+        <semanticElements xmi:type="ecore:EDataType" href="model/mergetemplate.ecore#//Calenar"/>
+        <decorations xmi:type="viewpoint:Decoration" uid="_aAwx1DWdEeyNwPbWxrBnDg">
+          <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
+        </decorations>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_aAwx1TWdEeyNwPbWxrBnDg" showIcon="false">
+          <labelFormat>italic</labelFormat>
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']/@subNodeMappings[name='EC_DataType_InstanceClassName']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']/@subNodeMappings[name='EC_DataType_InstanceClassName']"/>
+      </ownedElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_gU-scDWeEeyNwPbWxrBnDg" name="MergeCalendars" tooltipText="" outgoingEdges="_pzdZEDWeEeyNwPbWxrBnDg" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//MergeCalendars"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//MergeCalendars"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_aV30QzWfEeyNwPbWxrBnDg">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
+      </decorations>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_gU_TgDWeEeyNwPbWxrBnDg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_kPQJoDWeEeyNwPbWxrBnDg" name="AddToCurrentCalendar" tooltipText="" outgoingEdges="_pYIH8DWeEeyNwPbWxrBnDg" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//AddToCurrentCalendar"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//AddToCurrentCalendar"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_aV30RjWfEeyNwPbWxrBnDg">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
+      </decorations>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_kPQJoTWeEeyNwPbWxrBnDg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_pYIH8DWeEeyNwPbWxrBnDg" sourceNode="_kPQJoDWeEeyNwPbWxrBnDg" targetNode="_T05sgDWdEeyNwPbWxrBnDg">
+      <target xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//AddToCurrentCalendar"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//AddToCurrentCalendar"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_aV6QhjWfEeyNwPbWxrBnDg">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
+      </decorations>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_pYIH8TWeEeyNwPbWxrBnDg" targetArrow="InputClosedArrow" routingStyle="tree">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
+        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_pYIH8jWeEeyNwPbWxrBnDg" showIcon="false">
+          <labelFormat>italic</labelFormat>
+        </beginLabelStyle>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_pYIH8zWeEeyNwPbWxrBnDg" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_pzdZEDWeEeyNwPbWxrBnDg" sourceNode="_gU-scDWeEeyNwPbWxrBnDg" targetNode="_T05sgDWdEeyNwPbWxrBnDg">
+      <target xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//MergeCalendars"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//MergeCalendars"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_aV5pdjWfEeyNwPbWxrBnDg">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
+      </decorations>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_pzdZETWeEeyNwPbWxrBnDg" targetArrow="InputClosedArrow" routingStyle="tree">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
+        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_pzdZEjWeEeyNwPbWxrBnDg" showIcon="false">
+          <labelFormat>italic</labelFormat>
+        </beginLabelStyle>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_pzdZEzWeEeyNwPbWxrBnDg" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_SYVA0TWdEeyNwPbWxrBnDg"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer"/>
+    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Package']"/>
+    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Validation']"/>
+  </diagram:DSemanticDiagram>
+  <diagram:DSemanticDiagram uid="_6xTk0DWfEey-w6qgGjswVA">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_6xWBEDWfEey-w6qgGjswVA" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_6xWoIDWfEey-w6qgGjswVA" type="Sirius" element="_6xTk0DWfEey-w6qgGjswVA" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_EwM24DWgEey-w6qgGjswVA" type="2003" element="_EwE7EDWgEey-w6qgGjswVA">
+          <children xmi:type="notation:Node" xmi:id="_EwM24zWgEey-w6qgGjswVA" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_EwM25DWgEey-w6qgGjswVA" type="7004">
+            <children xmi:type="notation:Node" xmi:id="_EwNd8DWgEey-w6qgGjswVA" type="3010" element="_EwMP0jWgEey-w6qgGjswVA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_EwNd8TWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8" italic="true"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_EwNd8jWgEey-w6qgGjswVA"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_EwM25TWgEey-w6qgGjswVA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_EwM25jWgEey-w6qgGjswVA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_EwM24TWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EwM24jWgEey-w6qgGjswVA" x="195" y="90" width="140" height="50"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_L1thADWgEey-w6qgGjswVA" type="2003" element="_L1llMDWgEey-w6qgGjswVA">
+          <children xmi:type="notation:Node" xmi:id="_L1thAzWgEey-w6qgGjswVA" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_L1thBDWgEey-w6qgGjswVA" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_L1thBTWgEey-w6qgGjswVA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_L1thBjWgEey-w6qgGjswVA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_L1thATWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_L1thAjWgEey-w6qgGjswVA" x="195" y="345" width="183" height="48"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_Nd0HQDWgEey-w6qgGjswVA" type="2003" element="_NdsLcDWgEey-w6qgGjswVA">
+          <children xmi:type="notation:Node" xmi:id="_Nd0HQzWgEey-w6qgGjswVA" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_Nd0HRDWgEey-w6qgGjswVA" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_Nd0HRTWgEey-w6qgGjswVA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_Nd0HRjWgEey-w6qgGjswVA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_Nd0HQTWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Nd0HQjWgEey-w6qgGjswVA" x="435" y="375" width="153" height="63"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_laEsEDWgEey-w6qgGjswVA" type="2003" element="_lZ-lcDWgEey-w6qgGjswVA">
+          <children xmi:type="notation:Node" xmi:id="_laEsEzWgEey-w6qgGjswVA" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_laEsFDWgEey-w6qgGjswVA" type="7004">
+            <children xmi:type="notation:Node" xmi:id="_n47UIDWgEey-w6qgGjswVA" type="3010" element="_n4yKMDWgEey-w6qgGjswVA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_n47UITWgEey-w6qgGjswVA" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_n47UIjWgEey-w6qgGjswVA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_pERs8DWgEey-w6qgGjswVA" type="3010" element="_pELmUDWgEey-w6qgGjswVA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_pERs8TWgEey-w6qgGjswVA" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_pERs8jWgEey-w6qgGjswVA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_qnX3YDWgEey-w6qgGjswVA" type="3010" element="_qnRJsDWgEey-w6qgGjswVA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_qnX3YTWgEey-w6qgGjswVA" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_qnX3YjWgEey-w6qgGjswVA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_ro-eUDWgEey-w6qgGjswVA" type="3010" element="_ro3woDWgEey-w6qgGjswVA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_ro-eUTWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_ro-eUjWgEey-w6qgGjswVA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_tNtAcDWgEey-w6qgGjswVA" type="3010" element="_tNm50DWgEey-w6qgGjswVA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_tNtAcTWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_tNtAcjWgEey-w6qgGjswVA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_unSpkDWgEey-w6qgGjswVA" type="3010" element="_unNKADWgEey-w6qgGjswVA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_unSpkTWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_unSpkjWgEey-w6qgGjswVA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_v8QRYDWgEey-w6qgGjswVA" type="3010" element="_v8KKwDWgEey-w6qgGjswVA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_v8QRYTWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_v8QRYjWgEey-w6qgGjswVA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_xqNoADWgEey-w6qgGjswVA" type="3010" element="_xqHhYDWgEey-w6qgGjswVA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_xqNoATWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_xqNoAjWgEey-w6qgGjswVA"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_laEsFTWgEey-w6qgGjswVA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_laEsFjWgEey-w6qgGjswVA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_laEsETWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_laEsEjWgEey-w6qgGjswVA" x="375" y="75" width="213" height="243"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_6xWoITWfEey-w6qgGjswVA"/>
+        <edges xmi:type="notation:Edge" xmi:id="_zM14YDWgEey-w6qgGjswVA" type="4001" element="_zMw_4DWgEey-w6qgGjswVA" source="_L1thADWgEey-w6qgGjswVA" target="_laEsEDWgEey-w6qgGjswVA">
+          <children xmi:type="notation:Node" xmi:id="_zM14ZDWgEey-w6qgGjswVA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zM14ZTWgEey-w6qgGjswVA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_zM14ZjWgEey-w6qgGjswVA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zM14ZzWgEey-w6qgGjswVA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_zM14aDWgEey-w6qgGjswVA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zM14aTWgEey-w6qgGjswVA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_zM14YTWgEey-w6qgGjswVA" routing="Tree"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_zM14YjWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_zM14YzWgEey-w6qgGjswVA" points="[0, 0, -74, 44]$[74, -44, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zM14ajWgEey-w6qgGjswVA" id="(1.0,0.32608695652173914)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zM14azWgEey-w6qgGjswVA" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_zeVRADWgEey-w6qgGjswVA" type="4001" element="_zeQYhjWgEey-w6qgGjswVA" source="_Nd0HQDWgEey-w6qgGjswVA" target="_laEsEDWgEey-w6qgGjswVA">
+          <children xmi:type="notation:Node" xmi:id="_zeVRBDWgEey-w6qgGjswVA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zeVRBTWgEey-w6qgGjswVA" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_zeVRBjWgEey-w6qgGjswVA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zeVRBzWgEey-w6qgGjswVA" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_zeVRCDWgEey-w6qgGjswVA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zeVRCTWgEey-w6qgGjswVA" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_zeVRATWgEey-w6qgGjswVA" routing="Tree"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_zeVRAjWgEey-w6qgGjswVA" fontName="Segoe UI" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_zeVRAzWgEey-w6qgGjswVA" points="[0, 0, 0, 59]$[0, -59, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zeV4EDWgEey-w6qgGjswVA" id="(0.695364238410596,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zeV4ETWgEey-w6qgGjswVA" id="(0.5,0.5)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_6xYdUDWfEey-w6qgGjswVA" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_6xYdUTWfEey-w6qgGjswVA"/>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_EwE7EDWgEey-w6qgGjswVA" name="Calendar" tooltipText="" width="14" height="5">
+      <target xmi:type="ecore:EDataType" href="model/mergetemplate.ecore#//Calendar"/>
+      <semanticElements xmi:type="ecore:EDataType" href="model/mergetemplate.ecore#//Calendar"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_EwFiIDWgEey-w6qgGjswVA" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="255,250,191">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_EwMP0jWgEey-w6qgGjswVA" name="java.lang.Object" tooltipText="">
+        <target xmi:type="ecore:EDataType" href="model/mergetemplate.ecore#//Calendar"/>
+        <semanticElements xmi:type="ecore:EDataType" href="model/mergetemplate.ecore#//Calendar"/>
+        <decorations xmi:type="viewpoint:Decoration" uid="_EwMP0zWgEey-w6qgGjswVA">
+          <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
+        </decorations>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_EwMP1DWgEey-w6qgGjswVA" showIcon="false">
+          <labelFormat>italic</labelFormat>
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']/@subNodeMappings[name='EC_DataType_InstanceClassName']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EDataType']/@subNodeMappings[name='EC_DataType_InstanceClassName']"/>
+      </ownedElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_L1llMDWgEey-w6qgGjswVA" name="AddToCurrentCalendar" tooltipText="" outgoingEdges="_zMw_4DWgEey-w6qgGjswVA" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//AddToCurrentCalendar"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//AddToCurrentCalendar"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_L1mMQDWgEey-w6qgGjswVA" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_NdsLcDWgEey-w6qgGjswVA" name="MergeCalendars" tooltipText="" outgoingEdges="_zeQYhjWgEey-w6qgGjswVA" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//MergeCalendars"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//MergeCalendars"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_NdsLcTWgEey-w6qgGjswVA" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_lZ-lcDWgEey-w6qgGjswVA" name="MergeTemplate" tooltipText="" incomingEdges="_zMw_4DWgEey-w6qgGjswVA _zeQYhjWgEey-w6qgGjswVA" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//MergeTemplate"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//MergeTemplate"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_rVI8VzWgEey-w6qgGjswVA" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_abstract.gif" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="228,228,228">
+        <labelFormat>italic</labelFormat>
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@conditionnalStyles.1/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_n4yKMDWgEey-w6qgGjswVA" name="resultCalendar : Calendar" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="model/mergetemplate.ecore#//MergeTemplate/resultCalendar"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="model/mergetemplate.ecore#//MergeTemplate/resultCalendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_oqGSYTWgEey-w6qgGjswVA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_pELmUDWgEey-w6qgGjswVA" name="importedCalendar : Calendar" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="model/mergetemplate.ecore#//MergeTemplate/importedCalendar"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="model/mergetemplate.ecore#//MergeTemplate/importedCalendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_qQqnmjWgEey-w6qgGjswVA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_qnRJsDWgEey-w6qgGjswVA" name="currentCalendar : Calendar" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="model/mergetemplate.ecore#//MergeTemplate/currentCalendar"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="model/mergetemplate.ecore#//MergeTemplate/currentCalendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_rVKKcjWgEey-w6qgGjswVA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_ro3woDWgEey-w6qgGjswVA" name="importCalendar(calendar Calendar)" tooltipText="importCalendar(calendar)">
+        <target xmi:type="ecore:EOperation" href="model/mergetemplate.ecore#//MergeTemplate/importCalendar"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/mergetemplate.ecore#//MergeTemplate/importCalendar"/>
+        <semanticElements xmi:type="ecore:EParameter" href="model/mergetemplate.ecore#//MergeTemplate/importCalendar/calendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_ro4XsDWgEey-w6qgGjswVA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_tNm50DWgEey-w6qgGjswVA" name="parseCalenar(calendar Calendar)" tooltipText="parseCalenar(calendar)">
+        <target xmi:type="ecore:EOperation" href="model/mergetemplate.ecore#//MergeTemplate/parseCalenar"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/mergetemplate.ecore#//MergeTemplate/parseCalenar"/>
+        <semanticElements xmi:type="ecore:EParameter" href="model/mergetemplate.ecore#//MergeTemplate/parseCalenar/calendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_tNm50TWgEey-w6qgGjswVA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_unNKADWgEey-w6qgGjswVA" name="addActivity(calendar Calendar)" tooltipText="addActivity(calendar)">
+        <target xmi:type="ecore:EOperation" href="model/mergetemplate.ecore#//MergeTemplate/addActivity"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/mergetemplate.ecore#//MergeTemplate/addActivity"/>
+        <semanticElements xmi:type="ecore:EParameter" href="model/mergetemplate.ecore#//MergeTemplate/addActivity/calendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_unNKATWgEey-w6qgGjswVA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_v8KKwDWgEey-w6qgGjswVA" name="generateCalendar() : Calendar" tooltipText="generateCalendar() : Calendar">
+        <target xmi:type="ecore:EOperation" href="model/mergetemplate.ecore#//MergeTemplate/generateCalendar"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/mergetemplate.ecore#//MergeTemplate/generateCalendar"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_v8KKwTWgEey-w6qgGjswVA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_xqHhYDWgEey-w6qgGjswVA" name="reset()" tooltipText="reset()">
+        <target xmi:type="ecore:EOperation" href="model/mergetemplate.ecore#//MergeTemplate/reset"/>
+        <semanticElements xmi:type="ecore:EOperation" href="model/mergetemplate.ecore#//MergeTemplate/reset"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_xqHhYTWgEey-w6qgGjswVA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_zMw_4DWgEey-w6qgGjswVA" sourceNode="_L1llMDWgEey-w6qgGjswVA" targetNode="_lZ-lcDWgEey-w6qgGjswVA">
+      <target xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//AddToCurrentCalendar"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//AddToCurrentCalendar"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_zMw_4TWgEey-w6qgGjswVA" targetArrow="InputClosedArrow" routingStyle="tree">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
+        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_zMw_4jWgEey-w6qgGjswVA" showIcon="false">
+          <labelFormat>italic</labelFormat>
+        </beginLabelStyle>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_zMw_4zWgEey-w6qgGjswVA" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_zeQYhjWgEey-w6qgGjswVA" sourceNode="_NdsLcDWgEey-w6qgGjswVA" targetNode="_lZ-lcDWgEey-w6qgGjswVA">
+      <target xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//MergeCalendars"/>
+      <semanticElements xmi:type="ecore:EClass" href="model/mergetemplate.ecore#//MergeCalendars"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_zeQ_kDWgEey-w6qgGjswVA" targetArrow="InputClosedArrow" routingStyle="tree">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
+        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_zeQ_kTWgEey-w6qgGjswVA" showIcon="false">
+          <labelFormat>italic</labelFormat>
+        </beginLabelStyle>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_zeQ_kjWgEey-w6qgGjswVA" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_6xTk0TWfEey-w6qgGjswVA"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer"/>
+    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Package']"/>
+    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Validation']"/>
+    <target xmi:type="ecore:EPackage" href="model/mergetemplate.ecore#/"/>
+  </diagram:DSemanticDiagram>
+</xmi:XMI>

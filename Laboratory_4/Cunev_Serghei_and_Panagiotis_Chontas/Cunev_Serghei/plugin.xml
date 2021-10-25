@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated merge_builder -->
+      <package
+            uri="brgbld"
+            class="org.cunev.mergebuilder.mergebuilder.MergebuilderPackage"
+            genModel="model/merge_builder.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergetemplate -->
+      <package
+            uri="mergetemplate"
+            class="scheduler.mergetemplate.MergetemplatePackage"
+            genModel="model/mergetemplate.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mergetemplate -->
+      <package
+            uri="brgbld"
+            class="scheduler.mergebuilder.MergebuilderPackage"
+            genModel="model/mergetemplate.genmodel"/>
+   </extension>
+</plugin>
