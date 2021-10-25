@@ -2,8 +2,8 @@
 
 ## Template Design pattern 
 
-![Template](https://imgur.com/iUEs5Mu)
+![Template](https://i.imgur.com/iUEs5Mu.png)
 
 ## Builder Design pattern
 
-![Builder](https://imgur.com/yfHZvU8)
+![Builder](https://i.imgur.com/yfHZvU8.png)
