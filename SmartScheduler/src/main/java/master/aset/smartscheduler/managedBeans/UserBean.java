@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
+import master.aset.smartscheduler.services.interfaces.IUserService;
 
 /**
  *
@@ -19,15 +20,18 @@ import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 @Named("userBean")
 public class UserBean {
     
-    private IUserRepository userRepo;
+    private IUserService userService;
     
     private String email;
     private String password;
     private Integer userRole;
     
     public void addUser() {
-        User user = new User(email, password, userRole);
-        userRepo.create(user);
+        userService.add(email, password, userRole);
+    }
+
+    public void loginUser() {
+        User user = userService.login(email, password);
     }
 
     public String getEmail() {

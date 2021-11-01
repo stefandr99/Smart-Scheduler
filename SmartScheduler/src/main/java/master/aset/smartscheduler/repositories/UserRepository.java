@@ -25,9 +25,18 @@ public class UserRepository implements IUserRepository {
         em.flush();
     }
 
+    @Transactional
+    @Override
+    public User getByEmail(String email) {
+        return em.createNamedQuery("User.getByEmail", User.class)
+                .setParameter("email", email)
+                .getSingleResult();
+    }
+
     @Override
     public List<User> getAll(EntityManager em) {
-        return null;
+        return em.createNamedQuery("User.getAll", User.class)
+                .getResultList();
     }
 
     @Override
@@ -40,8 +49,4 @@ public class UserRepository implements IUserRepository {
 
     }
 
-    @Override
-    public boolean login(String username, String password) {
-        return false;
-    }
 }

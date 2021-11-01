@@ -5,12 +5,8 @@
 package master.aset.smartscheduler.entities.user;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.inject.Named;
+import javax.persistence.*;
 
 /**
  *
@@ -18,6 +14,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="users")
+@NamedQueries({
+        @NamedQuery(name = "User.getByEmail", query = "select us from User us where us.email = :email"),
+        @NamedQuery(name = "User.getAll", query = "select us from User us")
+})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,7 +43,12 @@ public class User implements Serializable {
         this.password = password;
         this.userRole = userRole;
     }
-    
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public Integer getId() {
         return id;
     }

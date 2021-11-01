@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import master.aset.smartscheduler.entities.calendar.Calendar;
 
-@Generated(value="EclipseLink-2.7.7.v20200504-rNA", date="2021-11-01T20:29:22")
+@Generated(value="EclipseLink-2.7.7.v20200504-rNA", date="2021-11-01T23:33:39")
 @StaticMetamodel(CalendarEntries.class)
 public class CalendarEntries_ { 
 
