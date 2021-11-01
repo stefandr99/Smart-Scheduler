@@ -19,7 +19,7 @@ import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 @Named("userBean")
 public class UserBean {
     
-    @EJB
+    @Inject
     IUserRepository userRepo;
     
     private String email;
