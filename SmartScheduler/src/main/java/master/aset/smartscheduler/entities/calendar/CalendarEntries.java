@@ -53,4 +53,6 @@ public class CalendarEntries implements Serializable{
     public void setFinishDate(Date finishDate) {
         this.finishDate = finishDate;
     }
+    
+    public CalendarEntries() {}
 }
