@@ -1,4 +1,4 @@
-package master.aset.smartscheduler.managedbeans.calendar;
+package master.aset.smartscheduler.entities.calendar;
 
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;

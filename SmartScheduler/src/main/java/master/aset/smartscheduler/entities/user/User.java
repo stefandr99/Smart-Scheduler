@@ -1,4 +1,4 @@
-package master.aset.smartscheduler.managedbeans.user;
+package master.aset.smartscheduler.entities.user;
 
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;

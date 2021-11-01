@@ -1,7 +1,7 @@
-package master.aset.smartscheduler.managedbeans.usercalendars;
+package master.aset.smartscheduler.entities.usercalendars;
 
-import master.aset.smartscheduler.managedbeans.calendar.Calendar;
-import master.aset.smartscheduler.managedbeans.user.User;
+import master.aset.smartscheduler.entities.calendar.Calendar;
+import master.aset.smartscheduler.entities.user.User;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 
