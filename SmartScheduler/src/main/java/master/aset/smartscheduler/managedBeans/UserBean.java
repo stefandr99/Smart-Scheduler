@@ -19,8 +19,7 @@ import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 @Named("userBean")
 public class UserBean {
     
-    @Inject
-    IUserRepository userRepo;
+    private IUserRepository userRepo;
     
     private String email;
     private String password;
