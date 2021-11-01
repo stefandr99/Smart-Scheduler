@@ -1,5 +1,6 @@
 package master.aset.smartscheduler.entities.calendar;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,8 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "calendars")
-@ManagedBean(name = "calendar")
-public class Calendar {
+public class Calendar implements Serializable{
     @Id
     private Integer id;
 

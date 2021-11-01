@@ -1,23 +1,49 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package master.aset.smartscheduler.entities.user;
 
-import javax.faces.bean.ManagedBean;
+import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ *
+ * @author Andrei
+ */
 @Entity
-@Table(name = "users")
-@ManagedBean(name = "user")
-public class User {
+@Table(name="users")
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Integer id;
+    
+    @Column(name="email")
+    private String email;
 
-    private String name;
-
+    @Column(name="password")
     private String password;
 
-    private Integer role;
+    @Column(name="user_role")
+    private Integer userRole;
 
+    public User() {
+    }
+
+    public User(String email, String password, Integer userRole) {
+        this.email = email;
+        this.password = password;
+        this.userRole = userRole;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -26,12 +52,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -42,11 +68,37 @@ public class User {
         this.password = password;
     }
 
-    public Integer getRole() {
-        return role;
+    public Integer getUserRole() {
+        return userRole;
     }
 
-    public void setRole(Integer role) {
-        this.role = role;
+    public void setUserRole(Integer userRole) {
+        this.userRole = userRole;
     }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof User)) {
+            return false;
+        }
+        User other = (User) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "master.aset.smartscheduler.entities.user.User1[ id=" + id + " ]";
+    }
+    
 }
