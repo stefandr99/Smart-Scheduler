@@ -5,11 +5,24 @@ import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import javax.faces.bean.ApplicationScoped;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
+@ApplicationScoped
 public class UserRepository implements IUserRepository {
-    @Override
-    public void create(User entity) {
+    
+    @PersistenceContext(unitName = "PU")
+    EntityManager em;
 
+    public UserRepository() {
+    }
+    
+    @Transactional
+    @Override
+    public void create(User user) {
+        em.persist(user);
+        em.flush();
     }
 
     @Override

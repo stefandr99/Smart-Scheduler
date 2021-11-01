@@ -1,13 +1,13 @@
 package master.aset.smartscheduler.entities.calendar;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "calendar_entries")
-@ManagedBean(name = "calendarEntries")
-public class CalendarEntries {
+public class CalendarEntries implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
