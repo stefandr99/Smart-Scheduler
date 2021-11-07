@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package master.aset.smartscheduler.managedBeans;
 
-import javax.ejb.EJB;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import master.aset.smartscheduler.entities.user.User;
@@ -22,13 +17,23 @@ public class UserBean {
     
     private IUserService userService;
     
+    @Inject
+    IUserRepository userRepository;
+    
     private String email;
     private String password;
     private Integer userRole;
     
+//    public void addUser() {
+//        userService.add(email, password, userRole);
+//    }
+//        
     public void addUser() {
-        userService.add(email, password, userRole);
+        System.out.println(".....Method called.......");
+        User user = new User(email, password, userRole);
+        userRepository.create(user);
     }
+    
 
     public void loginUser() {
         User user = userService.login(email, password);
