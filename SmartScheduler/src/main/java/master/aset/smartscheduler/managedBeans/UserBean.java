@@ -22,7 +22,7 @@ public class UserBean {
     
     private String email;
     private String password;
-    private Integer userRole;
+    private Integer userRole = 0;
     
 //    public void addUser() {
 //        userService.add(email, password, userRole);
