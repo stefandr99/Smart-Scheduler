@@ -6,10 +6,14 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "calendar_entries")
-public class CalendarEntries implements Serializable{
+@Table(name="calendar_entries")
+@NamedQueries({
+        @NamedQuery(name = "CalendarEntries.getByName", query = "select ce from CalendarEntry ce where ce.name = :name"),
+        @NamedQuery(name = "CalendarEntries.getAll", query = "select ce from CalendarEntry ce")
+})
+public class CalendarEntry implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
@@ -21,6 +25,12 @@ public class CalendarEntries implements Serializable{
     @JoinColumn(name = "calendar_id")
     @ManyToOne
     private Calendar calendar;
+    
+      public CalendarEntry(String name, Date startDate, Date finishDate) {
+        this.name = name;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+    }
 
     public Integer getId() {
         return id;
@@ -54,5 +64,5 @@ public class CalendarEntries implements Serializable{
         this.finishDate = finishDate;
     }
     
-    public CalendarEntries() {}
+    public CalendarEntry() {}
 }

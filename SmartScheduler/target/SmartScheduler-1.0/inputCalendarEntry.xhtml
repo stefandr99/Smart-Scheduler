@@ -13,16 +13,16 @@
                 <p:panel header="CalendarEntryForm" style="width: 500px;">
                     <h:panelGrid columns="2">
                         <p:outputLabel value="Name: "/>
-                        <p:inputText id="name" value="#{calendarEntry.name}" required="true"/>
+                        <p:inputText id="name" value="#{calendarEntryBean.name}" required="true"/>
 
                         <p:outputLabel for="startDate" value="Start Date:"/>
-                    <p:datePicker id="startDate" value="#{calendarEntry.startDate}" showTime="true"/>
+                    <p:datePicker id="startDate" value="#{calendarEntryBean.startDate}" showTime="true"/>
                     
                      <p:outputLabel for="finishDate" value="Finish Date:"/>
-                    <p:datePicker id="finishDate" value="#{calendarEntry.finishDate}" showTime="true"/>
+                    <p:datePicker id="finishDate" value="#{calendarEntryBean.finishDate}" showTime="true"/>
                         
                         <center>
-                            <p:commandButton value="Submit" action="#{userBean.addUser}" />
+                            <p:commandButton value="Submit" action="#{calendarEntryBean.addEvent()}" />
                         </center>
                     </h:panelGrid>
                 </p:panel>
