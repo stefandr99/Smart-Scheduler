@@ -18,7 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Part;
-import master.aset.smartscheduler.entities.calendar.CalendarEntries;
+import master.aset.smartscheduler.entities.calendar.CalendarEntry;
 import master.aset.smartscheduler.services.ExtenderService;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
