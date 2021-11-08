@@ -5,7 +5,7 @@ import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import javax.faces.bean.ApplicationScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 

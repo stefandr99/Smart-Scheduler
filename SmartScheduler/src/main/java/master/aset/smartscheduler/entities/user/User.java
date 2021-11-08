@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package master.aset.smartscheduler.entities.user;
 
 import java.io.Serializable;
-import javax.inject.Named;
 import javax.persistence.*;
 
 /**
@@ -22,7 +17,15 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "sequence"
+    )
+    @SequenceGenerator(
+            name = "sequence",
+            sequenceName = "users_id_seq",
+            allocationSize = 1
+    )
     @Column(name="id")
     private Integer id;
     

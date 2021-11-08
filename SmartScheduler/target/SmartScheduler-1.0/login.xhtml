@@ -14,16 +14,19 @@
             </ui:insert>
             <div class="center-panel">
                 <h:form id="loginForm">
+                    <p:messages id="messages" globalOnly="true" />
                     <p:panel header="Login" style="width: 500px;">
-                        <h:panelGrid columns="2">
-                            <p:outputLabel value="Email"/>
-                            <p:inputText id="email" value="#{userBean.email}" required="true"/>
+                        <h:panelGrid columns="3">
+                            <p:outputLabel for="email" value="Email"/>
+                            <p:inputText id="email" value="#{userLogin.email}" required="true"/>
+                            <p:message for="email"/>
 
-                            <p:outputLabel value="Password"/>
-                            <p:password id="password" value="#{userBean.password}" required="true"/>
+                            <p:outputLabel for="password" value="Password"/>
+                            <p:password id="password" value="#{userLogin.password}" required="true"/>
+                            <p:message for="password"/>
 
                             <div class="center-panel__centered-button">
-                                <p:commandButton value="Submit" action="#{userBean.loginUser}" />
+                                <p:commandButton value="Submit" action="#{userLogin.execute()}" ajax="false" />
                             </div>
                         </h:panelGrid>
                     </p:panel>
