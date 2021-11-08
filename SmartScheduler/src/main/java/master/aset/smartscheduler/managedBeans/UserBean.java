@@ -3,6 +3,7 @@ package master.aset.smartscheduler.managedBeans;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import master.aset.smartscheduler.services.interfaces.IUserService;
@@ -20,6 +21,9 @@ public class UserBean {
     @Inject
     IUserRepository userRepository;
     
+    @Inject
+    Pbkdf2PasswordHash passwordHasher;
+    
     private String email;
     private String password;
     private Integer userRole = 0;
@@ -28,10 +32,10 @@ public class UserBean {
 //        userService.add(email, password, userRole);
 //    }
 //        
-    public void addUser() {
-        System.out.println(".....Method called.......");
-        User user = new User(email, password, userRole);
+    public String addUser() {
+        User user = new User(email, passwordHasher.generate(password.toCharArray()), userRole);
         userRepository.create(user);
+        return "authenticate";
     }
     
 
@@ -62,6 +66,4 @@ public class UserBean {
     public void setUserRole(Integer userRole) {
         this.userRole = userRole;
     }
-    
-    
 }
