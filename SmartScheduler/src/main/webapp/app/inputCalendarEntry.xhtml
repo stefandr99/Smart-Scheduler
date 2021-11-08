@@ -6,9 +6,20 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
         <h:head>
-            <title>Login</title>
+            <title>Add event</title>
         </h:head>
         <h:body>
+            <div class="card">
+                <h:form>
+                    <p:growl id="messages"/>
+                    <p:menubar>
+                        <p:menuitem value="Smart Scheduler" style="cursor: default;"/>
+                        <f:facet name="options">
+                            <p:commandButton value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" action="#{userLogin.logout}" />
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+            </div>
             <h:form id="CalendarEntryForm">
                 <p:panel header="CalendarEntryForm" style="width: 500px;">
                     <h:panelGrid columns="2">

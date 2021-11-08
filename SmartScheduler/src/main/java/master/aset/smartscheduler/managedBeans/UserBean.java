@@ -27,11 +27,7 @@ public class UserBean {
     private String email;
     private String password;
     private Integer userRole = 0;
-    
-//    public void addUser() {
-//        userService.add(email, password, userRole);
-//    }
-//        
+
     public String addUser() {
         User user = new User(email, passwordHasher.generate(password.toCharArray()), userRole);
         userRepository.create(user);

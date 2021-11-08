@@ -12,6 +12,7 @@ import javax.security.enterprise.AuthenticationStatus;
 import javax.security.enterprise.SecurityContext;
 import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
@@ -58,7 +59,7 @@ public class UserLogin {
                 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Credentials", null));
                 break;
             case SUCCESS:
-                getExternalContext().redirect(getExternalContext().getRequestContextPath() + "/calendar.xhtml");
+                getExternalContext().redirect(getExternalContext().getRequestContextPath() + "/faces/app/calendar.xhtml");
                 break;
         }
     }
@@ -73,5 +74,11 @@ public class UserLogin {
     
     private ExternalContext getExternalContext() {
         return facesContext.getExternalContext();
+    }
+
+    public String logout() throws ServletException {
+        ExternalContext ec = facesContext.getExternalContext();
+        ((HttpServletRequest)ec.getRequest()).logout();
+        return "/login.xhtml?faces-redirect=true";
     }
 }
