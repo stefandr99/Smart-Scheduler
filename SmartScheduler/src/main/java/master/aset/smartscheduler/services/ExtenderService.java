@@ -3,40 +3,50 @@ package master.aset.smartscheduler.services;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
+import net.fortuna.ical4j.model.Component;
+import org.primefaces.model.DefaultScheduleModel;
+import org.primefaces.model.ScheduleModel;
+import net.fortuna.ical4j.model.Calendar;
+import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.parameter.Value;
+import org.primefaces.model.DefaultScheduleEvent;
 
 @Named(value = "extenderService")
 @ApplicationScoped
 public class ExtenderService {
+    
+    public static ScheduleModel eventModel;
+//    private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
+    private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
-    public Map<String, ExtenderExample> createExtenderExamples() {
-        Properties properties = new Properties();
-
-        try (InputStream inStream = ExtenderService.class.getResourceAsStream("/schedule-extender-examples.properties")) {
-            properties.load(inStream);
+    public static void addCalendarInfo(Calendar calendar) throws ParseException {
+        eventModel = new DefaultScheduleModel();
+        for (Iterator i = calendar.getComponents().iterator(); i.hasNext();) {
+            Component component = (Component) i.next();
+            //new event
+            Date start = dateFormat.parse(component.getProperty("DTSTART").getValue());
+            Date end = dateFormat.parse(component.getProperty("DTEND").getValue());
+            String summary = component.getProperty("SUMMARY").getValue();
+            DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+                .title(summary)
+                .startDate(start.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                .endDate(end.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                .description(summary)
+                .borderColor("orange")
+                .build();
+            eventModel.addEvent(event);
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Map<String, ExtenderExample> extenderExamples = new HashMap<>();
-
-        for (String key : properties.stringPropertyNames()) {
-            if (key != null && key.endsWith(".name")) {
-                String baseKey = key.substring(0, key.length() - 5);
-                ExtenderExample example = new ExtenderExample(baseKey, properties);
-                if (example.getName() != null && example.getValue() != null && !example.getName().trim().isEmpty()
-                        && !example.getValue().trim().isEmpty()) {
-                    extenderExamples.put(baseKey, example);
-                }
-            }
-        }
-
-        return extenderExamples;
     }
 
     public static class ExtenderExample {

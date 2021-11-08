@@ -19,6 +19,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Part;
 import master.aset.smartscheduler.entities.calendar.CalendarEntries;
+import master.aset.smartscheduler.services.ExtenderService;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
@@ -40,8 +41,7 @@ public class CalendarUpload implements Serializable {
         this.calendarEntries = calendarEntries;
     }
 
-//    private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
-    private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+
 
     public void setCalendarFile(Part calendarFile) {
         this.calendarFile = calendarFile;
@@ -68,16 +68,7 @@ public class CalendarUpload implements Serializable {
                 FileInputStream fin = new FileInputStream(temp.toFile());
                 CalendarBuilder builder = new CalendarBuilder();
                 Calendar calendar = builder.build(fin);
-                
-                for (Iterator i = calendar.getComponents().iterator(); i.hasNext();) {
-                    Component component = (Component) i.next();
-                    //new event
-                    Date start = dateFormat.parse(component.getProperty("DTSTART").getValue());
-                    Date end = dateFormat.parse(component.getProperty("DTEND").getValue());
-                    String summary = component.getProperty("SUMMARY").getValue();
-                    calendarEntries.add(summary + " Start time: " + start + " End time:" + end); 
-                }
-
+                ExtenderService.addCalendarInfo(calendar);
                 fin.close();
             } catch (ParseException e) {
                 e.printStackTrace();
