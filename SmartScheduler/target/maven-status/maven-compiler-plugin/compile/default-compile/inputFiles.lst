@@ -12,6 +12,7 @@ C:\Users\sergh\Desktop\Smart-Scheduler\SmartScheduler\src\main\java\master\aset\
 C:\Users\sergh\Desktop\Smart-Scheduler\SmartScheduler\src\main\java\master\aset\smartscheduler\entities\usercalendars\UserCalendar.java
 C:\Users\sergh\Desktop\Smart-Scheduler\SmartScheduler\src\main\java\master\aset\smartscheduler\repositories\UserRepository.java
 C:\Users\sergh\Desktop\Smart-Scheduler\SmartScheduler\src\main\java\master\aset\smartscheduler\managedBeans\CalendarUpload.java
+C:\Users\sergh\Desktop\Smart-Scheduler\SmartScheduler\src\main\java\master\aset\smartscheduler\repositories\interfaces\ICalendarRepository.java
 C:\Users\sergh\Desktop\Smart-Scheduler\SmartScheduler\src\main\java\master\aset\smartscheduler\Test.java
 C:\Users\sergh\Desktop\Smart-Scheduler\SmartScheduler\src\main\java\master\aset\smartscheduler\repositories\CalendarRepository.java
 C:\Users\sergh\Desktop\Smart-Scheduler\SmartScheduler\src\main\java\master\aset\smartscheduler\services\interfaces\IUserService.java

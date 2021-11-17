@@ -7,6 +7,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.calendar.CalendarEntry;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryRepository;
 
@@ -24,10 +25,16 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
     }
 
     @Transactional
-    @Override
     public CalendarEntry getByName(String name) {
         return em.createNamedQuery("CalendarEntries.getByName", CalendarEntry.class)
                 .setParameter("name", name)
+                .getSingleResult();
+    }
+    
+    @Transactional
+    public CalendarEntry getByCalendarId(Calendar calendar) {
+        return em.createNamedQuery("CalendarEntries.getByCalendarId", CalendarEntry.class)
+                .setParameter("calendar", calendar)
                 .getSingleResult();
     }
 

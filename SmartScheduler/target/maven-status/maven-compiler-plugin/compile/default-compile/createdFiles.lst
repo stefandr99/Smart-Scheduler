@@ -9,6 +9,7 @@ master\aset\smartscheduler\managedBeans\UserBean.class
 master\aset\smartscheduler\repositories\interfaces\IUserRepository.class
 master\aset\smartscheduler\ApplicationConfig.class
 master\aset\smartscheduler\repositories\CalendarEntryRepository.class
+master\aset\smartscheduler\repositories\interfaces\ICalendarRepository.class
 master\aset\smartscheduler\entities\calendar\CalendarEntry.class
 master\aset\smartscheduler\entities\user\User_.class
 master\aset\smartscheduler\repositories\interfaces\IRepository.class

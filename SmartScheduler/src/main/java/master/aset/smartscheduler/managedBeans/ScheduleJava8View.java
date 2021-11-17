@@ -17,6 +17,8 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import master.aset.smartscheduler.entities.calendar.Calendar;
+import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.services.ExtenderService;
 import master.aset.smartscheduler.services.ExtenderService.ExtenderExample;
 import org.primefaces.event.ScheduleEntryMoveEvent;
@@ -35,11 +37,15 @@ public class ScheduleJava8View implements Serializable {
 
     @Inject
     private ExtenderService extenderService;
+    
+    private Calendar calendar; 
+    
 
     private ScheduleModel eventModel;
 
     private ScheduleModel lazyEventModel;
 
+    
     private ScheduleEvent<?> event = new DefaultScheduleEvent<>();
 
     private boolean slotEventOverlap = true;
@@ -80,9 +86,11 @@ public class ScheduleJava8View implements Serializable {
 
     private Map<String, ExtenderExample> extenderExamples;
 
+    
+    // CALENDAR IMPORT HERE
     @PostConstruct
     public void init() {
-        eventModel = ExtenderService.eventModel;
+        eventModel = ExtenderService.getCalendarInfo();
     }
 
     public ExtenderService getScheduleExtenderService() {

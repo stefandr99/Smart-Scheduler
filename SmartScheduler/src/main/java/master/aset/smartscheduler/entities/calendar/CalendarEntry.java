@@ -3,9 +3,9 @@ package master.aset.smartscheduler.entities.calendar;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
-@Entity
+@Entity(name="CalendarEntry")
 @Table(name="calendar_entries")
 @NamedQueries({
         @NamedQuery(name = "CalendarEntries.getByName", query = "select ce from CalendarEntry ce where ce.name = :name"),
@@ -22,7 +22,6 @@ public class CalendarEntry implements Serializable{
 
     private Date finishDate;
 
-    @JoinColumn(name = "calendar_id")
     @ManyToOne
     private Calendar calendar;
     
@@ -63,6 +62,16 @@ public class CalendarEntry implements Serializable{
     public void setFinishDate(Date finishDate) {
         this.finishDate = finishDate;
     }
+
+    public Calendar getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
+    }
+    
+    
     
     public CalendarEntry() {}
 }
