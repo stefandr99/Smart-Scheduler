@@ -36,12 +36,12 @@ public class User implements Serializable {
     private String password;
 
     @Column(name="user_role")
-    private Integer userRole;
+    private String userRole;
 
     public User() {
     }
 
-    public User(String email, String password, Integer userRole) {
+    public User(String email, String password, String userRole) {
         this.email = email;
         this.password = password;
         this.userRole = userRole;
@@ -76,11 +76,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getUserRole() {
+    public String getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(Integer userRole) {
+    public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
     

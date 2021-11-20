@@ -13,7 +13,7 @@ public class UserService implements IUserService {
     private IUserRepository userRepository;
 
     @Override
-    public void add(String email, String password, Integer role) {
+    public void add(String email, String password, String role) {
         System.out.println(".....Method called.......");
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
         User user = new User(email, hashedPassword, role);
