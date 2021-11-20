@@ -28,9 +28,14 @@ public class UserRepository implements IUserRepository {
     @Transactional
     @Override
     public User getByEmail(String email) {
-        return em.createNamedQuery("User.getByEmail", User.class)
+        try{
+            User userToReturn = em.createNamedQuery("User.getByEmail", User.class)
                 .setParameter("email", email)
                 .getSingleResult();
+            return userToReturn;
+        } catch(Exception ex) {
+            return null;
+        }
     }
 
     @Override
