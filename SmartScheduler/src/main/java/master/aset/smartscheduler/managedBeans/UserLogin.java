@@ -59,7 +59,7 @@ public class UserLogin {
                 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Credentials", null));
                 break;
             case SUCCESS:
-                getExternalContext().redirect(getExternalContext().getRequestContextPath() + "/faces/app/calendar.xhtml");
+                getExternalContext().redirect(getExternalContext().getRequestContextPath() + "/faces/app/calendarParse.xhtml");
                 break;
         }
     }
