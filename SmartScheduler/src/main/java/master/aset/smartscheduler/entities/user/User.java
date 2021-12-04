@@ -1,7 +1,10 @@
 package master.aset.smartscheduler.entities.user;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
+import master.aset.smartscheduler.entities.calendar.Calendar;
 
 /**
  *
@@ -37,6 +40,21 @@ public class User implements Serializable {
 
     @Column(name="user_role")
     private String userRole;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "user_calendars",
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "calendar_id"))
+    private List<Calendar> calendars = new ArrayList<>();
+
+    public List<Calendar> getCalendars() {
+        return calendars;
+    }
+
+    public void addCalendar(Calendar calendar) {
+        this.calendars.add(calendar);
+    }
 
     public User() {
     }

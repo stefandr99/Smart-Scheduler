@@ -14,7 +14,11 @@ import java.util.Map;
 import java.util.Properties;
 import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.security.enterprise.SecurityContext;
 import master.aset.smartscheduler.entities.calendar.CalendarEntry;
+import master.aset.smartscheduler.entities.user.User;
+import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import net.fortuna.ical4j.model.Component;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleModel;
@@ -27,13 +31,16 @@ import org.primefaces.model.DefaultScheduleEvent;
 @ApplicationScoped
 public class ExtenderService {
     
-    public static ScheduleModel eventModel;
+    @Inject
+    IUserRepository userRepository;
+    
+    @Inject
+    SecurityContext securityContext;
+    
 //    private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
-    private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-    public static master.aset.smartscheduler.entities.calendar.Calendar tempCalendar;
+    private final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
-    public static void addCalendarInfo(Calendar calendar,master.aset.smartscheduler.entities.calendar.Calendar dbCalendar ) throws ParseException {
-        eventModel = new DefaultScheduleModel();
+    public void addCalendarInfo(Calendar calendar, master.aset.smartscheduler.entities.calendar.Calendar dbCalendar) throws ParseException {
         for (Iterator i = calendar.getComponents().iterator(); i.hasNext();) {
             Component component = (Component) i.next();
             //new event
@@ -42,16 +49,36 @@ public class ExtenderService {
             String summary = component.getProperty("SUMMARY").getValue();
             
             dbCalendar.addCalendarEntry(new CalendarEntry(summary, start, end));
-            
         }
-        tempCalendar = dbCalendar;
+    }
+
+    public ScheduleModel updateCalendarInfo(master.aset.smartscheduler.entities.calendar.Calendar[] calendars, ScheduleModel eventModel) {
+        eventModel = new DefaultScheduleModel();
+        
+        for (int i = 0; i < calendars.length; i++) {
+            for(CalendarEntry e : calendars[i].getCalendarEntries()) {        
+                DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+                .title(e.getName())
+                .startDate(e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                .endDate(e.getFinishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                .description(e.getName())
+                .borderColor("orange")
+                .build();
+                eventModel.addEvent(event);
+            }
+        }
+        
+        return eventModel;
     }
     
-    public static ScheduleModel getCalendarInfo() {
-        
+    public ScheduleModel getDefaultCalendarInfo() {
         ScheduleModel exampleModel = new DefaultScheduleModel();
         
-        for(CalendarEntry e : tempCalendar.getCalendarEntries()){        
+        String username = securityContext.getCallerPrincipal().getName();
+        User user = userRepository.getByEmail(username);
+        master.aset.smartscheduler.entities.calendar.Calendar defaultCalendar = user.getCalendars().get(0);
+
+        for(CalendarEntry e : defaultCalendar.getCalendarEntries()){        
                 DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
                 .title(e.getName())
                 .startDate(e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())

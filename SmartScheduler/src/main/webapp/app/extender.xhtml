@@ -20,6 +20,16 @@
             <p:growl id="messagesBar"/>
             <ezcomp:navbar/>
         </div>
+        <div class="card">
+            <h:form>
+                <p:selectCheckboxMenu valueChangeListener="#{scheduleJava8View.onItemSelect}" id="multiple" value="#{scheduleJava8View.selectedCalendars}" label="Calendars" style="min-width: 15rem"
+                                      multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
+                  
+                    <p:ajax event="itemUnselect" listener="#{scheduleJava8View.onItemUnselect}"/>
+                    <f:selectItems value="#{scheduleJava8View.calendars}"/>
+                </p:selectCheckboxMenu>
+            </h:form>
+        </div>
         <div class="card wrapper">
             <h:form>
                 <p:growl id="messages" showDetail="true"/>

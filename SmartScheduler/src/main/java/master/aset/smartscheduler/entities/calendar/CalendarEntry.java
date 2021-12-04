@@ -1,7 +1,6 @@
 package master.aset.smartscheduler.entities.calendar;
 
 import java.io.Serializable;
-import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.util.Date;
 

@@ -17,13 +17,17 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.security.enterprise.SecurityContext;
 import master.aset.smartscheduler.entities.calendar.Calendar;
+import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
+import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import master.aset.smartscheduler.services.ExtenderService;
 import master.aset.smartscheduler.services.ExtenderService.ExtenderExample;
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.LazyScheduleModel;
@@ -38,14 +42,25 @@ public class ScheduleJava8View implements Serializable {
     @Inject
     private ExtenderService extenderService;
     
-    private Calendar calendar; 
+    @Inject
+    ICalendarRepository calendarRepository;
     
-
+    @Inject
+    IUserRepository userRepository;
+    
+    @Inject
+    SecurityContext securityContext;
+    
+    private Calendar[] selectedOptions;
+    
+    private Calendar[] selectedCalendars;
+    
+    private List<Calendar> calendars;
+    
     private ScheduleModel eventModel;
 
     private ScheduleModel lazyEventModel;
 
-    
     private ScheduleEvent<?> event = new DefaultScheduleEvent<>();
 
     private boolean slotEventOverlap = true;
@@ -85,12 +100,13 @@ public class ScheduleJava8View implements Serializable {
     private String selectedExtenderExample = "";
 
     private Map<String, ExtenderExample> extenderExamples;
-
     
-    // CALENDAR IMPORT HERE
     @PostConstruct
     public void init() {
-        eventModel = ExtenderService.getCalendarInfo();
+        eventModel = extenderService.getDefaultCalendarInfo();
+        String username = securityContext.getCallerPrincipal().getName();
+        User user = userRepository.getByEmail(username);
+        this.calendars = user.getCalendars();
     }
 
     public ExtenderService getScheduleExtenderService() {
@@ -176,6 +192,7 @@ public class ScheduleJava8View implements Serializable {
 
         if (event.getId() == null) {
             eventModel.addEvent(event);
+            
         }
         else {
             eventModel.updateEvent(event);
@@ -505,4 +522,41 @@ public class ScheduleJava8View implements Serializable {
                 .collect(Collectors.toList());
     }
     
+    public Calendar[] getSelectedOptions() {
+        return selectedOptions;
+    }
+
+    public void setSelectedOptions(Calendar[] selectedOptions) {
+        this.selectedOptions = selectedOptions;
+    }
+
+    public Calendar[] getSelectedCalendars() {
+        return selectedCalendars;
+    }
+
+    public void setSelectedCalendars(Calendar[] selectedCalendars) {
+        this.selectedCalendars = selectedCalendars;
+    }
+
+    public List<Calendar> getCalendars() {
+        return calendars;
+    }
+
+    public void setCities(List<Calendar> calendars) {
+        this.calendars = calendars;
+    }
+
+    public void onItemUnselect(UnselectEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        this.extenderService.updateCalendarInfo(selectedCalendars, eventModel);
+        FacesMessage msg = new FacesMessage();
+        msg.setSummary("Item unselected: " + event.getObject().toString());
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+
+        context.addMessage(null, msg);
+    }
+    
+    public void onItemSelect() {
+        this.extenderService.updateCalendarInfo(selectedCalendars, eventModel);
+    }
 }

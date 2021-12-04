@@ -49,9 +49,10 @@ public class UserRepository implements IUserRepository {
         return null;
     }
 
+    @Transactional
     @Override
     public void update(User entity) {
-
+        em.merge(entity);
+        em.flush();
     }
-
 }
