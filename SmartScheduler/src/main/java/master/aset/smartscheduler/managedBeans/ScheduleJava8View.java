@@ -5,7 +5,9 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
 import master.aset.smartscheduler.entities.calendar.Calendar;
+import master.aset.smartscheduler.entities.calendar.CalendarEntry;
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
@@ -62,6 +65,10 @@ public class ScheduleJava8View implements Serializable {
     private ScheduleModel lazyEventModel;
 
     private ScheduleEvent<?> event = new DefaultScheduleEvent<>();
+    
+    private CalendarEntry selectedCalendarEntry;
+    
+    private User currentUser;
 
     private boolean slotEventOverlap = true;
     private boolean showWeekNumbers = false;
@@ -105,8 +112,8 @@ public class ScheduleJava8View implements Serializable {
     public void init() {
         eventModel = extenderService.getDefaultCalendarInfo();
         String username = securityContext.getCallerPrincipal().getName();
-        User user = userRepository.getByEmail(username);
-        this.calendars = user.getCalendars();
+        this.currentUser = userRepository.getByEmail(username);
+        this.calendars = currentUser.getCalendars();
     }
 
     public ExtenderService getScheduleExtenderService() {
@@ -192,7 +199,11 @@ public class ScheduleJava8View implements Serializable {
 
         if (event.getId() == null) {
             eventModel.addEvent(event);
-            
+            CalendarEntry calendarEntry = new CalendarEntry(event.getTitle(),
+                                                    Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant()),
+                                                    Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant()));
+            Calendar calendar = calendarRepository.getCalendarOfUser(currentUser.getId(), currentUser.getCalendars().get(0).getId());
+            calendarRepository.addEntryToCalendar(calendar, calendarEntry);
         }
         else {
             eventModel.updateEvent(event);
@@ -559,4 +570,22 @@ public class ScheduleJava8View implements Serializable {
     public void onItemSelect() {
         this.extenderService.updateCalendarInfo(selectedCalendars, eventModel);
     }
+
+    public CalendarEntry getSelectedCalendarEntry() {
+        return selectedCalendarEntry;
+    }
+
+    public void setSelectedCalendarEntry(CalendarEntry selectedCalendarEntry) {
+        this.selectedCalendarEntry = selectedCalendarEntry;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+    
+    
 }
