@@ -6,7 +6,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.user.User;
+import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import master.aset.smartscheduler.services.interfaces.IUserService;
 
@@ -24,6 +26,9 @@ public class UserBean {
 
     @Inject
     IUserRepository userRepository;
+    
+    @Inject
+    ICalendarRepository calendarRepository;
 
     @Inject
     Pbkdf2PasswordHash passwordHasher;
@@ -44,6 +49,12 @@ public class UserBean {
         } else {
             User user = new User(email, passwordHasher.generate(password.toCharArray()), userRole);
             userRepository.create(user);
+            Calendar defaultCalendar = new Calendar();
+            defaultCalendar.setName("Default calendar");
+            defaultCalendar.addUser(user);
+            calendarRepository.create(defaultCalendar);
+            user.addCalendar(defaultCalendar);
+            userRepository.update(user);
             return "authenticate";
         }
     }
