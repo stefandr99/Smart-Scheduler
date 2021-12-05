@@ -1,16 +1,12 @@
 
 package master.aset.smartscheduler.services;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Properties;
 import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
@@ -19,12 +15,10 @@ import javax.security.enterprise.SecurityContext;
 import master.aset.smartscheduler.entities.calendar.CalendarEntry;
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
-import net.fortuna.ical4j.model.Component;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleModel;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Component;
-import net.fortuna.ical4j.model.parameter.Value;
 import org.primefaces.model.DefaultScheduleEvent;
 
 @Named(value = "extenderService")

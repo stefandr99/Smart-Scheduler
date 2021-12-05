@@ -10,25 +10,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
 import javax.servlet.http.Part;
-import master.aset.smartscheduler.entities.calendar.CalendarEntry;
 import master.aset.smartscheduler.entities.user.User;
-import master.aset.smartscheduler.repositories.CalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import master.aset.smartscheduler.services.ExtenderService;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
-import net.fortuna.ical4j.model.Component;
-import net.fortuna.ical4j.model.parameter.Value;
 
 
 @Named(value = "calendarUpload")
@@ -49,22 +42,7 @@ public class CalendarUpload implements Serializable {
 
     private Part calendarFile;
     private List<String> calendarEntries;
-
-    public List<String> getCalendarEntries() {
-        return calendarEntries;
-    }
-
-    public void setCalendarEntries(List<String> calendarEntries) {
-        this.calendarEntries = calendarEntries;
-    }
-
-    public void setCalendarFile(Part calendarFile) {
-        this.calendarFile = calendarFile;
-    }
-
-    public Part getCalendarFile() {
-        return calendarFile;
-    }
+    
     @PostConstruct
     public void init() {
         calendarEntries = new ArrayList<String>();
@@ -108,5 +86,21 @@ public class CalendarUpload implements Serializable {
 
         boolean file2Success = false;
         return "viewCalendar";
+    }
+    
+    public List<String> getCalendarEntries() {
+        return calendarEntries;
+    }
+
+    public void setCalendarEntries(List<String> calendarEntries) {
+        this.calendarEntries = calendarEntries;
+    }
+
+    public void setCalendarFile(Part calendarFile) {
+        this.calendarFile = calendarFile;
+    }
+
+    public Part getCalendarFile() {
+        return calendarFile;
     }
 }
