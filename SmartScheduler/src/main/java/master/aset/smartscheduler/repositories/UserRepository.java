@@ -20,9 +20,11 @@ public class UserRepository implements IUserRepository {
     
     @Transactional
     @Override
-    public void create(User user) {
+    public boolean create(User user) {
         em.persist(user);
         em.flush();
+
+        return true;
     }
 
     @Transactional

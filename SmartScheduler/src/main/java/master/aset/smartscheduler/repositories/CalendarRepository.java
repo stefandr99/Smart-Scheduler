@@ -15,9 +15,11 @@ public class CalendarRepository implements ICalendarRepository {
 
     @Transactional
     @Override
-    public void create(Calendar entity) {
+    public boolean create(Calendar entity) {
         em.persist(entity);
         em.flush();
+
+        return true;
     }
     
    @Override

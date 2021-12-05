@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface IRepository<T> {
     
-    void create(T entity);
+    boolean create(T entity);
 
     List<T> getAll(EntityManager em);
 

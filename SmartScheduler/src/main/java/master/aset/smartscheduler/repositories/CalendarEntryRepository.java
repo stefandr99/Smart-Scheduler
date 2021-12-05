@@ -19,9 +19,11 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
 
     @Transactional
     @Override
-    public void create(CalendarEntry event) {
+    public boolean create(CalendarEntry event) {
         em.persist(event);
         em.flush();
+
+        return true;
     }
 
     @Transactional

@@ -34,22 +34,6 @@ public class UserLogin {
     @Inject
     SecurityContext securityContext;
     
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
     public void execute() throws IOException {
         switch(processAuthentication()){
             case SEND_CONTINUE:
@@ -64,7 +48,7 @@ public class UserLogin {
         }
     }
     
-    private AuthenticationStatus processAuthentication() {
+    public AuthenticationStatus processAuthentication() {
         ExternalContext ec = getExternalContext();
         return securityContext.authenticate((HttpServletRequest)ec.getRequest(), 
                                             (HttpServletResponse)ec.getResponse(), 
@@ -80,5 +64,37 @@ public class UserLogin {
         ExternalContext ec = facesContext.getExternalContext();
         ((HttpServletRequest)ec.getRequest()).logout();
         return "/login.xhtml?faces-redirect=true";
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public FacesContext getFacesContext() {
+        return facesContext;
+    }
+
+    public void setFacesContext(FacesContext facesContext) {
+        this.facesContext = facesContext;
+    }
+
+    public SecurityContext getSecurityContext() {
+        return securityContext;
+    }
+
+    public void setSecurityContext(SecurityContext securityContext) {
+        this.securityContext = securityContext;
     }
 }

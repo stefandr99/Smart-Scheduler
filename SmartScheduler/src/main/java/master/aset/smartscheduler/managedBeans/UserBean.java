@@ -20,6 +20,8 @@ public class UserBean {
 
     private IUserService userService;
 
+    private FacesContext facesContext = FacesContext.getCurrentInstance();
+
     @Inject
     IUserRepository userRepository;
 
@@ -33,23 +35,17 @@ public class UserBean {
 
     public String addUser() {
         if(checkUserExists()) {
-            FacesContext.getCurrentInstance()
-                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "User already exists"));
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "User already exists"));
             return null;
         }
         if (!checkPasswordMatch()) {
-            FacesContext.getCurrentInstance()
-                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Password doesn't match"));
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Password doesn't match"));
             return null;
         } else {
             User user = new User(email, passwordHasher.generate(password.toCharArray()), userRole);
             userRepository.create(user);
             return "authenticate";
         }
-    }
-
-    public void loginUser() {
-        User user = userService.login(email, password);
     }
 
     public boolean checkPasswordMatch() {
@@ -92,4 +88,27 @@ public class UserBean {
         this.passwordConfirm = passwordConfirm;
     }
 
+    public IUserRepository getUserRepository() {
+        return userRepository;
+    }
+
+    public void setUserRepository(IUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public Pbkdf2PasswordHash getPasswordHasher() {
+        return passwordHasher;
+    }
+
+    public void setPasswordHasher(Pbkdf2PasswordHash passwordHasher) {
+        this.passwordHasher = passwordHasher;
+    }
+
+    public FacesContext getFacesContext() {
+        return facesContext;
+    }
+
+    public void setFacesContext(FacesContext facesContext) {
+        this.facesContext = facesContext;
+    }
 }

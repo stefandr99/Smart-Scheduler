@@ -4,16 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity(name="Calendar")
 @Table(name = "calendars")
+@NamedQueries({
+        @NamedQuery(name = "Calendar.getByName", query = "select c from Calendar c where c.name = :name"),
+        @NamedQuery(name = "Calendar.getAll", query = "select c from Calendar c")
+})
 public class Calendar implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

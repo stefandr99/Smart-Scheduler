@@ -9,7 +9,8 @@ import java.util.Date;
 @Table(name="calendar_entries")
 @NamedQueries({
         @NamedQuery(name = "CalendarEntries.getByName", query = "select ce from CalendarEntry ce where ce.name = :name"),
-        @NamedQuery(name = "CalendarEntries.getAll", query = "select ce from CalendarEntry ce")
+        @NamedQuery(name = "CalendarEntries.getAll", query = "select ce from CalendarEntry ce"),
+        @NamedQuery(name = "CalendarEntries.getByCalendarId", query = "select ce from CalendarEntry ce where ce.calendar = :calendar")
 })
 public class CalendarEntry implements Serializable{
     @Id
