@@ -17,6 +17,8 @@
                 <p:growl id="messages"/>
                 <p:menubar>
                     <p:menuitem value="Smart Scheduler" style="cursor: default;"/>
+                    <p:menuitem value="Schedule" outcome="/faces/app/extender.xhtml"/>                    
+                    <p:menuitem value="Import Calendar" outcome="/faces/app/calendarParse.xhtml"/>
                     <f:facet name="options">
                         <p:commandButton value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" action="#{userLogin.logout}" />
                     </f:facet>

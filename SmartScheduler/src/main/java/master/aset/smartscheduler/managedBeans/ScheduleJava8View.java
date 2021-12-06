@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -40,7 +42,7 @@ import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
 @Named(value = "scheduleJava8View")
-@ViewScoped
+@ApplicationScoped
 public class ScheduleJava8View implements Serializable {
 
     @Inject
@@ -566,23 +568,14 @@ public class ScheduleJava8View implements Serializable {
     public List<Calendar> getCalendars() {
         return calendars;
     }
-
-    public void setCities(List<Calendar> calendars) {
+    
+    public void setCalendars(List<Calendar> calendars) {
         this.calendars = calendars;
     }
-
-    public void onItemUnselect(UnselectEvent event) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        this.extenderService.updateCalendarInfo(selectedCalendars, eventModel);
-        FacesMessage msg = new FacesMessage();
-        msg.setSummary("Item unselected: " + event.getObject().toString());
-        msg.setSeverity(FacesMessage.SEVERITY_INFO);
-
-        context.addMessage(null, msg);
-    }
     
-    public void onItemSelect() {
-        this.extenderService.updateCalendarInfo(selectedCalendars, eventModel);
+    public String onShowSelectedCalendars(Calendar[] calendars) {
+        this.extenderService.updateCalendarInfo(calendars, eventModel);
+        return  "";
     }
 
     public CalendarEntry getSelectedCalendarEntry() {
