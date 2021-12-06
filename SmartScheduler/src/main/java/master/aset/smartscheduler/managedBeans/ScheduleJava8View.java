@@ -23,6 +23,7 @@ import javax.security.enterprise.SecurityContext;
 import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.calendar.CalendarEntry;
 import master.aset.smartscheduler.entities.user.User;
+import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryRepository;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import master.aset.smartscheduler.services.ExtenderService;
@@ -47,6 +48,9 @@ public class ScheduleJava8View implements Serializable {
     
     @Inject
     ICalendarRepository calendarRepository;
+    
+    @Inject
+    ICalendarEntryRepository calendarEntryRepo;
     
     @Inject
     IUserRepository userRepository;
@@ -207,6 +211,10 @@ public class ScheduleJava8View implements Serializable {
         }
         else {
             eventModel.updateEvent(event);
+            selectedCalendarEntry.setName(event.getTitle());
+            selectedCalendarEntry.setStartDate(Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant()));
+            selectedCalendarEntry.setFinishDate(Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant()));
+            calendarEntryRepo.update(selectedCalendarEntry);
         }
 
         event = new DefaultScheduleEvent<>();
@@ -214,6 +222,12 @@ public class ScheduleJava8View implements Serializable {
 
     public void onEventSelect(SelectEvent<ScheduleEvent<?>> selectEvent) {
         event = selectEvent.getObject();
+        if(event.getId() != null) {
+            Date startDate = Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant());
+            Date endDate = Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant());
+            Calendar currentCalendar = calendarRepository.getCalendarOfUser(currentUser.getId(), currentUser.getCalendars().get(0).getId());
+            selectedCalendarEntry = calendarEntryRepo.getEntryFromCalendar(currentCalendar.getId(), event.getTitle(), startDate, endDate);
+        }
     }
 
     public void onViewChange(SelectEvent<String> selectEvent) {

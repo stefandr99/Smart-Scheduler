@@ -1,5 +1,6 @@
 package master.aset.smartscheduler.repositories;
 
+import java.util.Date;
 import master.aset.smartscheduler.entities.user.User;
 
 import javax.persistence.EntityManager;
@@ -24,6 +25,17 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
         em.flush();
 
         return true;
+    }
+    
+    @Override
+    @Transactional
+    public CalendarEntry getEntryFromCalendar(int calendarId, String name, Date startDate, Date endDate){
+        return em.createNamedQuery("CalendarEntries.getSpecificEntry", CalendarEntry.class)
+                .setParameter("calendarId", calendarId)
+                .setParameter("name", name)
+                .setParameter("startDate", startDate)
+                .setParameter("finishDate", endDate)
+                .getSingleResult();
     }
 
     @Transactional
@@ -51,9 +63,11 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
     public CalendarEntry get(EntityManager em, int id) {
         return null;
     }
+    
     @Override
+    @Transactional
     public void update(CalendarEntry entity) {
-
+        em.merge(entity);
     }
 
 }
