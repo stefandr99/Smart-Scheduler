@@ -75,6 +75,8 @@ public class ScheduleJava8View implements Serializable {
     private CalendarEntry selectedCalendarEntry;
     
     private User currentUser;
+    
+    private Calendar selectedCalendar;
 
     private boolean slotEventOverlap = true;
     private boolean showWeekNumbers = false;
@@ -276,6 +278,23 @@ public class ScheduleJava8View implements Serializable {
             }
             this.extenderCode = example.getValue();
         }
+    }
+    
+    public void onCalendarChange() {
+        this.eventModel.clear();
+        this.eventModel = this.extenderService.updateCalendarInfo(selectedCalendar);
+    }
+    
+    public Calendar getCalendar(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("no id provided");
+        }
+        for(Calendar calendar: calendars) {
+            if(name.equals(calendar.getName())) {
+                return calendar;
+            }
+        }
+        return null;
     }
 
     private void addMessage(FacesMessage message) {
@@ -573,10 +592,10 @@ public class ScheduleJava8View implements Serializable {
         this.calendars = calendars;
     }
     
-    public String onShowSelectedCalendars(Calendar[] calendars) {
-        this.extenderService.updateCalendarInfo(calendars, eventModel);
-        return  "";
-    }
+//    public String onShowSelectedCalendars(Calendar[] calendars) {
+//        this.extenderService.updateCalendarInfo(calendars, eventModel);
+//        return  "";
+//    }
 
     public CalendarEntry getSelectedCalendarEntry() {
         return selectedCalendarEntry;
@@ -593,6 +612,13 @@ public class ScheduleJava8View implements Serializable {
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
-    
+
+    public Calendar getSelectedCalendar() {
+        return selectedCalendar;
+    }
+
+    public void setSelectedCalendar(Calendar selectedCalendar) {
+        this.selectedCalendar = selectedCalendar;
+    }
     
 }
