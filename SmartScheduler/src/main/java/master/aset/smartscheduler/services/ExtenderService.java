@@ -1,4 +1,3 @@
-
 package master.aset.smartscheduler.services;
 
 import java.text.DateFormat;
@@ -24,13 +23,13 @@ import org.primefaces.model.DefaultScheduleEvent;
 @Named(value = "extenderService")
 @ApplicationScoped
 public class ExtenderService {
-    
+
     @Inject
     IUserRepository userRepository;
-    
+
     @Inject
     SecurityContext securityContext;
-    
+
 //    private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
     private final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
@@ -41,52 +40,48 @@ public class ExtenderService {
             Date start = dateFormat.parse(component.getProperty("DTSTART").getValue());
             Date end = dateFormat.parse(component.getProperty("DTEND").getValue());
             String summary = component.getProperty("SUMMARY").getValue();
-            
+
             dbCalendar.addCalendarEntry(new CalendarEntry(summary, start, end));
         }
     }
-
-    public ScheduleModel updateCalendarInfo(master.aset.smartscheduler.entities.calendar.Calendar[] calendars, ScheduleModel eventModel) {
-        eventModel = new DefaultScheduleModel();
-        
-        for (int i = 0; i < calendars.length; i++) {
-            for(CalendarEntry e : calendars[i].getCalendarEntries()) {        
-                DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
-                .title(e.getName())
-                .startDate(e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
-                .endDate(e.getFinishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
-                .description(e.getName())
-                .borderColor("orange")
-                .build();
-                eventModel.addEvent(event);
-            }
+    
+    public ScheduleModel updateCalendarInfo(master.aset.smartscheduler.entities.calendar.Calendar calendar) {
+        ScheduleModel eventModel = new DefaultScheduleModel();
+        for (CalendarEntry entry : calendar.getCalendarEntries()) {
+            DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+                    .title(entry.getName())
+                    .startDate(entry.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                    .endDate(entry.getFinishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                    .description(entry.getName())
+                    .borderColor("orange")
+                    .build();
+            eventModel.addEvent(event);
         }
-        
         return eventModel;
     }
-    
+
     public ScheduleModel getDefaultCalendarInfo() {
         ScheduleModel exampleModel = new DefaultScheduleModel();
-        
+
         String username = securityContext.getCallerPrincipal().getName();
         User user = userRepository.getByEmail(username);
         master.aset.smartscheduler.entities.calendar.Calendar defaultCalendar = user.getCalendars().get(0);
 
-        for(CalendarEntry e : defaultCalendar.getCalendarEntries()){        
-                DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
-                .title(e.getName())
-                .startDate(e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
-                .endDate(e.getFinishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
-                .description(e.getName())
-                .borderColor("orange")
-                .build();
+        for (CalendarEntry e : defaultCalendar.getCalendarEntries()) {
+            DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+                    .title(e.getName())
+                    .startDate(e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                    .endDate(e.getFinishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                    .description(e.getName())
+                    .borderColor("orange")
+                    .build();
             exampleModel.addEvent(event);
-    }
+        }
         return exampleModel;
     }
-    
 
     public static class ExtenderExample {
+
         private String details;
         private String html;
         private String key;
