@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Add a calendar</title>
     </h:head>
     <h:body>
         <div class="card">
@@ -13,9 +13,11 @@
             <ezcomp:navbar/>
         </div>
         <h:form enctype="multipart/form-data">
-            <!-- input for files -->
-            <p:fileUpload value="#{calendarUpload.calendarFile}" mode="simple" skinSimple="true"/>
-            <!-- action which is responsible for uploading file(s) -->
+            <div class="p-field">
+                <p:outputLabel for="calendarName" styleClass="p-d-block">Calendar name</p:outputLabel>
+                <p:inputText value="#{calendarUpload.calendarName}" id="calendarName" styleClass="p-d-block" required="true"/>
+            </div>
+            <p:fileUpload value="#{calendarUpload.calendarFile}" mode="simple" skinSimple="true" required="true"/>
             <p:commandButton action="#{calendarUpload.uploadFile()}" value="Upload" ajax="false"/>
         </h:form>
     </h:body>

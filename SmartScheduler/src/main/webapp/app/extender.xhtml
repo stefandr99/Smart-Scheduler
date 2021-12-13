@@ -23,10 +23,10 @@
         <div class="card">
             <h:form>
                 <h:panelGrid columns="2" cellpadding="5">
-                    <p:selectOneMenu id="option" value="#{scheduleJava8View.selectedCalendar}" converter="calendarConverter">
+                    <p:selectOneMenu id="option" value="#{dropdownView.selectedCalendar}" converter="calendarConverter">
                         <p:ajax listener="#{scheduleJava8View.onCalendarChange}" update=":mainForm:schedule"/>
                         <f:selectItem itemLabel="Select one calendar" itemValue=""/>
-                        <f:selectItems value="#{scheduleJava8View.calendars}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
+                        <f:selectItems value="#{dropdownView.calendars}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
             </h:form>

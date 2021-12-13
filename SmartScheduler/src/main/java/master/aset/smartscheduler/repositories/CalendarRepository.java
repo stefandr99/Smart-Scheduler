@@ -60,9 +60,10 @@ public class CalendarRepository implements ICalendarRepository {
                 .getSingleResult(); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Transactional
     @Override
     public void update(Calendar entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.merge(entity);
     }
 
 }

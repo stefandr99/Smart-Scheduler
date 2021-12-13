@@ -23,7 +23,6 @@ import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import org.primefaces.model.file.UploadedFile;
 
-
 @Named(value = "calendarUpload")
 @SessionScoped
 public class CalendarUpload implements Serializable {
@@ -42,6 +41,15 @@ public class CalendarUpload implements Serializable {
 
     private UploadedFile calendarFile;
     private List<String> calendarEntries;
+    private String calendarName;
+
+    public String getCalendarName() {
+        return calendarName;
+    }
+
+    public void setCalendarName(String calendarName) {
+        this.calendarName = calendarName;
+    }
     
     @PostConstruct
     public void init() {
@@ -51,7 +59,8 @@ public class CalendarUpload implements Serializable {
     }
     
     public String uploadFile() throws Exception {
-        if (calendarFile != null && calendarFile.getSize() > 0) {
+        if (calendarFile != null && calendarFile.getSize() > 0 
+                && this.calendarName != null && !this.calendarName.equals("")) {
             try (InputStream input = calendarFile.getInputStream()) {
                 //parse and insert into db
                 Path temp = Files.createTempFile("calendar", ".ics");
@@ -60,7 +69,8 @@ public class CalendarUpload implements Serializable {
                 CalendarBuilder builder = new CalendarBuilder();
                 
                 master.aset.smartscheduler.entities.calendar.Calendar exampleCalendar = new master.aset.smartscheduler.entities.calendar.Calendar();
-                exampleCalendar.setName("TestCalendar");
+                
+                exampleCalendar.setName(this.calendarName);
                 
                 String username = securityContext.getCallerPrincipal().getName();
                 User user = userRepository.getByEmail(username);
@@ -77,6 +87,8 @@ public class CalendarUpload implements Serializable {
             } catch (IOException | ParserException e) {
                 e.printStackTrace();
             }
+        } else {
+            return "calendarParse";
         }
         return "viewCalendar";
     }
