@@ -5,12 +5,15 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+
         <h:head>
             <link rel="stylesheet" href="style/registration.css"/>
             <title>Register</title>
         </h:head>
+
         <h:body>
             <div class="center-panel">
+
                 <h:form id="registerForm">
                     <p:messages id="messages" globalOnly="true" showDetail="true">
                         <p:autoUpdate/>
@@ -26,16 +29,16 @@
                             <p:outputLabel value="Confirm password"/>
                             <p:password id="passwordConfirm" value="#{userBean.passwordConfirm}" required="true"/>
 
-                            <center>
-                                <p:commandButton value="Register" action="#{userBean.addUser()}" />
-                            </center>
+                            <p:commandButton value="Register" action="#{userBean.addUser()}" />
                         </h:panelGrid>
                         <f:facet name="footer">
                                 <p:link outcome="login" value="Login if already have an account"/>
                         </f:facet>
                     </p:panel>
                 </h:form>
+
             </div>
         </h:body>
+
     </f:view>
 </html>

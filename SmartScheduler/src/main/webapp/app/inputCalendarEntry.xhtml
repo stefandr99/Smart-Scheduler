@@ -5,13 +5,17 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+
     <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+
         <h:head>
             <title>Add event</title>
         </h:head>
+
         <h:body>
             <p:growl id="messages"/>
             <ezcomp:navbar/>
+
             <h:form id="CalendarEntryForm">
                 <p:panel header="CalendarEntryForm" style="width: 500px;">
                     <h:panelGrid columns="2">
@@ -19,17 +23,15 @@
                         <p:inputText id="name" value="#{calendarEntryBean.name}" required="true"/>
 
                         <p:outputLabel for="startDate" value="Start Date:"/>
-                    <p:datePicker id="startDate" value="#{calendarEntryBean.startDate}" showTime="true"/>
-                    
-                     <p:outputLabel for="finishDate" value="Finish Date:"/>
-                    <p:datePicker id="finishDate" value="#{calendarEntryBean.finishDate}" showTime="true"/>
-                        
-                        <center>
-                            <p:commandButton value="Submit" action="#{calendarEntryBean.addEvent()}" />
-                        </center>
+                        <p:datePicker id="startDate" value="#{calendarEntryBean.startDate}" showTime="true"/>
+                        <p:outputLabel for="finishDate" value="Finish Date:"/>
+                        <p:datePicker id="finishDate" value="#{calendarEntryBean.finishDate}" showTime="true"/>
+
+                        <p:commandButton value="Submit" action="#{calendarEntryBean.addEvent()}" />
                     </h:panelGrid>
                 </p:panel>
             </h:form>
+
         </h:body>
     </f:view>
 </html>

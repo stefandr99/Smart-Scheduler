@@ -8,7 +8,6 @@ import javax.faces.convert.FacesConverter;
 import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.managedBeans.ScheduleJava8View;
 
-
 @FacesConverter(value="calendarConverter")
 public class calendarConverter implements Converter{
 
@@ -28,6 +27,4 @@ public class calendarConverter implements Converter{
             return "";
         }
     }
-    
-    
 }

@@ -26,7 +26,7 @@ import org.primefaces.model.file.UploadedFile;
 @Named(value = "calendarUpload")
 @SessionScoped
 public class CalendarUpload implements Serializable {
-    
+
     @Inject
     ICalendarRepository calendarRepository;
     
@@ -40,7 +40,9 @@ public class CalendarUpload implements Serializable {
     ExtenderService extenderService;
 
     private UploadedFile calendarFile;
+
     private List<String> calendarEntries;
+
     private String calendarName;
 
     public String getCalendarName() {
@@ -55,6 +57,7 @@ public class CalendarUpload implements Serializable {
     public void init() {
         calendarEntries = new ArrayList<String>();
     }
+
     public CalendarUpload() {
     }
     
@@ -62,26 +65,16 @@ public class CalendarUpload implements Serializable {
         if (calendarFile != null && calendarFile.getSize() > 0 
                 && this.calendarName != null && !this.calendarName.equals("")) {
             try (InputStream input = calendarFile.getInputStream()) {
-                //parse and insert into db
-                Path temp = Files.createTempFile("calendar", ".ics");
-                Files.copy(input, temp, StandardCopyOption.REPLACE_EXISTING);
-                FileInputStream fin = new FileInputStream(temp.toFile());
                 CalendarBuilder builder = new CalendarBuilder();
-                
-                master.aset.smartscheduler.entities.calendar.Calendar exampleCalendar = new master.aset.smartscheduler.entities.calendar.Calendar();
-                
-                exampleCalendar.setName(this.calendarName);
-                
-                String username = securityContext.getCallerPrincipal().getName();
-                User user = userRepository.getByEmail(username);
-                exampleCalendar.addUser(user);
-                
+                FileInputStream fin = getCalendarFileStream(input);
+
+                User user = getCurrentUser();
+                master.aset.smartscheduler.entities.calendar.Calendar exampleCalendar = createCalendarWithUser(user);
                 Calendar calendar = builder.build(fin);
                 extenderService.addCalendarInfo(calendar, exampleCalendar);
                 calendarRepository.create(exampleCalendar);
                 
-                user.addCalendar(exampleCalendar);
-                userRepository.update(user);
+                updateUser(user, exampleCalendar);
             
                 fin.close();
             } catch (IOException | ParserException e) {
@@ -90,7 +83,34 @@ public class CalendarUpload implements Serializable {
         } else {
             return "calendarParse";
         }
+
         return "viewCalendar";
+    }
+
+    public FileInputStream getCalendarFileStream(InputStream input) throws IOException {
+        Path temp = Files.createTempFile("calendar", ".ics");
+        Files.copy(input, temp, StandardCopyOption.REPLACE_EXISTING);
+
+        return new FileInputStream(temp.toFile());
+    }
+
+    public master.aset.smartscheduler.entities.calendar.Calendar createCalendarWithUser(User user) {
+        master.aset.smartscheduler.entities.calendar.Calendar exampleCalendar = new master.aset.smartscheduler.entities.calendar.Calendar();
+        exampleCalendar.setName(this.calendarName);
+        exampleCalendar.addUser(user);
+
+        return exampleCalendar;
+    }
+
+    public User getCurrentUser() {
+        String username = securityContext.getCallerPrincipal().getName();
+
+        return userRepository.getByEmail(username);
+    }
+
+    public void updateUser(User user, master.aset.smartscheduler.entities.calendar.Calendar exampleCalendar) {
+        user.addCalendar(exampleCalendar);
+        userRepository.update(user);
     }
     
     public List<String> getCalendarEntries() {

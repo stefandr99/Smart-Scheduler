@@ -29,13 +29,11 @@ public class ExtenderService {
     @Inject
     SecurityContext securityContext;
 
-//    private static final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
     private final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
     public void addCalendarInfo(Calendar calendar, master.aset.smartscheduler.entities.calendar.Calendar dbCalendar) throws ParseException {
         for (Iterator i = calendar.getComponents().iterator(); i.hasNext();) {
             Component component = (Component) i.next();
-            //new event
             Date start = dateFormat.parse(component.getProperty("DTSTART").getValue());
             Date end = dateFormat.parse(component.getProperty("DTEND").getValue());
             String summary = component.getProperty("SUMMARY").getValue();
@@ -45,7 +43,20 @@ public class ExtenderService {
     }
     
     public ScheduleModel updateCalendarInfo(master.aset.smartscheduler.entities.calendar.Calendar calendar) {
+        return getEventToModel(calendar);
+    }
+
+    public ScheduleModel getDefaultCalendarInfo() {
+
+        User user = getCurrentUser();
+        master.aset.smartscheduler.entities.calendar.Calendar defaultCalendar = user.getCalendars().get(0);
+
+        return getEventToModel(defaultCalendar);
+    }
+
+    public ScheduleModel getEventToModel(master.aset.smartscheduler.entities.calendar.Calendar calendar) {
         ScheduleModel eventModel = new DefaultScheduleModel();
+
         for (CalendarEntry entry : calendar.getCalendarEntries()) {
             DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
                     .title(entry.getName())
@@ -56,26 +67,12 @@ public class ExtenderService {
                     .build();
             eventModel.addEvent(event);
         }
-        return eventModel;
+
+        return  eventModel;
     }
 
-    public ScheduleModel getDefaultCalendarInfo() {
-        ScheduleModel exampleModel = new DefaultScheduleModel();
-
+    public User getCurrentUser() {
         String username = securityContext.getCallerPrincipal().getName();
-        User user = userRepository.getByEmail(username);
-        master.aset.smartscheduler.entities.calendar.Calendar defaultCalendar = user.getCalendars().get(0);
-
-        for (CalendarEntry e : defaultCalendar.getCalendarEntries()) {
-            DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
-                    .title(e.getName())
-                    .startDate(e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
-                    .endDate(e.getFinishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
-                    .description(e.getName())
-                    .borderColor("orange")
-                    .build();
-            exampleModel.addEvent(event);
-        }
-        return exampleModel;
+        return userRepository.getByEmail(username);
     }
 }

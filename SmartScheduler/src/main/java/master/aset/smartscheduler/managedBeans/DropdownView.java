@@ -15,6 +15,7 @@ import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 @Named(value = "dropdownView")
 @ViewScoped
 public class DropdownView implements Serializable {
+
     @Inject
     IUserRepository userRepository;
     

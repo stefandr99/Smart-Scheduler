@@ -1,8 +1,6 @@
 package master.aset.smartscheduler.repositories;
 
 import java.util.Date;
-import master.aset.smartscheduler.entities.user.User;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
@@ -69,5 +67,4 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
     public void update(CalendarEntry entity) {
         em.merge(entity);
     }
-
 }

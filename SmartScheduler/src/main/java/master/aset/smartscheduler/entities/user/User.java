@@ -6,10 +6,6 @@ import java.util.List;
 import javax.persistence.*;
 import master.aset.smartscheduler.entities.calendar.Calendar;
 
-/**
- *
- * @author Andrei
- */
 @Entity
 @Table(name="users")
 @NamedQueries({
@@ -19,6 +15,7 @@ import master.aset.smartscheduler.entities.calendar.Calendar;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,

@@ -86,30 +86,37 @@ public class ScheduleJava8View implements Serializable {
 
     public void addEvent() {
         if (event.isAllDay()) {
-            // see https://github.com/primefaces/primefaces/issues/1164
             if (event.getStartDate().toLocalDate().equals(event.getEndDate().toLocalDate())) {
                 event.setEndDate(event.getEndDate().plusDays(1));
             }
         }
 
         if (event.getId() == null) {
-            eventModel.addEvent(event);
-            CalendarEntry calendarEntry = new CalendarEntry(event.getTitle(),
-                                                    Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant()),
-                                                    Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant()));
-            Calendar calendar = dropdownView.getSelectedCalendar();
-            calendar.addCalendarEntry(calendarEntry);
-            calendarRepository.update(calendar);
+            addNewEvent();
         }
         else {
-            eventModel.updateEvent(event);
-            selectedCalendarEntry.setName(event.getTitle());
-            selectedCalendarEntry.setStartDate(Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant()));
-            selectedCalendarEntry.setFinishDate(Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant()));
-            calendarEntryRepo.update(selectedCalendarEntry);
+            updateEvent();
         }
 
         event = new DefaultScheduleEvent<>();
+    }
+
+    public void addNewEvent() {
+        eventModel.addEvent(event);
+        CalendarEntry calendarEntry = new CalendarEntry(event.getTitle(),
+                Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant()),
+                Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant()));
+        Calendar calendar = dropdownView.getSelectedCalendar();
+        calendar.addCalendarEntry(calendarEntry);
+        calendarRepository.update(calendar);
+    }
+
+    public void updateEvent() {
+        eventModel.updateEvent(event);
+        selectedCalendarEntry.setName(event.getTitle());
+        selectedCalendarEntry.setStartDate(Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant()));
+        selectedCalendarEntry.setFinishDate(Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant()));
+        calendarEntryRepo.update(selectedCalendarEntry);
     }
 
     public void onEventSelect(SelectEvent<ScheduleEvent<?>> selectEvent) {
