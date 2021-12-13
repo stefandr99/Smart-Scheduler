@@ -16,11 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
 
-
 @RequestScoped
 @Named("userLogin")
 public class UserLogin {
-    
+
     @NotNull
     private String email;
     

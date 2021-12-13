@@ -2,7 +2,6 @@ package master.aset.smartscheduler.repositories;
 
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;

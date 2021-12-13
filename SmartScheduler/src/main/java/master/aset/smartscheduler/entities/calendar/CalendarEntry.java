@@ -42,6 +42,7 @@ public class CalendarEntry implements Serializable {
         this.startDate = startDate;
         this.finishDate = finishDate;
     }
+
     public Integer getId() {
         return id;
     }

@@ -6,7 +6,6 @@ import javax.security.enterprise.authentication.mechanism.http.CustomFormAuthent
 import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
 import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 
-
 @DatabaseIdentityStoreDefinition(
         dataSourceLookup = "jdbc/Smart-Scheduler",
         callerQuery = "select password from users where email = ?",
@@ -22,5 +21,4 @@ import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 @FacesConfig
 @ApplicationScoped
 public class ApplicationConfig {
-
 }

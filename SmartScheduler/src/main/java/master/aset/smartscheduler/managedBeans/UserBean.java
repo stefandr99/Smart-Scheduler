@@ -10,17 +10,10 @@ import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
-import master.aset.smartscheduler.services.interfaces.IUserService;
 
-/**
- *
- * @author Andrei
- */
 @RequestScoped
 @Named("userBean")
 public class UserBean {
-
-    private IUserService userService;
 
     private FacesContext facesContext = FacesContext.getCurrentInstance();
 
@@ -34,8 +27,11 @@ public class UserBean {
     Pbkdf2PasswordHash passwordHasher;
 
     private String email;
+
     private String password;
+
     private String passwordConfirm;
+
     private String userRole = "student";
 
     public String addUser() {
@@ -47,16 +43,20 @@ public class UserBean {
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Password doesn't match"));
             return null;
         } else {
-            User user = new User(email, passwordHasher.generate(password.toCharArray()), userRole);
-            userRepository.create(user);
-            Calendar defaultCalendar = new Calendar();
-            defaultCalendar.setName("Default calendar");
-            defaultCalendar.addUser(user);
-            calendarRepository.create(defaultCalendar);
-            user.addCalendar(defaultCalendar);
-            userRepository.update(user);
+            addUserLogic();
             return "authenticate";
         }
+    }
+
+    public void addUserLogic() {
+        User user = new User(email, passwordHasher.generate(password.toCharArray()), userRole);
+        userRepository.create(user);
+        Calendar defaultCalendar = new Calendar();
+        defaultCalendar.setName("Default calendar");
+        defaultCalendar.addUser(user);
+        calendarRepository.create(defaultCalendar);
+        user.addCalendar(defaultCalendar);
+        userRepository.update(user);
     }
 
     public boolean checkPasswordMatch() {

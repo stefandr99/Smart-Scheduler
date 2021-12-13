@@ -65,5 +65,4 @@ public class CalendarRepository implements ICalendarRepository {
     public void update(Calendar entity) {
         em.merge(entity);
     }
-
 }
