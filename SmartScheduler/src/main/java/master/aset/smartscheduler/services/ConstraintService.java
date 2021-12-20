@@ -91,23 +91,27 @@ class Main {
         int[] durations = { 30, 120, 180, 60 };
 
         int[] occurrences = {
-                0, 18, -1, -1, -1,
-                0, 14, -1, -1, -1,
-                14, -1, -1, -1, -1,
-                1, 3, 13, 17, 22
+                0, 18 * 60, -1, -1, -1,
+                0, 14 * 60, -1, -1, -1,
+                14 * 60, -1, -1, -1, -1,
+                60, 3 * 60, 13 * 60, 17 * 60, 22 * 60
         };
 
         int[][] occurrencesMatrix = {
-                {0, 18, -1, -1, -1},
-                {0, 14, -1, -1, -1},
-                {14, -1, -1, -1, -1},
-                {1, 3, 13, 17, 22}
+                {0, 18 * 60, -1, -1, -1},
+                {0, 14 * 60, -1, -1, -1},
+                {14 * 60, -1, -1, -1, -1},
+                {60, 3 * 60, 13 * 60, 17 * 60, 22 * 60}
         };
 
         Model model = new Model("Scheduler");
 
         IntVar[] tasksVar = model.intVarArray("tasks", 4, tasks);
         IntVar[] durationsVar = model.intVarArray("durations", 4, durations);
+
+        /*for(IntVar v : durationsVar) {
+            System.out.println(v.getValue());
+        }*/
         IntVar[][] occVar = model.intVarMatrix("occurrences", tasks.length, 5, occurrences);
 
         IntVar[] solution = IntStream
@@ -123,18 +127,18 @@ class Main {
 
         for(int i = 0; i < tasks.length - 1; i++) {
             for(int j = i + 1; j < tasks.length; j++) {
-                model.or(model.arithm(solution[j], ">=", solution[i], "+", durationsVar[i]),
-                        model.arithm(solution[j], "+" , durationsVar[j], "<=", solution[i])).post();
+                model.or(model.arithm(solution[j], ">=", solution[i], "+", durations[i]),
+                        model.arithm(solution[i], ">=" , solution[j], "+", durations[j])).post();
             }
         }
 
         System.out.println(model.getSolver().solve());
 
-            for (int i = 0; i < tasks.length; i++) {
-                System.out.printf("%s takes place at %d \n",
-                        solution[i].getName(),
-                        solution[i].getValue());
-            }
+        for (int i = 0; i < tasks.length; i++) {
+            System.out.printf("%s takes place at %d \n",
+                    solution[i].getName(),
+                    solution[i].getValue() / 60);
+        }
 
         /**
          * solution[i] != -1
