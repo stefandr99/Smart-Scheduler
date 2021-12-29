@@ -8,4 +8,6 @@ public interface ICalendarRepository extends IRepository<Calendar> {
     Calendar getCalendarOfUser(int userId, int calendarId);
     
     void addEntryToCalendar(Calendar calendar, CalendarEntry calendarEntry);
+
+    public Calendar getById(int id);
 }

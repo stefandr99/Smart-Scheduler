@@ -61,6 +61,15 @@ public class CalendarRepository implements ICalendarRepository {
     }
 
     @Transactional
+    public Calendar getById(int id) {
+        Long longId = (long) id;
+
+        return em.createNamedQuery("Calendar.getById", Calendar.class)
+                .setParameter("id", longId)
+                .getSingleResult();
+    }
+
+    @Transactional
     @Override
     public void update(Calendar entity) {
         em.merge(entity);

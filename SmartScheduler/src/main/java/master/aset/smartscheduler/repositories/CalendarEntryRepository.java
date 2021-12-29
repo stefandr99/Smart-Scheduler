@@ -44,8 +44,8 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
     }
     
     @Transactional
-    public CalendarEntry getByCalendarId(Calendar calendar) {
-        return em.createNamedQuery("CalendarEntries.getByCalendarId", CalendarEntry.class)
+    public CalendarEntry getByCalendar(Calendar calendar) {
+        return em.createNamedQuery("CalendarEntries.getByCalendar", CalendarEntry.class)
                 .setParameter("calendar", calendar)
                 .getSingleResult();
     }
