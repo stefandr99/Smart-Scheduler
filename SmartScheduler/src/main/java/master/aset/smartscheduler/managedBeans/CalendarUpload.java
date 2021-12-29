@@ -17,6 +17,7 @@ import javax.security.enterprise.SecurityContext;
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
+import master.aset.smartscheduler.services.ConstraintService;
 import master.aset.smartscheduler.services.ExtenderService;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
@@ -39,6 +40,9 @@ public class CalendarUpload implements Serializable {
     @Inject
     ExtenderService extenderService;
 
+    @Inject
+    ConstraintService constraintService;
+
     private UploadedFile calendarFile;
 
     private List<String> calendarEntries;
@@ -59,6 +63,10 @@ public class CalendarUpload implements Serializable {
     }
 
     public CalendarUpload() {
+    }
+
+    public void merge() {
+        constraintService.mergeCalendars(new int[]{2});
     }
     
     public String uploadFile() throws Exception {

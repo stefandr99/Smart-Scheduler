@@ -36,6 +36,9 @@
             </h:form>
         </div>
 
+        <h:form>
+            <p:commandButton value="Submit" action="#{calendarUpload.merge()}" ajax="false" />
+        </h:form>
         <div class="card wrapper">
             <h:form id="mainForm">
                 <p:growl id="messages" showDetail="true"/>

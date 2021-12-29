@@ -7,11 +7,21 @@ import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.variables.IntVar;
 
+import javax.ejb.LocalBean;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@ApplicationScoped
 public class ConstraintService {
     @Inject
     ICalendarEntryRepository calendarEntryRepository;
@@ -20,21 +30,151 @@ public class ConstraintService {
     ICalendarRepository calendarRepository;
 
     public Calendar mergeCalendars(int[] ids) {
+        // get first day date of current week
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        cal.set(java.util.Calendar.DAY_OF_WEEK, cal.getActualMinimum(java.util.Calendar.DAY_OF_WEEK) + 1);
+        cal.set(java.util.Calendar.HOUR_OF_DAY, 0);
+        cal.set(java.util.Calendar.MINUTE, 0);
+        cal.set(java.util.Calendar.SECOND, 0);
+        cal.set(java.util.Calendar.MILLISECOND, 0);
+        Date firstDayOfTheWeek = cal.getTime();
+
         List<CalendarEntry> calendarEntries = new ArrayList<>();
         Calendar finalCalendar = new Calendar();
 
+        StringBuilder newCalendarName = new StringBuilder();
+        // retrieve all events from calendars
         for(int i = 0 ; i < ids.length; i++) {
             Calendar calendar = calendarRepository.getById(ids[i]);
 
-            calendarEntries.add(calendarEntryRepository.getByCalendar(calendar));
+            newCalendarName.append(calendar.getName()).append("+");
+            calendarEntries.addAll(calendarEntryRepository.getByCalendar(calendar));
+        }
+        finalCalendar.setName(newCalendarName.substring(0, newCalendarName.length() - 1));
+
+        // get start and end day of week
+        Date startWeek = firstDayOfTheWeek;
+        java.util.Calendar c = java.util.Calendar.getInstance();
+        c.setTime(startWeek);
+        c.add(java.util.Calendar.DAY_OF_MONTH, 7);
+        Date endWeek = c.getTime();
+
+        for(int i = 0; i < 52; i++) {
+            // filter events that occurs in the week of this iteration
+            Date finalStartWeek = startWeek;
+            Date finalEndWeek = endWeek;
+            Predicate<CalendarEntry> inWeek = event -> event.getStartDate().after(finalStartWeek) && event.getStartDate().before(finalEndWeek);
+
+            List<CalendarEntry> weekEvents = calendarEntries.stream().filter(inWeek)
+                    .collect(Collectors.toList());
+
+            if(weekEvents.size() > 0) {
+
+                // group weeks by their names (for example a course that occurs on monday and friday)
+                Map<String, List<CalendarEntry>> groupedEvents =
+                        weekEvents.stream().collect(Collectors.groupingBy(CalendarEntry::getName));
+
+                // set index of every event and get duration
+                Map<Integer, String> index = new HashMap<>();
+                List<Integer> durations = new ArrayList<>();
+                int taskNumber = 0;
+
+                for (Map.Entry<String, List<CalendarEntry>> entry : groupedEvents.entrySet()) {
+                    // set index of every event
+                    index.put(taskNumber, entry.getKey());
+                    taskNumber++;
+
+                    // get duration of every event
+                    long diff = entry.getValue().get(0).getFinishDate().getTime() - entry.getValue().get(0).getStartDate().getTime();
+                    TimeUnit time = TimeUnit.MINUTES;
+                    long duration = time.convert(diff, TimeUnit.MILLISECONDS);
+                    durations.add((int) duration);
+                }
+
+                // build occurancesMatrix by iterating every event by its name
+                int[][] occurrencesMatrix = new int[taskNumber][];
+                int row = 0;
+
+                for (Map.Entry<String, List<CalendarEntry>> entry : groupedEvents.entrySet()) {
+                    // get all occurrences of current event in week
+                    List<CalendarEntry> taskEvents = entry.getValue();
+
+                    // instantiate a new array representing matrix row
+                    int[] currentTaskOcc = new int[taskEvents.size()];
+                    int j = 0;
+
+                    // iterate over current event and get its occurrences in this week
+                    for (CalendarEntry calendarEntry : taskEvents) {
+                        LocalDateTime local = calendarEntry.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                        LocalDateTime startWeekLocal = startWeek.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+                        int hours = (int) ChronoUnit.HOURS.between(startWeekLocal, local);
+
+                        currentTaskOcc[j] = hours;
+                        j++;
+                    }
+
+                    occurrencesMatrix[row] = currentTaskOcc;
+                    row++;
+                }
+
+                // inmultim fiecare occurrence cu 60 ca sa avem matricea in minute
+                for(int k = 0; k < occurrencesMatrix.length; k++) {
+                    occurrencesMatrix[k] = Arrays.stream(occurrencesMatrix[k]).map(el -> el * 60).toArray();
+                }
+
+                Model model = new Model("Scheduler");
+
+                IntVar[] solution = IntStream
+                        .range(0, taskNumber)
+                        .mapToObj(in -> model.intVar("task #" + in, occurrencesMatrix[in]))
+                        .toArray(IntVar[]::new);
+
+                model.allDifferent(solution).post();
+
+                for(int j = 0; j < taskNumber - 1; j++) {
+                    for(int k = j + 1; k < taskNumber; k++) {
+                        model.or(model.arithm(solution[k], ">=", solution[j], "+", durations.get(j)),
+                                model.arithm(solution[j], ">=" , solution[k], "+", durations.get(k))).post();
+                    }
+                }
+
+                boolean solved = model.getSolver().solve();
+
+                for(int j = 0; j < solution.length; j++) {
+                    int occurrence = solution[j].getValue() / 60;
+                    String eventName = index.get(j);
+                    List<CalendarEntry> events = groupedEvents.get(eventName);
+
+                    for(CalendarEntry event : events) {
+                        LocalDateTime local = event.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                        LocalDateTime startWeekLocal = startWeek.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+                        int hours = (int) ChronoUnit.HOURS.between(startWeekLocal, local);
+
+                        if(hours == occurrence) {
+                            finalCalendar.getCalendarEntries().add(event);
+                            break;
+                        }
+                    }
+
+                }
+                boolean flagg = true;
+            }
+
+            startWeek = endWeek;
+            c = java.util.Calendar.getInstance();
+            c.setTime(startWeek);
+            c.add(java.util.Calendar.DAY_OF_MONTH, 7);
+            endWeek = c.getTime();
+
+            boolean flag = true;
         }
 
-
-
-        return null;
+        return finalCalendar;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         // Smart scheduler
 
         // task-urile mele in aceasta saptamana
@@ -85,5 +225,5 @@ public class ConstraintService {
          *
          *  solution[j] >= solution[i] + duration[j] OR solution[j] + duration[j] <= solution[i]
          */
-    }
+    //}
 }
