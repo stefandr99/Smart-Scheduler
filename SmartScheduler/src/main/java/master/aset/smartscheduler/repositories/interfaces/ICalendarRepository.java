@@ -9,5 +9,5 @@ public interface ICalendarRepository extends IRepository<Calendar> {
     
     void addEntryToCalendar(Calendar calendar, CalendarEntry calendarEntry);
 
-    public Calendar getById(int id);
+    Calendar getById(int id);
 }

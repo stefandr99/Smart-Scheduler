@@ -2,14 +2,17 @@ package master.aset.smartscheduler.services;
 
 import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.calendar.CalendarEntry;
+import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryRepository;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
+import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.variables.IntVar;
 
 import javax.ejb.LocalBean;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.security.enterprise.SecurityContext;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,6 +31,14 @@ public class ConstraintService {
 
     @Inject
     ICalendarRepository calendarRepository;
+
+    @Inject
+    IUserRepository userRepository;
+
+    @Inject
+    SecurityContext securityContext;
+
+    private final int numberOfWeeks = 52;
 
     public Calendar mergeCalendars(int[] ids) {
         // get first day date of current week
@@ -50,7 +61,13 @@ public class ConstraintService {
             newCalendarName.append(calendar.getName()).append("+");
             calendarEntries.addAll(calendarEntryRepository.getByCalendar(calendar));
         }
-        finalCalendar.setName(newCalendarName.substring(0, newCalendarName.length() - 1));
+        //finalCalendar.setName(newCalendarName.substring(0, newCalendarName.length() - 1));
+        finalCalendar.setName("Merged: " + newCalendarName.toString() + "Last " + new Date());
+        User user = getCurrentUser();
+        finalCalendar.addUser(user);
+        calendarRepository.create(finalCalendar);
+        user.addCalendar(finalCalendar);
+        userRepository.update(user);
 
         // get start and end day of week
         Date startWeek = firstDayOfTheWeek;
@@ -59,7 +76,7 @@ public class ConstraintService {
         c.add(java.util.Calendar.DAY_OF_MONTH, 7);
         Date endWeek = c.getTime();
 
-        for(int i = 0; i < 52; i++) {
+        for(int i = 0; i < numberOfWeeks; i++) {
             // filter events that occurs in the week of this iteration
             Date finalStartWeek = startWeek;
             Date finalEndWeek = endWeek;
@@ -97,14 +114,14 @@ public class ConstraintService {
 
                 for (Map.Entry<String, List<CalendarEntry>> entry : groupedEvents.entrySet()) {
                     // get all occurrences of current event in week
-                    List<CalendarEntry> taskEvents = entry.getValue();
+                    List<CalendarEntry> allTaskGrouped = entry.getValue();
 
                     // instantiate a new array representing matrix row
-                    int[] currentTaskOcc = new int[taskEvents.size()];
+                    int[] currentTaskOcc = new int[allTaskGrouped.size()];
                     int j = 0;
 
                     // iterate over current event and get its occurrences in this week
-                    for (CalendarEntry calendarEntry : taskEvents) {
+                    for (CalendarEntry calendarEntry : allTaskGrouped) {
                         LocalDateTime local = calendarEntry.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
                         LocalDateTime startWeekLocal = startWeek.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
@@ -153,13 +170,13 @@ public class ConstraintService {
                         int hours = (int) ChronoUnit.HOURS.between(startWeekLocal, local);
 
                         if(hours == occurrence) {
-                            finalCalendar.getCalendarEntries().add(event);
+                            event.setCalendar(finalCalendar);
+                            finalCalendar.addCalendarEntry(event);
+                            calendarRepository.addEntryToCalendar(finalCalendar, event);
                             break;
                         }
                     }
-
                 }
-                boolean flagg = true;
             }
 
             startWeek = endWeek;
@@ -226,4 +243,10 @@ public class ConstraintService {
          *  solution[j] >= solution[i] + duration[j] OR solution[j] + duration[j] <= solution[i]
          */
     //}
+
+    public User getCurrentUser() {
+        String username = securityContext.getCallerPrincipal().getName();
+
+        return userRepository.getByEmail(username);
+    }
 }

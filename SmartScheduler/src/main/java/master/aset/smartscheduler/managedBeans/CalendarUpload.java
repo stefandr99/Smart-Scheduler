@@ -14,6 +14,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
+
+import master.aset.smartscheduler.entities.calendar.CalendarEntry;
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
@@ -33,7 +35,7 @@ public class CalendarUpload implements Serializable {
     
     @Inject
     IUserRepository userRepository;
-    
+
     @Inject
     SecurityContext securityContext;
     

@@ -10,9 +10,9 @@ public interface ICalendarEntryRepository extends IRepository<CalendarEntry> {
 
     CalendarEntry getEntryFromCalendar(int calendarId, String name, Date startDate, Date endDate);
 
-    public boolean create(CalendarEntry event);
+    boolean create(CalendarEntry event);
 
-    public List<CalendarEntry> getByCalendar(Calendar calendar);
+    List<CalendarEntry> getByCalendar(Calendar calendar);
 
-    public List<CalendarEntry> getListByName(String name);
+    List<CalendarEntry> getListByName(String name);
 }

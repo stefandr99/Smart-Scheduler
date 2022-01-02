@@ -43,7 +43,7 @@ public class User implements Serializable {
         name = "user_calendars",
         joinColumns = @JoinColumn(name = "user_id"), 
         inverseJoinColumns = @JoinColumn(name = "calendar_id"))
-    private List<Calendar> calendars = new ArrayList<>();
+    private final List<Calendar> calendars = new ArrayList<>();
 
     public List<Calendar> getCalendars() {
         return calendars;
@@ -113,10 +113,7 @@ public class User implements Serializable {
             return false;
         }
         User other = (User) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
     }
 
     @Override
