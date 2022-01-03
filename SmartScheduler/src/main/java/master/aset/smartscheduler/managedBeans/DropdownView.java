@@ -1,6 +1,7 @@
 package master.aset.smartscheduler.managedBeans;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -14,6 +15,7 @@ import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryRepository;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
+import master.aset.smartscheduler.services.ConstraintService;
 
 
 @Named(value = "dropdownView")
@@ -28,10 +30,13 @@ public class DropdownView implements Serializable {
     
     @Inject
     SecurityContext securityContext;
+
+    @Inject
+    ConstraintService constraintService;
     
     private Calendar[] selectedOptions;
     
-    private Calendar[] selectedCalendars;
+    private List<Calendar> selectedCalendars;
     
     private List<Calendar> calendars;
     
@@ -53,6 +58,18 @@ public class DropdownView implements Serializable {
     public void onCalendarCreated(@Observes Calendar calendar) {
         this.init();
     }
+
+    public void merge() {
+        int[] calendarIds = new int[selectedCalendars.size()];
+        int i = 0;
+
+        for(Calendar c : selectedCalendars) {
+            calendarIds[i] = c.getId();
+            i++;
+        }
+
+        constraintService.mergeCalendars(calendarIds);
+    }
     
     public Calendar[] getSelectedOptions() {
         return selectedOptions;
@@ -62,11 +79,11 @@ public class DropdownView implements Serializable {
         this.selectedOptions = selectedOptions;
     }
 
-    public Calendar[] getSelectedCalendars() {
+    public List<Calendar> getSelectedCalendars() {
         return selectedCalendars;
     }
 
-    public void setSelectedCalendars(Calendar[] selectedCalendars) {
+    public void setSelectedCalendars(List<Calendar> selectedCalendars) {
         this.selectedCalendars = selectedCalendars;
     }
 

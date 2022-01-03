@@ -71,10 +71,6 @@ public class CalendarUpload implements Serializable {
     public CalendarUpload() {
     }
 
-    
-    public void merge() {
-        constraintService.mergeCalendars(new int[]{1, 2});
-    }
     // pentru user-ul cu mail "newUser2@gmail.com" si parola 'password' face merge intre DefaultCalendar si TestCalendar1
     public void merge2() {
         constraintServiceV2.mergeCalendars(new int[]{1, 2});
