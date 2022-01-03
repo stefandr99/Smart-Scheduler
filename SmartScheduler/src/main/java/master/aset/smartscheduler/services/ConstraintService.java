@@ -11,6 +11,8 @@ import org.chocosolver.solver.variables.IntVar;
 
 import javax.ejb.LocalBean;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Event;
+import javax.enterprise.inject.Any;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
 import java.io.Serializable;
@@ -37,6 +39,10 @@ public class ConstraintService {
 
     @Inject
     SecurityContext securityContext;
+
+    @Inject
+    @Any
+    Event<Calendar> calendarEvent;
 
     private final int numberOfWeeks = 52;
 
@@ -170,8 +176,6 @@ public class ConstraintService {
                         int hours = (int) ChronoUnit.HOURS.between(startWeekLocal, local);
 
                         if(hours == occurrence) {
-                            event.setCalendar(finalCalendar);
-                            finalCalendar.addCalendarEntry(event);
                             calendarRepository.addEntryToCalendar(finalCalendar, event);
                             break;
                         }
@@ -188,6 +192,7 @@ public class ConstraintService {
             boolean flag = true;
         }
 
+        calendarEvent.fire(finalCalendar);
         return finalCalendar;
     }
 

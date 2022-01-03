@@ -33,7 +33,8 @@ public class CalendarRepository implements ICalendarRepository {
                 .getResultList()
                 .get(0);
     }
-    
+
+    @Transactional
     @Override
     public List<Calendar> getAllCalendarsOfUser(int userId) {
         return em.createNamedQuery("Calendar.allCalendarsOfUser", Calendar.class)
@@ -45,8 +46,8 @@ public class CalendarRepository implements ICalendarRepository {
     @Override
     public void addEntryToCalendar(Calendar calendar, CalendarEntry calendarEntry)
     {
-        calendar.getCalendarEntries().add(calendarEntry);
-        em.merge(calendar);
+        calendarEntry.setCalendar(calendar);
+        em.persist(calendarEntry);
     }
 
     @Override

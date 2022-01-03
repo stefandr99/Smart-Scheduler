@@ -51,8 +51,7 @@ public class DropdownView implements Serializable {
     }
     
     public void onCalendarCreated(@Observes Calendar calendar) {
-        
-        this.calendars = calendarRepo.getAllCalendarsOfUser(this.currentUser.getId());
+        this.init();
     }
     
     public Calendar[] getSelectedOptions() {
