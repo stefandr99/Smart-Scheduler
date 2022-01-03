@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Date;
+import java.util.List;
 import javax.inject.Inject;
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.services.XmlDomParser;
@@ -28,6 +30,16 @@ public class XmlCalendarUpload implements Serializable {
     
     private UploadedFile calendarXmlFile;
 
+    private List<Date> range;
+
+    public List<Date> getRange() {
+        return range;
+    }
+
+    public void setRange(List<Date> range) {
+        this.range = range;
+    }
+    
     public UploadedFile getCalendarXmlFile() {
         return calendarXmlFile;
     }
@@ -42,7 +54,7 @@ public class XmlCalendarUpload implements Serializable {
     public String uploadFile() throws Exception {
         if (calendarXmlFile != null && calendarXmlFile.getSize() > 0 ) {
             try (InputStream input = calendarXmlFile.getInputStream()) {
-                xmlParserService.parse(getCalendarFileStream(input));
+                xmlParserService.parse(getCalendarFileStream(input), range);
             } catch (IOException e) {
                 e.printStackTrace();
             }

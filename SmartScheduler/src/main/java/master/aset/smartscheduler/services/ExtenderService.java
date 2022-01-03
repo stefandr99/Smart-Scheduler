@@ -3,9 +3,12 @@ package master.aset.smartscheduler.services;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -58,14 +61,48 @@ public class ExtenderService {
         ScheduleModel eventModel = new DefaultScheduleModel();
 
         for (CalendarEntry entry : calendar.getCalendarEntries()) {
-            DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+            if (entry.isRecurring()) {
+                //obtain the start date day of week as a number
+                int startDay = getDayNumber(entry.getStartDate());
+                int finishDay = getDayNumber(entry.getFinishDate());
+                
+                int offset = 0;
+                if (startDay > entry.getDay()) {
+                    offset = 7 - startDay + entry.getDay() + 1;
+                }
+                java.util.Calendar c = java.util.Calendar.getInstance();
+                c.setTime(entry.getStartDate());
+                c.add(java.util.Calendar.DATE, offset);
+                Date recurringStartDate = c.getTime();
+                
+                while (recurringStartDate.compareTo(entry.getFinishDate()) != -1) {
+                    DefaultScheduleEvent<?> event;
+                    try {
+                        event = DefaultScheduleEvent.builder()
+                                .title(entry.getName())
+                                .startDate(addTimeToDate(recurringStartDate, entry.getStartTime()))
+                                .endDate(addTimeToDate(recurringStartDate, entry.getEndTime()))
+                                .description(entry.getName())
+                                .borderColor("orange")
+                                .build();
+                        eventModel.addEvent(event);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(ExtenderService.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    c.setTime(recurringStartDate);
+                    c.add(java.util.Calendar.DATE, 7);
+                    recurringStartDate = c.getTime();
+                }
+            } else {
+                DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
                     .title(entry.getName())
                     .startDate(entry.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
                     .endDate(entry.getFinishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
                     .description(entry.getName())
                     .borderColor("orange")
                     .build();
-            eventModel.addEvent(event);
+                eventModel.addEvent(event);
+            }
         }
 
         return  eventModel;
@@ -74,5 +111,22 @@ public class ExtenderService {
     public User getCurrentUser() {
         String username = securityContext.getCallerPrincipal().getName();
         return userRepository.getByEmail(username);
+    }
+    
+    private int getDayNumber(Date date) {
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(java.util.Calendar.DAY_OF_WEEK);
+    }
+    
+    private LocalDateTime addTimeToDate(Date date, String time) throws ParseException{
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
+        DateFormat df2 = new SimpleDateFormat("MM/dd/yyyy");
+        String startDateString = df2.format(date);
+
+        startDateString = startDateString + " " + time + ":00";
+
+        return df.parse(startDateString).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();    
     }
 }

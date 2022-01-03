@@ -29,7 +29,35 @@ public class CalendarEntry implements Serializable {
     @Column(name="finishdate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date finishDate;
+    
+    @Column(name="day")
+    private Integer day;
+    
+    @Column(name="recurring")
+    private Boolean recurring;
 
+    @Column(name="startTime")
+    private String startTime;
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+    
+    @Column(name="endTime")
+    private String endTime;
+    
     @ManyToOne
     @JoinColumn(name="calendar_id")
     private Calendar calendar;
@@ -41,6 +69,7 @@ public class CalendarEntry implements Serializable {
         this.name = name;
         this.startDate = startDate;
         this.finishDate = finishDate;
+        this.recurring = false;
     }
 
     public Integer getId() {
@@ -81,5 +110,21 @@ public class CalendarEntry implements Serializable {
 
     public void setCalendar(Calendar calendar) {
         this.calendar = calendar;
+    }
+    
+    public Integer getDay() {
+        return day;
+    }
+
+    public void setDay(Integer day) {
+        this.day = day;
+    }
+
+    public Boolean isRecurring() {
+        return recurring;
+    }
+
+    public void setRecurring(Boolean recurring) {
+        this.recurring = recurring;
     }
 }

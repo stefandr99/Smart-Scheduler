@@ -3,6 +3,7 @@ package master.aset.smartscheduler.services;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +28,11 @@ public class XmlDomParser {
     @Inject
     private CalendarRepository calendarRepo;
     
-    public void parse(File xmlFile) {
+    public void parse(File xmlFile, List<Date> range) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        if (range.size() != 2) {
+            return;
+        }
         try {
 //            TODO: calendarRepo.deleteFacultyCalendars();
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
@@ -74,7 +78,6 @@ public class XmlDomParser {
                         }
                         eventMap.put(eventName, calendars);
                     }
-                    
                 }
             }
             
@@ -90,14 +93,22 @@ public class XmlDomParser {
                     String subjectName = eventAttr[0];
 
                     newEntry.setName(subjectNamesMap.get(subjectName));
-//                    newEntry.setStartDate(startDate);
-//                    newEntry.setStartDate(startDate);
-                    
-                    List<Calendar> eventCalendars = eventMap.get(eventKey);
-                    for (Calendar c : eventCalendars) {
-                        newEntry.setCalendar(c);
-                        c.addCalendarEntry(newEntry);
-                        calendarRepo.update(c);
+                    newEntry.setRecurring(true);
+                    try {
+                        newEntry.setDay(Integer.parseInt(element.getAttribute("day")));
+                        newEntry.setStartDate(range.get(0));
+                        newEntry.setFinishDate(range.get(1));
+                        newEntry.setStartTime(element.getAttribute("startTime"));
+                        newEntry.setEndTime(element.getAttribute("endTime"));
+
+                        List<Calendar> eventCalendars = eventMap.get(eventKey);
+                        for (Calendar c : eventCalendars) {
+                            newEntry.setCalendar(c);
+                            c.addCalendarEntry(newEntry);
+                            calendarRepo.update(c);
+                        }
+                    } catch (NumberFormatException e) {
+                        newEntry.setRecurring(false);
                     }
                 }
             }

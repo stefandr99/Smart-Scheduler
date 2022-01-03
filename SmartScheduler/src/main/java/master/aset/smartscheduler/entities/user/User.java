@@ -18,13 +18,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "sequence"
-    )
-    @SequenceGenerator(
-            name = "sequence",
-            sequenceName = "users_id_seq",
-            allocationSize = 1
+            strategy = GenerationType.IDENTITY
     )
     @Column(name="id")
     private Integer id;
