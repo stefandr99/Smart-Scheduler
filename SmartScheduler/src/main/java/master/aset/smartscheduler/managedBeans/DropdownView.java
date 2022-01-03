@@ -3,21 +3,28 @@ package master.aset.smartscheduler.managedBeans;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
 import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.user.User;
+import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryRepository;
+import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 
 
 @Named(value = "dropdownView")
-@ViewScoped
+@ApplicationScoped
 public class DropdownView implements Serializable {
 
     @Inject
     IUserRepository userRepository;
+    
+    @Inject
+    ICalendarRepository calendarRepo;
     
     @Inject
     SecurityContext securityContext;
@@ -41,6 +48,11 @@ public class DropdownView implements Serializable {
         this.currentUser = userRepository.getByEmail(username);
         this.calendars = currentUser.getCalendars();
         this.selectedCalendar = this.calendars.get(0);
+    }
+    
+    public void onCalendarCreated(@Observes Calendar calendar) {
+        
+        this.calendars = calendarRepo.getAllCalendarsOfUser(this.currentUser.getId());
     }
     
     public Calendar[] getSelectedOptions() {

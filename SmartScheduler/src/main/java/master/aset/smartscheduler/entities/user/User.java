@@ -43,7 +43,7 @@ public class User implements Serializable {
         name = "user_calendars",
         joinColumns = @JoinColumn(name = "user_id"), 
         inverseJoinColumns = @JoinColumn(name = "calendar_id"))
-    private final List<Calendar> calendars = new ArrayList<>();
+    private List<Calendar> calendars = new ArrayList<>();
 
     public List<Calendar> getCalendars() {
         return calendars;
