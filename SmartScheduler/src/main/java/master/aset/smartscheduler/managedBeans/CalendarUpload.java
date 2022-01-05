@@ -10,8 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
 import master.aset.smartscheduler.entities.user.User;
@@ -62,28 +65,49 @@ public class CalendarUpload implements Serializable {
     }
     
     public String uploadFile() throws Exception {
-        if (calendarFile != null && calendarFile.getSize() > 0 
-                && this.calendarName != null && !this.calendarName.equals("")) {
-            try (InputStream input = calendarFile.getInputStream()) {
-                CalendarBuilder builder = new CalendarBuilder();
-                FileInputStream fin = getCalendarFileStream(input);
+        FacesContext facesContext = FacesContext.getCurrentInstance();
 
-                User user = getCurrentUser();
-                master.aset.smartscheduler.entities.calendar.Calendar exampleCalendar = createCalendarWithUser(user);
-                Calendar calendar = builder.build(fin);
-                extenderService.addCalendarInfo(calendar, exampleCalendar);
-                calendarRepository.create(exampleCalendar);
-                
-                updateUser(user, exampleCalendar);
-            
-                fin.close();
-            } catch (IOException | ParserException e) {
-                e.printStackTrace();
-            }
-        } else {
+        if (calendarFile == null || calendarFile.getSize() <= 0) {
+            facesContext.addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                            "You must upload a valid calendar file", 
+                            "file is invalid"));
             return "calendarParse";
         }
+        
+        if (this.calendarName == null || this.calendarName.equals("")) {
+            facesContext.addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                            "The name of the calendar should not be empty", 
+                            "calendar name is invalid"));
+            return "calendarParse";
+        }
+       
+        try (InputStream input = calendarFile.getInputStream()) {
+            CalendarBuilder builder = new CalendarBuilder();
+            FileInputStream fin = getCalendarFileStream(input);
 
+            User user = getCurrentUser();
+            master.aset.smartscheduler.entities.calendar.Calendar exampleCalendar = createCalendarWithUser(user);
+            if (exampleCalendar == null) {
+                facesContext.addMessage(null, 
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, 
+                                "There is already a calendar registered with the name " + calendarName, 
+                                "Duplicate value"));
+                fin.close();
+                return "calendarParse";
+            }
+            Calendar calendar = builder.build(fin);
+            extenderService.addCalendarInfo(calendar, exampleCalendar);
+            calendarRepository.create(exampleCalendar);
+
+            updateUser(user, exampleCalendar);
+
+            fin.close();
+        } catch (IOException | ParserException e) {
+            e.printStackTrace();
+        }
+        
         return "viewCalendar";
     }
 
@@ -95,11 +119,14 @@ public class CalendarUpload implements Serializable {
     }
 
     public master.aset.smartscheduler.entities.calendar.Calendar createCalendarWithUser(User user) {
-        master.aset.smartscheduler.entities.calendar.Calendar exampleCalendar = new master.aset.smartscheduler.entities.calendar.Calendar();
-        exampleCalendar.setName(this.calendarName);
-        exampleCalendar.addUser(user);
-
-        return exampleCalendar;
+        boolean foundDuplicatedCalendar = user.getCalendars().stream().anyMatch(c -> c.getName().equals(this.calendarName));
+        if (!foundDuplicatedCalendar) {
+            master.aset.smartscheduler.entities.calendar.Calendar exampleCalendar = new master.aset.smartscheduler.entities.calendar.Calendar();
+            exampleCalendar.setName(this.calendarName);
+            exampleCalendar.addUser(user);
+            return exampleCalendar;
+        }
+        return null;
     }
 
     public User getCurrentUser() {

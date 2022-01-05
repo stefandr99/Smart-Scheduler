@@ -59,7 +59,7 @@ public class XmlCalendarUpload implements Serializable {
                 e.printStackTrace();
             }
         } else {
-            return "calendarParse";
+            return "admin.xhtml";
         }
 
         return "viewCalendar";

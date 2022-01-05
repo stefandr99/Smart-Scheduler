@@ -1,6 +1,7 @@
 package master.aset.smartscheduler.managedBeans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -22,15 +23,30 @@ public class DropdownView implements Serializable {
     @Inject
     SecurityContext securityContext;
     
-    private Calendar[] selectedOptions;
-    
-    private Calendar[] selectedCalendars;
-    
     private List<Calendar> calendars;
     
     private User currentUser;
     
-    private Calendar selectedCalendar;
+    private List<Calendar> selectedCalendars;
+    
+    private List<Calendar> calendarsOptions;
+
+    public List<Calendar> getSelectedCalendars() {
+        return selectedCalendars;
+    }
+
+    public void setSelectedCalendars(List<Calendar> selectedCalendars) {
+        this.selectedCalendars = selectedCalendars;
+    }
+
+    public List<Calendar> getCalendarsOptions() {
+        return calendarsOptions;
+    }
+
+    public void setCalendarsOptions(List<Calendar> calendarsOptions) {
+        this.calendarsOptions = calendarsOptions;
+    }
+    
     
     public DropdownView() {
     }
@@ -40,25 +56,12 @@ public class DropdownView implements Serializable {
         String username = securityContext.getCallerPrincipal().getName();
         this.currentUser = userRepository.getByEmail(username);
         this.calendars = currentUser.getCalendars();
-        this.selectedCalendar = this.calendars.get(0);
+        
+        this.selectedCalendars = new ArrayList<>();
+        this.selectedCalendars.add(calendars.get(0));
+        this.calendarsOptions = currentUser.getCalendars();
     }
     
-    public Calendar[] getSelectedOptions() {
-        return selectedOptions;
-    }
-
-    public void setSelectedOptions(Calendar[] selectedOptions) {
-        this.selectedOptions = selectedOptions;
-    }
-
-    public Calendar[] getSelectedCalendars() {
-        return selectedCalendars;
-    }
-
-    public void setSelectedCalendars(Calendar[] selectedCalendars) {
-        this.selectedCalendars = selectedCalendars;
-    }
-
     public List<Calendar> getCalendars() {
         return calendars;
     }
@@ -68,13 +71,6 @@ public class DropdownView implements Serializable {
     }
     
     public Calendar getSelectedCalendar() {
-        if (selectedCalendar == null) {
-            return this.calendars.get(0);
-        }
-        return selectedCalendar;
-    }
-
-    public void setSelectedCalendar(Calendar selectedCalendar) {
-        this.selectedCalendar = selectedCalendar;
+        return this.calendars.get(0);
     }
 }

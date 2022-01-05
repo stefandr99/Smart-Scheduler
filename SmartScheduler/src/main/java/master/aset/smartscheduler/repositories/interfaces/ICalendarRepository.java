@@ -5,7 +5,7 @@ import master.aset.smartscheduler.entities.calendar.CalendarEntry;
 
 public interface ICalendarRepository extends IRepository<Calendar> {
 
-    Calendar getCalendarOfUser(int userId, int calendarId);
-    
+    Calendar getCalendarOfUser(int userId, int calendarId);    
+        
     void addEntryToCalendar(Calendar calendar, CalendarEntry calendarEntry);
 }

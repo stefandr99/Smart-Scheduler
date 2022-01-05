@@ -32,7 +32,7 @@ public class Calendar implements Serializable{
     @Column(name="name")
     private String name;
     
-    @OneToMany(mappedBy="calendar",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy="calendar", cascade = CascadeType.PERSIST)
     private List<CalendarEntry> calendarEntries = new ArrayList<>();
     
     @ManyToMany(mappedBy = "calendars")

@@ -58,7 +58,7 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
     }
     
     @Override
-    public CalendarEntry get(EntityManager em, int id) {
+    public CalendarEntry get(int id) {
         return null;
     }
     

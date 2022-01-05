@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "CalendarEntry")
-@Table(name = "calendar_entries")
+@Table(name = "calendar_entries", uniqueConstraints={@UniqueConstraint(columnNames ={"name", "startdate", "finishdate", "calendar_id"})})
 @NamedQueries({
     @NamedQuery(name = "CalendarEntries.getByName", query = "select ce from CalendarEntry ce where ce.name = :name"),
     @NamedQuery(name = "CalendarEntries.getAll", query = "select ce from CalendarEntry ce"),

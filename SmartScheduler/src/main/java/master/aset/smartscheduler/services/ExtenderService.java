@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Named;
@@ -45,8 +46,8 @@ public class ExtenderService {
         }
     }
     
-    public ScheduleModel updateCalendarInfo(master.aset.smartscheduler.entities.calendar.Calendar calendar) {
-        return getEventToModel(calendar);
+    public ScheduleModel updateCalendarInfo(List<master.aset.smartscheduler.entities.calendar.Calendar> calendars) {
+        return getEventsFromCalendarsToModel(calendars);
     }
 
     public ScheduleModel getDefaultCalendarInfo() {
@@ -105,9 +106,62 @@ public class ExtenderService {
             }
         }
 
-        return  eventModel;
+        return eventModel;
     }
+    
+    public ScheduleModel getEventsFromCalendarsToModel(List<master.aset.smartscheduler.entities.calendar.Calendar> calendars) {
+        ScheduleModel eventModel = new DefaultScheduleModel();
+        
+        for (master.aset.smartscheduler.entities.calendar.Calendar calendar: calendars) {
+            for (CalendarEntry entry : calendar.getCalendarEntries()) {
+                if (entry.isRecurring()) {
+                    //obtain the start date day of week as a number
+                    int startDay = getDayNumber(entry.getStartDate());
+                    int finishDay = getDayNumber(entry.getFinishDate());
 
+                    int offset = 0;
+                    if (startDay > entry.getDay()) {
+                        offset = 7 - startDay + entry.getDay() + 1;
+                    }
+                    java.util.Calendar c = java.util.Calendar.getInstance();
+                    c.setTime(entry.getStartDate());
+                    c.add(java.util.Calendar.DATE, offset);
+                    Date recurringStartDate = c.getTime();
+
+                    while (recurringStartDate.compareTo(entry.getFinishDate()) != -1) {
+                        DefaultScheduleEvent<?> event;
+                        try {
+                            event = DefaultScheduleEvent.builder()
+                                    .title(entry.getName())
+                                    .startDate(addTimeToDate(recurringStartDate, entry.getStartTime()))
+                                    .endDate(addTimeToDate(recurringStartDate, entry.getEndTime()))
+                                    .description(entry.getName())
+                                    .borderColor("orange")
+                                    .build();
+                            eventModel.addEvent(event);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(ExtenderService.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        c.setTime(recurringStartDate);
+                        c.add(java.util.Calendar.DATE, 7);
+                        recurringStartDate = c.getTime();
+                    }
+                } else {
+                    DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+                        .title(entry.getName())
+                        .startDate(entry.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                        .endDate(entry.getFinishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                        .description(entry.getName())
+                        .borderColor("orange")
+                        .build();
+                    eventModel.addEvent(event);
+                }
+            }
+        }
+
+        return eventModel;
+    }
+        
     public User getCurrentUser() {
         String username = securityContext.getCallerPrincipal().getName();
         return userRepository.getByEmail(username);

@@ -20,19 +20,19 @@
     <h:body>
 
         <div class="card">
-            <p:growl id="messagesBar"/>
+            <p:growl id="messages"/>
             <ezcomp:navbar/>
         </div>
 
         <div class="card">
             <h:form>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <p:selectOneMenu id="option" value="#{dropdownView.selectedCalendar}" converter="calendarConverter">
-                        <p:ajax listener="#{scheduleJava8View.onCalendarChange}" update=":mainForm:schedule"/>
-                        <f:selectItem itemLabel="Select one calendar" itemValue=""/>
-                        <f:selectItems value="#{dropdownView.calendars}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
-                    </p:selectOneMenu>
-                </h:panelGrid>
+                <p:selectCheckboxMenu id="multiple" value="#{dropdownView.selectedCalendars}" label="Calendars" style="min-width: 15rem"
+                                      multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
+                    <f:selectItems value="#{dropdownView.calendarsOptions}"/>
+                    <p:ajax event="change" update="selectedItemText"/>
+                </p:selectCheckboxMenu>
+                <h:outputText style="display:none" id="selectedItemText" value=" #{dropdownView.selectedCalendars}"/>
+                <p:commandButton action="#{scheduleJava8View.updateSchedule()}" value="Show calendars" ajax="false"/>
             </h:form>
         </div>
 

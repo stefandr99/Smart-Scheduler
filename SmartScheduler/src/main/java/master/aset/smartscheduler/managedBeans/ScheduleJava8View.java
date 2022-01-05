@@ -170,12 +170,6 @@ public class ScheduleJava8View implements Serializable {
         }
     }
     
-    public void onCalendarChange() {
-        this.eventModel.clear();
-        this.eventModel = this.extenderService
-                .updateCalendarInfo(dropdownView.getSelectedCalendar());
-    }
-    
     public Calendar getCalendar(String name) {
         if (name == null) {
             throw new IllegalArgumentException("no id provided");
@@ -223,5 +217,11 @@ public class ScheduleJava8View implements Serializable {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+    
+    public void updateSchedule() {
+        this.eventModel.clear();
+        this.eventModel = this.extenderService
+                .updateCalendarInfo(dropdownView.getSelectedCalendars());
     }
 }

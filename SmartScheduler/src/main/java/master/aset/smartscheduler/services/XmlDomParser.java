@@ -5,17 +5,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.calendar.CalendarEntry;
+import master.aset.smartscheduler.repositories.CalendarEntryRepository;
 import master.aset.smartscheduler.repositories.CalendarRepository;
+import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryRepository;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -27,6 +32,9 @@ public class XmlDomParser {
     
     @Inject
     private CalendarRepository calendarRepo;
+    
+    @Inject
+    private ICalendarEntryRepository calendarEntryRepo;
     
     public void parse(File xmlFile, List<Date> range) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -45,7 +53,7 @@ public class XmlDomParser {
 
             NodeList eventsList = doc.getElementsByTagName("event");
 
-            Map<String, List<Calendar>> eventMap = new HashMap<>();            
+            Map<String, Set<Integer>> eventMap = new HashMap<>();            
             Map<String, Calendar> calendarMap = new HashMap<>();           
             Map<String, String> subjectNamesMap = new HashMap<>();
 
@@ -61,8 +69,9 @@ public class XmlDomParser {
                     String eventName = element.getAttribute("abbr");
                     
                     if (!eventMap.containsKey(eventName)) {
-                        List<Calendar> calendars = new ArrayList<>();
+                        Set<Integer> calendarsId = new HashSet<>();
                         String[] actors = element.getAttribute("actors").split(",");
+                        
                         for (int j = 0; j < actors.length; j++) {
                             if (!calendarMap.containsKey(actors[j])) {
                                 
@@ -71,17 +80,19 @@ public class XmlDomParser {
                                 
                                 calendarRepo.create(newCalendar);
                                 calendarMap.put(actors[j], newCalendar);
-                                calendars.add(newCalendar);
+                                calendarsId.add(newCalendar.getId());
+                            
                             } else {
-                                calendars.add(calendarMap.get(actors[j]));
+                                calendarsId.add(calendarMap.get(actors[j]).getId());
                             }
                         }
-                        eventMap.put(eventName, calendars);
+                        eventMap.put(eventName, calendarsId);
                     }
                 }
             }
             
             NodeList assignmentsList = doc.getElementsByTagName("assignment");
+            int k = 0;
             for (int i = 0; i < assignmentsList.getLength(); i++) {
                 Node node = assignmentsList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -89,31 +100,45 @@ public class XmlDomParser {
                     String[] eventAttr = element.getAttribute("event").split("_");
                     String eventKey = element.getAttribute("event");
                     
-                    CalendarEntry newEntry = new CalendarEntry();
-                    String subjectName = eventAttr[0];
+                    Set<Integer> eventCalendarsId = eventMap.get(eventKey);
 
-                    newEntry.setName(subjectNamesMap.get(subjectName));
-                    newEntry.setRecurring(true);
-                    try {
+                    for (Integer calendarId : eventCalendarsId) {
+                        Calendar dbCalendar = calendarRepo.get(calendarId);
+                        CalendarEntry newEntry = new CalendarEntry();
+                        String subjectName = eventAttr[0];
+                        char type = subjectName.toCharArray()[0];
+
+                        newEntry.setName(getSubjectTypeMapping(type) + subjectNamesMap.get(subjectName));
+                        newEntry.setRecurring(true);
+
                         newEntry.setDay(Integer.parseInt(element.getAttribute("day")));
                         newEntry.setStartDate(range.get(0));
                         newEntry.setFinishDate(range.get(1));
                         newEntry.setStartTime(element.getAttribute("startTime"));
-                        newEntry.setEndTime(element.getAttribute("endTime"));
-
-                        List<Calendar> eventCalendars = eventMap.get(eventKey);
-                        for (Calendar c : eventCalendars) {
-                            newEntry.setCalendar(c);
-                            c.addCalendarEntry(newEntry);
-                            calendarRepo.update(c);
-                        }
-                    } catch (NumberFormatException e) {
-                        newEntry.setRecurring(false);
+                        newEntry.setEndTime(element.getAttribute("endTime"));                            
+                        
+                        
+                        dbCalendar.addCalendarEntry(newEntry);
+                        calendarRepo.update(dbCalendar); 
                     }
                 }
             }
+            System.out.println(k);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
+        }
+    }
+    
+    private String getSubjectTypeMapping(char type) {
+        switch (type) {
+            case 'S':
+                return "Seminar ";
+            case 'C':
+                return "Curs ";
+            case 'E':
+                return "Examen ";
+            default:
+                return "";
         }
     }
 }
