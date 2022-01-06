@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
 import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.user.User;
+import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 
 
@@ -19,6 +20,9 @@ public class DropdownView implements Serializable {
 
     @Inject
     IUserRepository userRepository;
+    
+    @Inject
+    ICalendarRepository calendarRepository;
     
     @Inject
     SecurityContext securityContext;
@@ -60,6 +64,7 @@ public class DropdownView implements Serializable {
         this.selectedCalendars = new ArrayList<>();
         this.selectedCalendars.add(calendars.get(0));
         this.calendarsOptions = currentUser.getCalendars();
+        this.calendarsOptions.addAll(calendarRepository.getPublicCalendars());
     }
     
     public List<Calendar> getCalendars() {

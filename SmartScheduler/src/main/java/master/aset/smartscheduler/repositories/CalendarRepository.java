@@ -71,4 +71,18 @@ public class CalendarRepository implements ICalendarRepository {
             System.out.println("possible error when updating the calendar occurred: " + ex.getMessage());
         }
     }
+
+    @Override
+    public List<Calendar> getPublicCalendars() {
+        return em.createNamedQuery("Calendar.getPublicCalendars", Calendar.class).getResultList();
+    }
+
+    @Transactional
+    @Override
+    public void deletePublicCalendars() {
+        List<Calendar> publicCalendars = this.getPublicCalendars();
+        publicCalendars.forEach(c -> {
+            em.remove(c);
+        });
+    }
 }

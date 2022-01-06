@@ -33,13 +33,21 @@ public class ExtenderService {
     @Inject
     SecurityContext securityContext;
 
+    private final DateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
     private final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
     public void addCalendarInfo(Calendar calendar, master.aset.smartscheduler.entities.calendar.Calendar dbCalendar) throws ParseException {
         for (Iterator i = calendar.getComponents().iterator(); i.hasNext();) {
             Component component = (Component) i.next();
-            Date start = dateFormat.parse(component.getProperty("DTSTART").getValue());
-            Date end = dateFormat.parse(component.getProperty("DTEND").getValue());
+            Date start, end;
+            try {
+                start = dateTimeFormat.parse(component.getProperty("DTSTART").getValue());
+                end = dateTimeFormat.parse(component.getProperty("DTEND").getValue());
+            } catch (Exception e) {
+                start = dateFormat.parse(component.getProperty("DTSTART").getValue());
+                end = dateFormat.parse(component.getProperty("DTEND").getValue());
+            }
+            
             String summary = component.getProperty("SUMMARY").getValue();
 
             dbCalendar.addCalendarEntry(new CalendarEntry(summary, start, end));
@@ -118,17 +126,19 @@ public class ExtenderService {
                     //obtain the start date day of week as a number
                     int startDay = getDayNumber(entry.getStartDate());
                     int finishDay = getDayNumber(entry.getFinishDate());
-
+                    int entryDay = mapEntryDayToCalendarFormat(entry.getDay());
                     int offset = 0;
-                    if (startDay > entry.getDay()) {
-                        offset = 7 - startDay + entry.getDay() + 1;
+                    if (startDay > entryDay) {
+                        offset = 7 - startDay + entryDay;
+                    } else {
+                        offset = entryDay - startDay;
                     }
                     java.util.Calendar c = java.util.Calendar.getInstance();
                     c.setTime(entry.getStartDate());
                     c.add(java.util.Calendar.DATE, offset);
                     Date recurringStartDate = c.getTime();
 
-                    while (recurringStartDate.compareTo(entry.getFinishDate()) != -1) {
+                    while (recurringStartDate.compareTo(entry.getFinishDate()) <= 0) {
                         DefaultScheduleEvent<?> event;
                         try {
                             event = DefaultScheduleEvent.builder()
@@ -171,6 +181,12 @@ public class ExtenderService {
         java.util.Calendar cal = java.util.Calendar.getInstance();
         cal.setTime(date);
         return cal.get(java.util.Calendar.DAY_OF_WEEK);
+    }
+    
+    private int mapEntryDayToCalendarFormat(int day) {
+        day += 2;
+        if (day > 7) return 1;
+        return day;
     }
     
     private LocalDateTime addTimeToDate(Date date, String time) throws ParseException{

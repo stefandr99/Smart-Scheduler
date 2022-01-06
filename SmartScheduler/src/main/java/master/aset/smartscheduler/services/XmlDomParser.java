@@ -43,6 +43,7 @@ public class XmlDomParser {
         }
         try {
 //            TODO: calendarRepo.deleteFacultyCalendars();
+            calendarRepo.deletePublicCalendars();
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
 
             // parse XML file
@@ -77,6 +78,7 @@ public class XmlDomParser {
                                 
                                 Calendar newCalendar = new Calendar();
                                 newCalendar.setName(actors[j]);
+                                newCalendar.setIsPublic(true);
                                 
                                 calendarRepo.create(newCalendar);
                                 calendarMap.put(actors[j], newCalendar);

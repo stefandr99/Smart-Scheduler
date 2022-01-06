@@ -38,22 +38,6 @@ public class CalendarEntry implements Serializable {
 
     @Column(name="startTime")
     private String startTime;
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
     
     @Column(name="endTime")
     private String endTime;
@@ -126,5 +110,21 @@ public class CalendarEntry implements Serializable {
 
     public void setRecurring(Boolean recurring) {
         this.recurring = recurring;
+    }
+    
+        public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }
