@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <!-- INTERFACE -->
+    <cc:interface>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form>
+        <p:commandButton id="open-menu" value="Add New Event" type="button" icon="pi pi-plus" class="ss-dayEvants-add-button"/>
+        <p:overlayPanel widgetVar="add-event-panel" for="open-menu" class="ss-dayEvents-addMenu" >
+            <p class="ss-dayEvents-input-title">Add Event</p>
+            <div class="ss-dayEvents-input-container">
+                <p class="ss-dayEvents-input-text">Title</p>
+                <p:inputText placeholder="Title" class="ss-dayEvents-input-field"/>
+            </div>
+            <div class="ss-dayEvents-input-container">
+                <p class="ss-dayEvents-input-text">From</p>
+                <p:inputText placeholder="00:00" class="ss-dayEvents-input-field"/>
+            </div>
+            <div class="ss-dayEvents-input-container">
+                <p class="ss-dayEvents-input-text">To</p>
+                <p:inputText placeholder="00:00" class="ss-dayEvents-input-field"/>
+            </div>
+            <div class="ss-dayEvents-input-buttons">
+                 <p:commandButton value="Save" class="ss-dayEvents-input-first-button" />
+                 <p:commandButton  styleClass="ui-button-outlined ui-button-secondary"  oncomplete="PF('add-event-panel').hide()" value="Close" />
+            </div>
+        </p:overlayPanel>
+        </h:form>
+    </cc:implementation>
+</html>

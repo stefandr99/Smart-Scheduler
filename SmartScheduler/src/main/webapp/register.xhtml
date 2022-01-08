@@ -13,9 +13,9 @@
             <title>Register</title>
         </h:head>
 
-        <h:body class="ss-body">
+         <h:body class="ss-body ss-body-background">
+            <img src="style/assets/logo.png" class="ss-logo"/>
             <div class="ss-body__center" style="display: flex; flex-direction: column; align-items: center;">
-                <img class="ss-form__logo" src="./style/assets/SmartCalendar.png" style="max-width: 300px; margin-bottom:20px;" alt="logo"/>
                 <p:messages id="messages" globalOnly="true" showDetail="true">
                         <p:autoUpdate/>
                 </p:messages>
@@ -39,7 +39,7 @@
                                 <p:password class="ss-form__body__input__value" id="passwordConfirm" value="#{userBean.passwordConfirm}" required="true"/>
                             </div>
                         </div>
-                        <div class="ss-form__footer">
+                        <div class="ss-form__footer ss-margin-top">
                             <p:commandButton class="ss-form__footer__button" value="Register" action="#{userBean.addUser()}" />
                             <p:link class="ss-form__footer__link" outcome="login" value="Login if already have an account"/>
                         </div>

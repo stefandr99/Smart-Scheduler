@@ -29,6 +29,7 @@
     border-radius: 8px;
     border: none;
     cursor: pointer;
+    text-align: start;
 }
 .ss-navbar__navbtn:hover{
     transition: 0.1s all ease-in-out;
@@ -53,13 +54,14 @@
 }
 
 .ss-calendar_icon {
-    background: red;
+    background: url('./assets/icons/calendar-icon.svg');
     width: 50px;
     height: 50px;
 }
 
 .ss-active-navbtn {
     background-color: #4880FF;
+    color: white;
 }
 .ss-active-navbtn:before {
     content: ' ';

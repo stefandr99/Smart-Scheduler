@@ -38,6 +38,9 @@ body .ui-messages > div {
     font-weight: 500;
     user-select: none;
     padding: 40px 40px 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .ss-form__body {
     padding: 20px 40px;
@@ -89,7 +92,9 @@ body .ui-messages > div {
     box-shadow: 0 0 0 0.2em rgb(163, 158, 201);  
 }
 
-
+.ss-margin-top {
+    margin-top: 40px;
+}
 .ss-form__footer{
     display: flex;
     flex-direction: column;
