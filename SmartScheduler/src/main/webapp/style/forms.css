@@ -38,6 +38,9 @@ body .ui-messages > div {
     font-weight: 500;
     user-select: none;
     padding: 40px 40px 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .ss-form__body {
     padding: 20px 40px;

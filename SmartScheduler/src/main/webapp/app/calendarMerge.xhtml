@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="../style/layout.css"/>
         <link rel="stylesheet" href="../style/schedule.css"/>
         <link rel="stylesheet" href="../style/forms.css"/>
+        <script src="https://kit.fontawesome.com/f50388bf20.js" crossorigin="anonymous"></script>
     </h:head>
     <h:body class="ss-body">
 
@@ -22,6 +23,10 @@
                 <h:form class="ss-form">
                     <div class="ss-form__header" style="margin-bottom: 20px;">
                         <span>Merge multiple calendars</span>
+                        <p:outputLabel id ="idEmptyLabel">
+                                <i style="font-size: 20px;color: #554f70;" class="far fa-question-circle"></i>
+                                </p:outputLabel>
+                        <p:tooltip for="idEmptyLabel" style="max-width: 300px;" value="Select multiple calendars that will be merged into a single calendar."/>
                     </div>
                     <div class="ss-form__body" style="overflow-y:auto; height: 300px;">
                             <p:selectManyMenu  style="width: 100%;" id="mergeOption" value="#{dropdownView.selectedCalendars}" var="c" filter="true" filterMatchMode="contains" showCheckbox="true">
