@@ -9,7 +9,7 @@ import java.util.Date;
 @NamedQueries({
     @NamedQuery(name = "CalendarEntries.getByName", query = "select ce from CalendarEntry ce where ce.name = :name"),
     @NamedQuery(name = "CalendarEntries.getAll", query = "select ce from CalendarEntry ce"),
-    @NamedQuery(name = "CalendarEntries.getByCalendarId", query = "select ce from CalendarEntry ce where ce.calendar = :calendar"),
+    @NamedQuery(name = "CalendarEntries.getByCalendar", query = "select ce from CalendarEntry ce where ce.calendar = :calendar "),
     @NamedQuery(name = "CalendarEntries.getSpecificEntry", query = "SELECT ce FROM CalendarEntry ce WHERE ce.calendar.id = :calendarId "
             + "AND ce.name = :name AND ce.startDate = :startDate AND ce.finishDate = :finishDate")
 })

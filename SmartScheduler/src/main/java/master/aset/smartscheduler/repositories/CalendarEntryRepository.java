@@ -42,12 +42,19 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
                 .setParameter("name", name)
                 .getSingleResult();
     }
+
+    @Transactional
+    public List<CalendarEntry> getListByName(String name) {
+        return em.createNamedQuery("CalendarEntries.getByName", CalendarEntry.class)
+                .setParameter("name", name)
+                .getResultList();
+    }
     
     @Transactional
-    public CalendarEntry getByCalendarId(Calendar calendar) {
-        return em.createNamedQuery("CalendarEntries.getByCalendarId", CalendarEntry.class)
+    public List<CalendarEntry> getByCalendar(Calendar calendar) {
+        return em.createNamedQuery("CalendarEntries.getByCalendar", CalendarEntry.class)
                 .setParameter("calendar", calendar)
-                .getSingleResult();
+                .getResultList();
     }
 
     

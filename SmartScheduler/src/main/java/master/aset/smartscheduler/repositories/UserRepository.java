@@ -1,7 +1,10 @@
 package master.aset.smartscheduler.repositories;
 
+import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
+
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
@@ -13,6 +16,9 @@ public class UserRepository implements IUserRepository {
     
     @PersistenceContext(unitName = "PU")
     EntityManager em;
+
+    @Inject
+    CalendarEntryRepository calendarEntryRepository;
 
     public UserRepository() {
     }
@@ -33,6 +39,13 @@ public class UserRepository implements IUserRepository {
             User userToReturn = em.createNamedQuery("User.getByEmail", User.class)
                 .setParameter("email", email)
                 .getSingleResult();
+
+            for(Calendar c : userToReturn.getCalendars()) {
+                if(c.getCalendarEntries().size() == 0) {
+                    c.setCalendarEntries(calendarEntryRepository.getByCalendar(c));
+                }
+            }
+
             return userToReturn;
         } catch(Exception ex) {
             return null;

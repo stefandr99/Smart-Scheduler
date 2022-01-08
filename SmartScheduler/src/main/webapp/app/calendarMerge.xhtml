@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div style="width:100%; display: flex; justify-content: center;">
+            <div class="card">
+                <h:form>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:selectManyMenu id="mergeOption" value="#{dropdownView.selectedCalendars}" var="c" filter="true" filterMatchMode="contains" showCheckbox="true">
+                            <f:selectItems value="#{dropdownView.calendars}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
+                            <p:column>
+                                <h:outputText value="#{c.name}"/>
+                            </p:column>
+                        </p:selectManyMenu>
+                    </h:panelGrid>
+                    <div style="text-align: center">
+                        <p:commandButton style="text-align: center" value="Merge" action="#{dropdownView.merge()}" ajax="false" />
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>
+

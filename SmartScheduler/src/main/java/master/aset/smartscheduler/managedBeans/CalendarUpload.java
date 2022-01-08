@@ -17,9 +17,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
+
+import master.aset.smartscheduler.entities.calendar.CalendarEntry;
 import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
+import master.aset.smartscheduler.services.ConstraintService;
+import master.aset.smartscheduler.services.ConstraintServiceV2;
 import master.aset.smartscheduler.services.ExtenderService;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
@@ -35,12 +39,18 @@ public class CalendarUpload implements Serializable {
     
     @Inject
     IUserRepository userRepository;
-    
+
     @Inject
     SecurityContext securityContext;
     
     @Inject
     ExtenderService extenderService;
+
+    @Inject
+    ConstraintService constraintService;
+    
+    @Inject
+    ConstraintServiceV2 constraintServiceV2;
 
     private UploadedFile calendarFile;
 
@@ -62,6 +72,11 @@ public class CalendarUpload implements Serializable {
     }
 
     public CalendarUpload() {
+    }
+
+    // pentru user-ul cu mail "newUser2@gmail.com" si parola 'password' face merge intre DefaultCalendar si TestCalendar1
+    public void merge2() {
+        constraintServiceV2.mergeCalendars(new int[]{1, 2});
     }
     
     public String uploadFile() throws Exception {
@@ -127,6 +142,14 @@ public class CalendarUpload implements Serializable {
             return exampleCalendar;
         }
         return null;
+    }
+    
+    public String createEmptyCalendar() {
+        User user = getCurrentUser();
+        master.aset.smartscheduler.entities.calendar.Calendar createdCalendar = this.createCalendarWithUser(user);
+        updateUser(user, createdCalendar);
+        
+        return "createEmptyCalendar";
     }
 
     public User getCurrentUser() {

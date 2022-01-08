@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.calendar.CalendarEntry;
+import master.aset.smartscheduler.entities.user.User;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 
 @ApplicationScoped
@@ -31,6 +32,14 @@ public class CalendarRepository implements ICalendarRepository {
                 .setParameter("user_id", userId)
                 .getResultList()
                 .get(0);
+    }
+
+    @Transactional
+    @Override
+    public List<Calendar> getAllCalendarsOfUser(int userId) {
+        return em.createNamedQuery("Calendar.allCalendarsOfUser", Calendar.class)
+                    .setParameter("user_id", userId)
+                    .getResultList();
     }
     
     @Transactional
@@ -59,6 +68,22 @@ public class CalendarRepository implements ICalendarRepository {
         return em.createNamedQuery("Calendar.getByName", Calendar.class)
                 .setParameter("name", name)
                 .getSingleResult(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Transactional
+    public Calendar getById(int id) {
+        Long longId = (long) id;
+
+        return em.createNamedQuery("Calendar.getById", Calendar.class)
+                .setParameter("id", longId)
+                .getSingleResult();
+    }
+    
+    @Transactional
+    @Override
+    public void addCalendarToUser(User user, Calendar calendar){
+        user.getCalendars().add(calendar);
+        em.merge(user);
     }
 
     @Transactional
