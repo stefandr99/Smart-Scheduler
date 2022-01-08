@@ -77,24 +77,6 @@
             </h:form>
         </div>
 
-        <div style="width:100%; display: flex; justify-content: center;">
-            <div class="card">
-                <h:form>
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <p:selectManyMenu id="mergeOption" value="#{dropdownView.selectedCalendars}" var="c" filter="true" filterMatchMode="contains" showCheckbox="true">
-                            <f:selectItems value="#{dropdownView.calendars}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
-                            <p:column>
-                                <h:outputText value="#{c.name}"/>
-                            </p:column>
-                        </p:selectManyMenu>
-                    </h:panelGrid>
-                    <div style="text-align: center">
-                        <p:commandButton style="text-align: center" value="Merge" action="#{dropdownView.merge()}" ajax="false" />
-                    </div>
-                </h:form>
-            </div>
-        </div>
-
     </h:body>
 </html>
 
