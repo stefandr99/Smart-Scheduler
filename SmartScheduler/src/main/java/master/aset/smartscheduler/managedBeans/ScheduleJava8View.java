@@ -179,7 +179,7 @@ public class ScheduleJava8View implements Serializable {
     public void onCalendarChange() {
         Calendar selectedCalendar = calendarRepository.getById(dropdownView.getSelectedCalendar().getId());
         this.eventModel.clear();
-        this.eventModel = this.extenderService.updateCalendarInfo(selectedCalendar);
+        this.eventModel = this.extenderService.updateCalendarInfo((List<Calendar>) selectedCalendar);
     }
     
     public Calendar getCalendar(String name) {
