@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
@@ -124,15 +125,20 @@ public class ScheduleJava8View implements Serializable {
         if(event.getId() != null) {
             Date startDate = Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant());
             Date endDate = Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant());
-            Calendar currentCalendar = dropdownView.getSelectedCalendar();
-            selectedCalendarEntry = currentCalendar.getCalendarEntries()
-                    .stream()
-                    .filter( (entry) -> 
-                            entry.getName().equals(event.getTitle()) 
-                            && entry.getStartDate().equals(startDate) 
-                            && entry.getFinishDate().equals(endDate) )
-                    .findFirst()
-                    .get();
+            List<Calendar> currentCalendars = dropdownView.getSelectedCalendars();
+            for (Calendar c : currentCalendars) {
+                selectedCalendarEntry = c.getCalendarEntries()
+                   .stream()
+                   .filter( (entry) -> 
+                           entry.getName().equals(event.getTitle()) 
+                           && entry.getStartDate().equals(startDate) 
+                           && entry.getFinishDate().equals(endDate)
+                           && entry.isRecurring() == false )
+                   .findFirst().orElse(null);
+                if (selectedCalendarEntry != null) {
+                    break;
+                }
+            }
         }
     }
 
@@ -223,5 +229,11 @@ public class ScheduleJava8View implements Serializable {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+    
+    public void updateSchedule() {
+        this.eventModel.clear();
+        this.eventModel = this.extenderService
+                .updateCalendarInfo(dropdownView.getSelectedCalendars());
     }
 }

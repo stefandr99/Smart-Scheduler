@@ -12,20 +12,18 @@
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
-        <div class="card">
+            <h:form class="ss-navbar">
+                <div>
+                    <img class="ss-navbar__logo" src="../../style/assets/SmartCalendar.png" style="max-width: 175px;" alt="logo"/>
+                    <p:growl id="messages"/>
+                    <div class="ss-navbar__navbtns">
+                        <h:button class="ss-navbar__navbtn" value="Schedule" outcome="/faces/app/extender.xhtml"/>                    
+                        <h:button class="ss-navbar__navbtn" value="Import Calendar" outcome="/faces/app/calendarParse.xhtml"/>
+                    </div>
+                </div>
 
-            <h:form>
-                <p:growl id="messages"/>
-                <p:menubar>
-                    <p:menuitem value="Smart Scheduler" style="cursor: default;"/>
-                    <p:menuitem value="Schedule" outcome="/faces/app/extender.xhtml"/>                    
-                    <p:menuitem value="Import Calendar" outcome="/faces/app/calendarParse.xhtml"/>
-                    <f:facet name="options">
-                        <p:commandButton value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" action="#{userLogin.logout}" />
-                    </f:facet>
-                </p:menubar>
+                <p:commandButton value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ss-navbar__logout" action="#{userLogin.logout}" />
+                    
             </h:form>
-
-        </div>
     </cc:implementation>
 </html>

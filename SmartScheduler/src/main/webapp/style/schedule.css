@@ -1,0 +1,82 @@
+.ss-schedule {
+    width: 95% !important;
+    height: 80vh !important;
+}
+.ss-schedule__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+.fc .fc-toolbar-title{
+    color: #11142D !important;
+}
+body .ui-selectcheckboxmenu {
+    border: none !important;
+    border-radius: 13px;
+}
+body .ui-selectcheckboxmenu .ui-selectcheckboxmenu-multiple-container.ui-inputfield {
+    border: none !important;
+    border-radius: 15px;
+    background: rgb(250, 250, 250);
+    -webkit-box-shadow: 0px 1px 2px 0px rgb(60 64 67 / 30%), 0px 1px 3px 1px rgb(60 64 67 / 15%);
+    box-shadow: 0px 1px 2px 0px rgb(60 64 67 / 30%), 0px 1px 3px 1px rgb(60 64 67 / 15%);
+}
+body .ui-selectcheckboxmenu.ui-state-focus:not(.ui-state-error) {
+    box-shadow: none !important; 
+}
+body .ui-selectcheckboxmenu .ui-selectcheckboxmenu-multiple-container .ui-selectcheckboxmenu-token {
+    background: rgb(250, 250, 250);
+    font-weight: 500;
+    color:  #11142D;
+    padding: 3px !important;
+}
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+    border: rgb(72, 61, 141) !important;
+    background: rgb(72, 61, 141) !important;
+    color: white !important;
+}
+.upperheaderbutton {
+    border: none !important;
+    border-radius: 15px !important;
+    background: rgb(250, 250, 250) !important;
+    -webkit-box-shadow: 0px 1px 2px 0px rgb(60 64 67 / 30%), 0px 1px 3px 1px rgb(60 64 67 / 15%) !important;
+    box-shadow: 0px 1px 2px 0px rgb(60 64 67 / 30%), 0px 1px 3px 1px rgb(60 64 67 / 15%) !important;
+    color: #11142D !important;
+}
+body .ui-chkbox .ui-chkbox-box.ui-state-focus {
+    box-shadow: 0 0 0 0.2em rgb(154, 142, 230) !important;
+    outline: 0 none; 
+}
+body .fc .fc-toolbar .fc-button {
+    margin-top: 10px ;
+    background: rgba(108, 93, 211, 1)!important;
+    color: #ffffff;
+    border: 1px solid rgba(108, 93, 211, 1) !important;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+body .fc .fc-toolbar .fc-button:active, body .fc .fc-toolbar .fc-button.fc-button-active {
+    background: rgb(64, 54, 124) !important;
+    color: #ffffff;
+    border: 1px solid rgb(64, 54, 124) !important;
+}
+body .fc .fc-toolbar .fc-button:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2em rgb(144, 133, 204);
+}
+body .fc .fc-event, body .fc .fc-event .fc-event-main {
+    background: rgb(108, 93, 211) !important;
+    color: #ffffff;
+    border: 1px solid rgb(108, 93, 211) !important;
+}
+.p-d-flex{
+    display: flex;
+    justify-content: space-between;
+}
+.ui-fileupload-simple .ui-fileupload-filename{
+    padding: 0 20px;
+    background: rgba(108, 93, 211, 1);
+    border-radius: 10px;
+    color: #ffffff;
+}

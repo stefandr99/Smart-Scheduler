@@ -3,6 +3,13 @@
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="login.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="app/extender.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="app/calendar.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="app/inputCalendarEntry.xhtml" x="368" y="149" zoom="true"/>
+        <Node id="resources/ezcomp/navbar.xhtml" x="68" y="148" zoom="true"/>
+        <Node id="app/calendarParse.xhtml" x="541" y="301" zoom="true"/>
+        <Node id="register.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="app/admin.xhtml" x="855" y="348" zoom="false"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

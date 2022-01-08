@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+.ss-form {
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 24px 29px 34px -32px rgba(0,0,0,0.43);
+-webkit-box-shadow: 24px 29px 34px -32px rgba(0,0,0,0.43);
+-moz-box-shadow: 24px 29px 34px -32px rgba(0,0,0,0.43);
+    width: 80%;
+}
+.ss-form__logo{
+    width:60%;
+}
+.ui-messages{
+    width: 80%;
+}
+@media (min-width:900px){
+.ss-form {
+    width: 475px;
+}
+.ss-form__logo{
+    width:200px;
+}
+.ui-messages{
+    width: 475px;
+}
+}
+body .ui-messages > div {
+    margin-top: 0 !important;
+}
+
+
+.ss-form__header {
+    color: #11142D;
+    font-size: 36px;
+    font-weight: 500;
+    user-select: none;
+    padding: 40px 40px 0 40px;
+}
+.ss-form__body {
+    padding: 20px 40px;
+}
+.ss-form__body__input{
+    display: flex;
+    flex-direction: column;
+}
+.ss-form__body__input__label{
+    padding : 12px 0;
+    font-size: 14px !important;
+    font-weight: 500;
+    color: #808191;
+}
+.ss-form__body__input__value {
+    padding: 12px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #11142D !important;
+    background-color: rgba(228, 228, 228, 0.5) !important;
+    border: none !important;
+}
+.ss-form__body__input__time .ui-inputfield {
+    width: 100%;
+    padding: 12px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #11142D !important;
+    background-color: rgba(228, 228, 228, 0.5) !important;
+    border: none !important;
+}
+.ss-form__body__input__value:hover, .ss-form__body__input__value:focus {
+    color: #11142D !important;
+    background-color: rgba(228, 228, 228, 0.5) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.ss-form__upload-button .ui-button{
+    width: 50%;
+    border: 1px rgba(108, 93, 211, 1);
+    background:rgba(108, 93, 211, 1);
+}
+.ss-form__upload-button .ui-button.ui-state-hover {
+    background: rgb(72, 61, 141);   
+}
+.ss-form__upload-button .ui-button.ui-state-focus {
+    background: rgb(72, 61, 141) !important; 
+    box-shadow: 0 0 0 0.2em rgb(163, 158, 201);  
+}
+
+
+.ss-form__footer{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 40px 40px 40px;
+}
+.ss-form__footer__button{
+    background-color: rgba(108, 93, 211, 1) !important;
+    border: 1px solid rgba(108, 93, 211, 1) !important;
+}
+.ss-form__footer__button:hover, ss-form__footer__button:focus {
+    background-color: rgb(76, 65, 146) !important;
+    border: 1px solid rgb(76, 65, 146) !important;
+}
+.ss-form__footer__button:focus {
+    box-shadow: 0 0 0 0.2em rgb(186, 176, 255) !important;
+}
+
+.ss-form__footer__link{
+    margin-top: 20px;
+    color: rgb(76, 65, 146) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+}

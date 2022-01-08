@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+
+    <h:head>
+        <title>Add the faculty timetable</title>
+        <link rel="stylesheet" href="../../style/navbar.css"/>
+        <link rel="stylesheet" href="../style/layout.css"/>
+        <link rel="stylesheet" href="../style/schedule.css"/>
+        <link rel="stylesheet" href="../style/forms.css"/>
+    </h:head>
+
+    <h:body class="ss-body">
+
+        <ezcomp:navbar/>
+
+        <div class="ss-form--page" style="width: 100%; display: flex;">
+            <div class="ss-body__center">
+            <h:form class="ss-form" enctype="multipart/form-data">
+                <div class="ss-form__header">
+                    <span>Upload faculty calendar</span>
+                </div>
+                <div class="ss-form__body">
+                    <div class="ss-form__body__input">
+                        <p:outputLabel class="ss-form__body__input__label" for="range" value="Time period"/>
+                        <p:datePicker class="ss-form__body__input__time" style="width: 100%;" id="range" selectionMode="range" value="#{xmlCalendarUpload.range}" readonlyInput="true"/>
+                    </div>
+                    <div class="ss-form__body__input">
+                        <p:outputLabel class="ss-form__body__input__label" value="Upload file"/>
+                        <p:fileUpload class="ss-form__upload-button"  value="#{xmlCalendarUpload.calendarXmlFile}" mode="simple" skinSimple="true" required="true"/>
+                    </div>
+                </div>
+                <div class="ss-form__footer">
+                    <p:commandButton class="ss-form__footer__button" action="#{xmlCalendarUpload.uploadFile()}" value="Upload" ajax="false" />
+                </div>
+            </h:form>
+            </div>
+        </div>
+
+    </h:body>
+</html>
+

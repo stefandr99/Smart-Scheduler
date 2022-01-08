@@ -59,7 +59,7 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public User get(EntityManager em, int id) {
+    public User get(int id) {
         return null;
     }
 

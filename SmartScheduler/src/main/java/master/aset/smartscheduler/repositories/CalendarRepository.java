@@ -50,9 +50,10 @@ public class CalendarRepository implements ICalendarRepository {
         em.persist(calendarEntry);
     }
 
+    @Transactional
     @Override
-    public Calendar get(EntityManager em, int id) {
-        return null;
+    public Calendar get(int id) {
+        return em.find(Calendar.class, id);
     }
 
     @Transactional
@@ -88,6 +89,25 @@ public class CalendarRepository implements ICalendarRepository {
     @Transactional
     @Override
     public void update(Calendar entity) {
-        em.merge(entity);
+        try {
+            em.merge(entity);
+            em.flush();
+        } catch (Exception ex) {
+            System.out.println("possible error when updating the calendar occurred: " + ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<Calendar> getPublicCalendars() {
+        return em.createNamedQuery("Calendar.getPublicCalendars", Calendar.class).getResultList();
+    }
+
+    @Transactional
+    @Override
+    public void deletePublicCalendars() {
+        List<Calendar> publicCalendars = this.getPublicCalendars();
+        publicCalendars.forEach(c -> {
+            em.remove(c);
+        });
     }
 }

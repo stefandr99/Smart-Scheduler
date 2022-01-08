@@ -24,6 +24,8 @@ import master.aset.smartscheduler.entities.user.User;
     @NamedQuery(name = "Calendar.getAll", query = "select c from Calendar c"),
     @NamedQuery(name="Calendar.calendarOfUser", query = "SELECT c FROM Calendar c INNER JOIN c.users u WHERE c.id = :cal_id AND u.id = :user_id"),
     @NamedQuery(name="Calendar.allCalendarsOfUser", query = "SELECT c FROM Calendar c INNER JOIN c.users u WHERE u.id = :user_id")
+    @NamedQuery(name = "Calendar.getPublicCalendars", query = "select c from Calendar c where c.isPublic = true"),    
+    @NamedQuery(name="Calendar.calendarOfUser", query = "SELECT c FROM Calendar c INNER JOIN c.users u WHERE c.id = :cal_id AND u.id = :user_id")
 })
 public class Calendar implements Serializable{
 
@@ -34,7 +36,10 @@ public class Calendar implements Serializable{
     @Column(name="name")
     private String name;
     
-    @OneToMany(mappedBy="calendar",cascade = CascadeType.PERSIST)
+    @Column(name="isPublic", columnDefinition = "boolean default false")
+    private boolean isPublic;
+    
+    @OneToMany(mappedBy="calendar", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CalendarEntry> calendarEntries = new ArrayList<>();
     
     @ManyToMany(mappedBy = "calendars")
@@ -84,5 +89,13 @@ public class Calendar implements Serializable{
     @Override
     public String toString() {
         return name;
+    }
+    
+    public boolean isIsPublic() {
+        return isPublic;
+    }
+
+    public void setIsPublic(boolean isPublic) {
+        this.isPublic = isPublic;
     }
 }

@@ -9,7 +9,7 @@ public interface IRepository<T> {
 
     List<T> getAll(EntityManager em);
 
-    T get(EntityManager em, int id);
+    T get(int id);
 
     void update(T entity);
 }
