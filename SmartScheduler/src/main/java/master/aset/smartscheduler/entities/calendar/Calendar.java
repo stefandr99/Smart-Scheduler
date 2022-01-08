@@ -44,6 +44,7 @@ public class Calendar implements Serializable{
     
     @ManyToMany(mappedBy = "calendars")
     private List<User> users = new ArrayList<>();
+    
 
     public void addCalendarEntry(CalendarEntry entry) {
         calendarEntries.add(entry);
