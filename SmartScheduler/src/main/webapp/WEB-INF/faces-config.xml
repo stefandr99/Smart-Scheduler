@@ -25,17 +25,16 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/app/calendarEmpty.xhtml</from-view-id>
+        <from-view-id>/app/admin.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>createEmptyCalendar</from-outcome>
+            <from-outcome>viewCalendar</from-outcome>
             <to-view-id>/app/extender.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/app/admin.xhtml</from-view-id>
+        <from-view-id>/app/calendarEmpty.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>viewCalendar</from-outcome>
-
+            <from-outcome>createEmptyCalendar</from-outcome>
             <to-view-id>/app/extender.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
