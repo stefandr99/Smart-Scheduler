@@ -7,23 +7,38 @@
 
     <h:head>
         <title>Add the faculty timetable</title>
+        <link rel="stylesheet" href="../../style/navbar.css"/>
+        <link rel="stylesheet" href="../style/layout.css"/>
+        <link rel="stylesheet" href="../style/schedule.css"/>
+        <link rel="stylesheet" href="../style/forms.css"/>
     </h:head>
 
-    <h:body>
+    <h:body class="ss-body">
 
-        <div class="card">
-            <p:growl id="messages"/>
-            <ezcomp:navbar/>
-        </div>
+        <ezcomp:navbar/>
 
-        <h:form enctype="multipart/form-data">
-            <div>
-                <p:outputLabel for="range" value="Time period"/>
-                <p:datePicker id="range" selectionMode="range" value="#{xmlCalendarUpload.range}" readonlyInput="true"/>
+        <div class="ss-form--page" style="width: 100%; display: flex;">
+            <div class="ss-body__center">
+            <h:form class="ss-form" enctype="multipart/form-data">
+                <div class="ss-form__header">
+                    <span>Upload faculty calendar</span>
+                </div>
+                <div class="ss-form__body">
+                    <div class="ss-form__body__input">
+                        <p:outputLabel class="ss-form__body__input__label" for="range" value="Time period"/>
+                        <p:datePicker class="ss-form__body__input__time" style="width: 100%;" id="range" selectionMode="range" value="#{xmlCalendarUpload.range}" readonlyInput="true"/>
+                    </div>
+                    <div class="ss-form__body__input">
+                        <p:outputLabel class="ss-form__body__input__label" value="Upload file"/>
+                        <p:fileUpload class="ss-form__upload-button"  value="#{xmlCalendarUpload.calendarXmlFile}" mode="simple" skinSimple="true" required="true"/>
+                    </div>
+                </div>
+                <div class="ss-form__footer">
+                    <p:commandButton class="ss-form__footer__button" action="#{xmlCalendarUpload.uploadFile()}" value="Upload" ajax="false" />
+                </div>
+            </h:form>
             </div>
-            <p:fileUpload value="#{xmlCalendarUpload.calendarXmlFile}" mode="simple" skinSimple="true" required="true"/>
-            <p:commandButton action="#{xmlCalendarUpload.uploadFile()}" value="Upload" ajax="false"/>
-        </h:form>
+        </div>
 
     </h:body>
 </html>

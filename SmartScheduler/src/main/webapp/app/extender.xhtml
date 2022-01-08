@@ -15,32 +15,34 @@
                 margin: 2em auto;
             }
         </style>
+        <link rel="stylesheet" href="../../style/navbar.css"/>
+        <link rel="stylesheet" href="../style/layout.css"/>
+        <link rel="stylesheet" href="../style/schedule.css"/>
     </h:head>
 
-    <h:body>
+    <h:body class="ss-body">
 
-        <div class="card">
-            <p:growl id="messages"/>
             <ezcomp:navbar/>
-        </div>
 
-        <div class="card">
-            <h:form>
+
+        <div class="ss-body--page">
+        <div>
+            <h:form class="ss-schedule__nav">
                 <p:selectCheckboxMenu id="multiple" value="#{dropdownView.selectedCalendars}" label="Calendars" style="min-width: 15rem"
                                       multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
                     <f:selectItems value="#{dropdownView.calendarsOptions}"/>
                     <p:ajax event="change" update="selectedItemText"/>
                 </p:selectCheckboxMenu>
                 <h:outputText style="display:none" id="selectedItemText" value=" #{dropdownView.selectedCalendars}"/>
-                <p:commandButton action="#{scheduleJava8View.updateSchedule()}" value="Show calendars" ajax="false"/>
+                <p:commandButton class="upperheaderbutton" action="#{scheduleJava8View.updateSchedule()}" value="Show calendars" ajax="false"/>
             </h:form>
         </div>
 
-        <div class="card wrapper">
+        <div class="ss-card">
             <h:form id="mainForm">
                 <p:growl id="messages" showDetail="true"/>
 
-                <p:schedule id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule">
+                <p:schedule class="ss-schedule" style="height: 80vh; width: 94%; margin-left: 20px;" id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule">
                     <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelect}" update="eventDetails"
                             oncomplete="PF('eventDialog').show();"/>
                     <p:ajax event="eventSelect" listener="#{scheduleJava8View.onEventSelect}" update="eventDetails"
@@ -75,7 +77,10 @@
 
                 </p:dialog>
             </h:form>
+        </div>    
         </div>
+
+        
 
     </h:body>
 </html>

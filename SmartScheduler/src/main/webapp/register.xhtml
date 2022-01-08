@@ -8,35 +8,43 @@
 
         <h:head>
             <link rel="stylesheet" href="style/registration.css"/>
+            <link rel="stylesheet" href="style/layout.css"/>
+            <link rel="stylesheet" href="style/forms.css"/>
             <title>Register</title>
         </h:head>
 
-        <h:body>
-            <div class="center-panel">
-
-                <h:form id="registerForm">
-                    <p:messages id="messages" globalOnly="true" showDetail="true">
+        <h:body class="ss-body">
+            <div class="ss-body__center" style="display: flex; flex-direction: column; align-items: center;">
+                <img class="ss-form__logo" src="./style/assets/SmartCalendar.png" style="max-width: 300px; margin-bottom:20px;" alt="logo"/>
+                <p:messages id="messages" globalOnly="true" showDetail="true">
                         <p:autoUpdate/>
-                    </p:messages>
-                    <p:panel header="Register" style="width: 500px;">
-                        <h:panelGrid columns="2">
-                            <p:outputLabel value="Email"/>
-                            <p:inputText id="email" value="#{userBean.email}" required="true"/>
+                </p:messages>
 
-                            <p:outputLabel value="Password"/>
-                            <p:password id="password" value="#{userBean.password}" required="true"/>
-
-                            <p:outputLabel value="Confirm password"/>
-                            <p:password id="passwordConfirm" value="#{userBean.passwordConfirm}" required="true"/>
-
-                            <p:commandButton value="Register" action="#{userBean.addUser()}" />
-                        </h:panelGrid>
-                        <f:facet name="footer">
-                                <p:link outcome="login" value="Login if already have an account"/>
-                        </f:facet>
-                    </p:panel>
+                <h:form id="registerForm" class="ss-form">
+                    <div>
+                        <div class="ss-form__header">
+                            <span>Register</span>
+                        </div>
+                        <div class="ss-form__body">
+                            <div class="ss-form__body__input">
+                                <p:outputLabel class="ss-form__body__input__label" value="Email"/>
+                                <p:inputText class="ss-form__body__input__value" id="email" value="#{userBean.email}" required="true"/>
+                            </div>
+                            <div class="ss-form__body__input">
+                                <p:outputLabel class="ss-form__body__input__label" value="Password"/>
+                                <p:password class="ss-form__body__input__value" id="password" value="#{userBean.password}" required="true"/>
+                            </div>
+                            <div class="ss-form__body__input">
+                                <p:outputLabel class="ss-form__body__input__label" value="Confirm password"/>
+                                <p:password class="ss-form__body__input__value" id="passwordConfirm" value="#{userBean.passwordConfirm}" required="true"/>
+                            </div>
+                        </div>
+                        <div class="ss-form__footer">
+                            <p:commandButton class="ss-form__footer__button" value="Register" action="#{userBean.addUser()}" />
+                            <p:link class="ss-form__footer__link" outcome="login" value="Login if already have an account"/>
+                        </div>
+                    </div>
                 </h:form>
-
             </div>
         </h:body>
 

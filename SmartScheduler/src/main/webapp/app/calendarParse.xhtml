@@ -7,25 +7,41 @@
 
     <h:head>
         <title>Add a calendar</title>
+        <link rel="stylesheet" href="../../style/navbar.css"/>
+        <link rel="stylesheet" href="../style/layout.css"/>
+        <link rel="stylesheet" href="../style/schedule.css"/>
+        <link rel="stylesheet" href="../style/forms.css"/>
     </h:head>
 
-    <h:body>
+    <h:body class="ss-body">
 
-        <div class="card">
-            <p:growl id="messages"/>
-            <ezcomp:navbar/>
+  
+        <ezcomp:navbar/>
+
+        <div class="ss-form--page" style="width: 100%; display: flex;">
+            <div class="ss-body__center">
+                <h:form class="ss-form" enctype="multipart/form-data">
+                    <div>
+                        <div class="ss-form__header">
+                            <span>Upload calendar</span>
+                        </div>
+                        <div class="ss-form__body">
+                            <div class="ss-form__body__input">
+                                <p:outputLabel class="ss-form__body__input__label" value="Calendar name"/>
+                                <p:inputText class="ss-form__body__input__value" value="#{calendarUpload.calendarName}" id="calendarName" required="true"/>
+                            </div>
+                            <div class="ss-form__body__input">
+                                <p:outputLabel class="ss-form__body__input__label" value="Upload file"/>
+                                <p:fileUpload class="ss-form__upload-button"  value="#{calendarUpload.calendarFile}" mode="simple" skinSimple="true" required="true"/>
+                            </div>
+                        </div>
+                        <div class="ss-form__footer">
+                            <p:commandButton class="ss-form__footer__button" action="#{calendarUpload.uploadFile()}" value="Upload" ajax="false" />
+                        </div>
+                    </div>
+                </h:form>
+            </div>          
         </div>
-
-        <h:form enctype="multipart/form-data">
-            <div class="p-field">
-                <p:outputLabel for="calendarName" styleClass="p-d-block">Calendar name</p:outputLabel>
-                <p:inputText value="#{calendarUpload.calendarName}" id="calendarName" styleClass="p-d-block" required="true"/>
-            </div>
-
-            <p:fileUpload value="#{calendarUpload.calendarFile}" mode="simple" skinSimple="true" required="true"/>
-            <p:commandButton action="#{calendarUpload.uploadFile()}" value="Upload" ajax="false"/>
-        </h:form>
-
     </h:body>
 </html>
 

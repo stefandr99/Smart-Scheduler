@@ -5,32 +5,36 @@
     <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
 
         <h:head>
-            <link rel="stylesheet" href="style/registration.css"/>
+            <link rel="stylesheet" href="style/layout.css"/>
+            <link rel="stylesheet" href="style/forms.css"/>
             <title>Login</title>
         </h:head>
 
-        <h:body>
-            <div class="center-panel">
-
-                <h:form id="loginForm">
-                    <p:messages id="messages" globalOnly="true" />
-                    <p:panel header="Login" style="width: 500px;">
-                        <h:panelGrid columns="3">
-                            <p:outputLabel for="email" value="Email"/>
-                            <p:inputText id="email" value="#{userLogin.email}" required="true"/>
-                            <p:message for="email"/>
-
-                            <p:outputLabel for="password" value="Password"/>
-                            <p:password id="password" value="#{userLogin.password}" required="true"/>
-                            <p:message for="password"/>
-
-                            <div class="center-panel__centered-button">
-                                <p:commandButton value="Submit" action="#{userLogin.execute()}" ajax="false" />
+        <h:body class="ss-body">
+            <div class="ss-body__center" style="display: flex; flex-direction: column; align-items: center;">
+                <img class="ss-form__logo" src="./style/assets/SmartCalendar.png" style="max-width: 300px; margin-bottom:20px;" alt="logo"/>
+                <p:messages id="messages" globalOnly="true" />
+                <h:form id="loginForm" class="ss-form">
+                    <div>
+                        <div class="ss-form__header">
+                            <span>Login</span>
+                        </div>
+                        <div class="ss-form__body">
+                            <div class="ss-form__body__input">
+                                <p:outputLabel class="ss-form__body__input__label" value="Email"/>
+                                <p:inputText class="ss-form__body__input__value" id="email" value="#{userLogin.email}" required="true"/>
                             </div>
-                        </h:panelGrid>
-                    </p:panel>
+                            <div class="ss-form__body__input">
+                                <p:outputLabel class="ss-form__body__input__label" value="Password"/>
+                                <p:password class="ss-form__body__input__value" id="password" value="#{userLogin.password}" required="true"/>
+                                <p:message for="password"/>
+                            </div>
+                        </div>
+                        <div class="ss-form__footer">
+                            <p:commandButton class="ss-form__footer__button" value="Log in" action="#{userLogin.execute()}" ajax="false" />
+                        </div>
+                    </div>
                 </h:form>
-
             </div>
         </h:body>
 
