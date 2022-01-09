@@ -33,7 +33,10 @@
                             <img class="ss-navbar__logo" src="../../style/assets/icons/plus-icon.svg" alt="logo"/>
                             <div>Create new calendar</div>
                         </h:link>
-                        <h:button class="ss-navbar__navbtn" value="Add faculty calendars" outcome="/faces/app/addFacultyCalendar.xhtml"/>
+                        <h:link class="ss-navbar__navbtn #{'/app/addFacultyCalendar.xhtml' eq view.viewId ? 'ss-active-navbtn' : ''}" outcome="/faces/app/addFacultyCalendar.xhtml">
+                            <img class="ss-navbar__logo" src="../../style/assets/icons/faculty-icon.svg" alt="logo"/>
+                            <div>Add faculty calendars</div>
+                        </h:link>
                     </div>
                 </div>
                 
