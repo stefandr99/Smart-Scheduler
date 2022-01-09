@@ -12,4 +12,6 @@ public interface IRepository<T> {
     T get(int id);
 
     void update(T entity);
+    
+    void remove(T entity);
 }

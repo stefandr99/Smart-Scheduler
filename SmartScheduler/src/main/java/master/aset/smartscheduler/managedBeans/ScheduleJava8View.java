@@ -119,6 +119,11 @@ public class ScheduleJava8View implements Serializable {
         selectedCalendarEntry.setFinishDate(Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant()));
         calendarEntryRepo.update(selectedCalendarEntry);
     }
+    
+    public void deleteEvent() {
+        eventModel.deleteEvent(event);
+        calendarEntryRepo.remove(selectedCalendarEntry);
+    }
 
     public void onEventSelect(SelectEvent<ScheduleEvent<?>> selectEvent) {
         event = selectEvent.getObject();
