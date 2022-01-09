@@ -15,7 +15,7 @@ import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import master.aset.smartscheduler.services.ConstraintService;
 
 @Named(value = "dropdownView")
-@ApplicationScoped
+@ViewScoped
 public class DropdownView implements Serializable {
 
     @Inject
