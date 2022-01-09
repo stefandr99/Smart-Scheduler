@@ -10,9 +10,9 @@
             <title>Login</title>
         </h:head>
 
-        <h:body class="ss-body">
+        <h:body class="ss-body ss-body-background">
+            <img src="style/assets/logo.png" class="ss-logo"/>
             <div class="ss-body__center" style="display: flex; flex-direction: column; align-items: center;">
-                <img class="ss-form__logo" src="./style/assets/SmartCalendar.png" style="max-width: 300px; margin-bottom:20px;" alt="logo"/>
                 <p:messages id="messages" globalOnly="true" />
                 <h:form id="loginForm" class="ss-form">
                     <div>
@@ -30,8 +30,8 @@
                                 <p:message for="password"/>
                             </div>
                         </div>
-                        <div class="ss-form__footer">
-                            <p:commandButton class="ss-form__footer__button" value="Log in" action="#{userLogin.execute()}" ajax="false" />
+                        <div class="ss-form__footer ss-margin-top">
+                            <p:commandButton class="ss-form__footer__button" value="Enter" action="#{userLogin.execute()}" ajax="false" />
                         </div>
                     </div>
                 </h:form>

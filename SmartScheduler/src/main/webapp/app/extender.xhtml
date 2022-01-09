@@ -19,37 +19,43 @@
         <link rel="stylesheet" href="../style/layout.css"/>
         <link rel="stylesheet" href="../style/schedule.css"/>
         <link rel="stylesheet" href="../style/forms.css"/>
+        <link rel="stylesheet" href="../style/dayEvents.css"/>
     </h:head>
 
-    <h:body class="ss-body">
+    <h:body class="ss-body" onload="${dropdownView.init()}">
 
             <ezcomp:navbar/>
 
 
         <div class="ss-body--page">
+            <div class="ss-calendar-title"> Calendar </div>
         <div>
             <h:form class="ss-schedule__nav">
-                <p:selectCheckboxMenu id="multiple" value="#{dropdownView.selectedCalendars}" label="Calendars" style="min-width: 15rem"
+                <p:selectCheckboxMenu id="multiple" value="#{dropdownView.selectedOptions}" label="Calendars" style="min-width: 15rem"
                                       multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
                     <f:selectItems value="#{dropdownView.calendarsOptions}"/>
                     <p:ajax event="change" update="selectedItemText"/>
                 </p:selectCheckboxMenu>
-                <h:outputText style="display:none" id="selectedItemText" value=" #{dropdownView.selectedCalendars}"/>
+                <h:outputText style="display:none" id="selectedItemText" value=" #{dropdownView.selectedOptions}"/>
                 <p:commandButton class="upperheaderbutton" action="#{scheduleJava8View.updateSchedule()}" value="Show calendars" ajax="false"/>
             </h:form>
         </div>
-
+        <div class="ss-page-container">
+         <ezcomp:dayEvents />
         <div class="ss-card">
+            
             <h:form id="mainForm">
                 <p:growl id="messages" showDetail="true"/>
 
                 <p:schedule class="ss-schedule" style="height: 80vh; width: 94%; margin-left: 20px;" id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule">
+                    <p:button value="dsad" />
                     <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelect}" update="eventDetails"
                             oncomplete="PF('eventDialog').show();"/>
                     <p:ajax event="eventSelect" listener="#{scheduleJava8View.onEventSelect}" update="eventDetails"
                             oncomplete="PF('eventDialog').show();"/>
                     <p:ajax event="eventMove" listener="#{scheduleJava8View.onEventMove}" update="messages"/>
                     <p:ajax event="eventResize" listener="#{scheduleJava8View.onEventResize}" update="messages"/>
+                    <p:ajax event="dateSelect" listener="${selectedDayService.onDateSelect}" />
                 </p:schedule>
 
                 <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="fade" hideEffect="fade">
@@ -84,6 +90,7 @@
                 </p:dialog>
             </h:form>
         </div>    
+        </div>
         </div>
 
         

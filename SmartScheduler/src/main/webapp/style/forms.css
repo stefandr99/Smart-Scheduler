@@ -92,7 +92,9 @@ body .ui-messages > div {
     box-shadow: 0 0 0 0.2em rgb(163, 158, 201);  
 }
 
-
+.ss-margin-top {
+    margin-top: 40px;
+}
 .ss-form__footer{
     display: flex;
     flex-direction: column;
