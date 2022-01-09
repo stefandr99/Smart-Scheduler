@@ -12,7 +12,7 @@
     background-size: 100% 100%;
 }
 .ss-form--page {
-    background: #89cff0;
+    background: #dee6ea;
 }
 .ss-logo {
     position: absolute;
@@ -21,7 +21,7 @@
 }
 .ss-body--page{
     overflow-y: auto;
-    background-color: #E5E0FC;
+    background-color: #dee6ea;
     flex-direction: column;
     margin: 0 !important;
     padding: 0 !important;
@@ -45,4 +45,17 @@
     width: 100%;
     justify-content: center;
     align-self: center;
+}
+
+body .ui-button {
+     background: rgb(72, 128, 255);
+     background-color: rgb(72, 128, 255);
+}
+
+.ui-fileupload-simple {
+    position: relative;
+    overflow: visible;
+    display: inline-flex;
+    align-items: flex-start;
+    flex-direction: column;
 }

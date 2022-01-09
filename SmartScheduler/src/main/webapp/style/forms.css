@@ -81,8 +81,6 @@ body .ui-messages > div {
 
 .ss-form__upload-button .ui-button{
     width: 50%;
-    border: 1px rgba(108, 93, 211, 1);
-    background:rgba(108, 93, 211, 1);
 }
 .ss-form__upload-button .ui-button.ui-state-hover {
     background: rgb(72, 61, 141);   
@@ -101,12 +99,12 @@ body .ui-messages > div {
     padding: 0px 40px 40px 40px;
 }
 .ss-form__footer__button{
-    background-color: rgba(108, 93, 211, 1) !important;
-    border: 1px solid rgba(108, 93, 211, 1) !important;
+    background-color: rgba(108, 93, 211, 1);
+    border: 1px solid rgba(108, 93, 211, 1);
 }
 .ss-form__footer__button:hover, ss-form__footer__button:focus {
-    background-color: rgb(76, 65, 146) !important;
-    border: 1px solid rgb(76, 65, 146) !important;
+    background-color: rgb(76, 65, 146);
+    border: 1px solid rgb(76, 65, 146);
 }
 .ss-form__footer__button:focus {
     box-shadow: 0 0 0 0.2em rgb(186, 176, 255) !important;

@@ -65,7 +65,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-focus {
 }
 body .fc .fc-toolbar .fc-button {
     margin-top: 10px ;
-    background: rgba(108, 93, 211, 1)!important;
+    background: rgb(72, 128, 255)!important;
     color: #ffffff;
     border: 1px solid rgba(108, 93, 211, 1) !important;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
@@ -91,9 +91,15 @@ body .fc .fc-event, body .fc .fc-event .fc-event-main {
 }
 .ui-fileupload-simple .ui-fileupload-filename{
     padding: 0 20px;
-    background: rgba(108, 93, 211, 1);
+    background: rgb(72, 128, 255);
     border-radius: 10px;
     color: #ffffff;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 160px;
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 16px;
 }
 .calendar-0 {
     background-color: #6C5DD3 !important;
