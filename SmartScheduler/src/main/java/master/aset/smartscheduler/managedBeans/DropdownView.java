@@ -66,7 +66,13 @@ public class DropdownView implements Serializable {
     public void onCalendarCreated(@Observes Calendar calendar) {
         this.init();
     }
-
+    
+    public String change(){
+        for (Calendar c: selectedCalendars)
+        selectedCalendarsPriority.add(c.getName());
+        return "change";
+    }
+    
     public void merge() {
         Map<String, Integer> priorities = new HashMap<>();
         int calendarsLen = selectedCalendars.size();
