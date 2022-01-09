@@ -12,7 +12,7 @@ import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryReposito
 
 @ApplicationScoped
 public class CalendarEntryRepository implements ICalendarEntryRepository {
-    
+
     @PersistenceContext(unitName = "PU")
     EntityManager em;
 
@@ -24,10 +24,10 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
 
         return true;
     }
-    
+
     @Override
     @Transactional
-    public CalendarEntry getEntryFromCalendar(int calendarId, String name, Date startDate, Date endDate){
+    public CalendarEntry getEntryFromCalendar(int calendarId, String name, Date startDate, Date endDate) {
         return em.createNamedQuery("CalendarEntries.getSpecificEntry", CalendarEntry.class)
                 .setParameter("calendarId", calendarId)
                 .setParameter("name", name)
@@ -49,7 +49,7 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
                 .setParameter("name", name)
                 .getResultList();
     }
-    
+
     @Transactional
     public List<CalendarEntry> getByCalendar(Calendar calendar) {
         return em.createNamedQuery("CalendarEntries.getByCalendar", CalendarEntry.class)
@@ -57,21 +57,29 @@ public class CalendarEntryRepository implements ICalendarEntryRepository {
                 .getResultList();
     }
 
-    
     @Override
     public List<CalendarEntry> getAll(EntityManager em) {
         return em.createNamedQuery("CalendarEntries.getAll", CalendarEntry.class)
                 .getResultList();
     }
-    
+
     @Override
     public CalendarEntry get(int id) {
         return null;
     }
-    
+
     @Override
     @Transactional
     public void update(CalendarEntry entity) {
         em.merge(entity);
+    }
+
+    @Transactional
+    @Override
+    public void remove(CalendarEntry entity) {
+        if (!em.contains(entity)) {
+            entity = em.merge(entity);
+        }
+        em.remove(entity);
     }
 }

@@ -42,7 +42,6 @@ public class XmlDomParser {
             return;
         }
         try {
-//            TODO: calendarRepo.deleteFacultyCalendars();
             calendarRepo.deletePublicCalendars();
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
 
@@ -111,17 +110,17 @@ public class XmlDomParser {
                         char type = subjectName.toCharArray()[0];
 
                         newEntry.setName(getSubjectTypeMapping(type) + subjectNamesMap.get(subjectName));
-                        newEntry.setRecurring(true);
-
-                        newEntry.setDay(Integer.parseInt(element.getAttribute("day")));
-                        newEntry.setStartDate(range.get(0));
-                        newEntry.setFinishDate(range.get(1));
-                        newEntry.setStartTime(element.getAttribute("startTime"));
-                        newEntry.setEndTime(element.getAttribute("endTime"));                            
-                        
-                        
-                        dbCalendar.addCalendarEntry(newEntry);
-                        calendarRepo.update(dbCalendar); 
+                        if (!getSubjectTypeMapping(type).equals("E")) {
+                            newEntry.setRecurring(true);
+                            newEntry.setDay(Integer.parseInt(element.getAttribute("day")));
+                            newEntry.setStartDate(range.get(0));
+                            newEntry.setFinishDate(range.get(1));
+                            newEntry.setStartTime(element.getAttribute("startTime"));
+                            newEntry.setEndTime(element.getAttribute("endTime"));
+                            
+                            dbCalendar.addCalendarEntry(newEntry);
+                            calendarRepo.update(dbCalendar); 
+                        }
                     }
                 }
             }

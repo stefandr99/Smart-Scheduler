@@ -23,7 +23,7 @@ import master.aset.smartscheduler.entities.user.User;
     @NamedQuery(name = "Calendar.getById", query = "select c from Calendar c where c.id = :id"),
     @NamedQuery(name = "Calendar.getAll", query = "select c from Calendar c"),
     @NamedQuery(name="Calendar.calendarOfUser", query = "SELECT c FROM Calendar c INNER JOIN c.users u WHERE c.id = :cal_id AND u.id = :user_id"),
-    @NamedQuery(name="Calendar.allCalendarsOfUser", query = "SELECT c FROM Calendar c INNER JOIN c.users u WHERE u.id = :user_id")
+    @NamedQuery(name="Calendar.allCalendarsOfUser", query = "SELECT c FROM Calendar c INNER JOIN c.users u WHERE u.id = :user_id"),
     @NamedQuery(name = "Calendar.getPublicCalendars", query = "select c from Calendar c where c.isPublic = true"),    
     @NamedQuery(name="Calendar.calendarOfUser", query = "SELECT c FROM Calendar c INNER JOIN c.users u WHERE c.id = :cal_id AND u.id = :user_id")
 })
