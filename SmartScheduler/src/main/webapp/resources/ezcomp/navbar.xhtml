@@ -17,14 +17,26 @@
                     <img class="ss-navbar__logo" src="../../style/assets/logo.png" style="max-width: 175px;" alt="logo"/>
                     <p:growl id="messages"/>
                     <div class="ss-navbar__navbtns">
-                        <h:button class="ss-navbar__navbtn #{'/app/extender.xhtml' eq view.viewId ? 'ss-active-navbtn' : ''}" value="Calendar"  outcome="/faces/app/extender.xhtml"/>
-                        <h:button class="ss-navbar__navbtn #{'/app/calendarParse.xhtml' eq view.viewId ? 'ss-active-navbtn' : ''}" value="Import Calendar" outcome="/faces/app/calendarParse.xhtml"/>    
-                        <h:button class="ss-navbar__navbtn #{'/app/calendarMerge.xhtml' eq view.viewId ? 'ss-active-navbtn' : ''}" value="Merge Calendars" outcome="/faces/app/calendarMerge.xhtml"/>    
-                        <h:button class="ss-navbar__navbtn #{'/app/calendarEmpty.xhtml' eq view.viewId ? 'ss-active-navbtn' : ''}" value="Create new calendar" outcome="/faces/app/calendarEmpty.xhtml"/>
+                        <p:link outcome="/faces/app/extender.xhtml"  class="ss-navbar__navbtn #{'/app/extender.xhtml' eq view.viewId ? 'ss-active-navbtn' : ''}">
+                             <img class="ss-navbar__logo" src="../../style/assets/icons/calendar-icon.svg" alt="logo"/>
+                             <div>Calendar</div>
+                        </p:link>
+                        <h:link class="ss-navbar__navbtn #{'/app/calendarParse.xhtml' eq view.viewId ? 'ss-active-navbtn' : ''}" outcome="/faces/app/calendarParse.xhtml">
+                            <img class="ss-navbar__logo" src="../../style/assets/icons/inport-icon.svg" alt="logo"/>
+                            <div>Import Calendar</div>
+                        </h:link>
+                        <h:link class="ss-navbar__navbtn #{'/app/calendarMerge.xhtml' eq view.viewId ? 'ss-active-navbtn' : ''}" outcome="/faces/app/calendarMerge.xhtml">
+                            <img class="ss-navbar__logo" src="../../style/assets/icons/merge-icon.svg" alt="logo"/>
+                            <div>Merge Calendars</div>
+                        </h:link>
+                         <h:link class="ss-navbar__navbtn #{'/app/calendarEmpty.xhtml' eq view.viewId ? 'ss-active-navbtn' : ''}" outcome="/faces/app/calendarEmpty.xhtml">
+                            <img class="ss-navbar__logo" src="../../style/assets/icons/plus-icon.svg" alt="logo"/>
+                            <div>Create new calendar</div>
+                        </h:link>
                     </div>
                 </div>
                 
-                <p:commandButton value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ss-navbar__logout" action="#{userLogin.logout}" />
+                <p:commandButton value="Logout" icon="pi pi-fw pi-power-off" styleClass="ss-navbar__logout" action="#{userLogin.logout}" />
                     
             </h:form>
     </cc:implementation>
