@@ -7,6 +7,7 @@ import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryReposito
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import org.chocosolver.solver.Model;
+import org.chocosolver.solver.variables.BoolVar;
 import org.chocosolver.solver.variables.IntVar;
 
 import javax.ejb.LocalBean;
@@ -54,6 +55,10 @@ public class ConstraintService {
     private final int numberOfWeeks = 52;
 
     public Calendar mergeCalendars(int[] ids, Map<String, Integer> priorities) {
+        // map with event index (eventIndex) as a key and its priority as a value
+        List<Integer> eventsPriority = new ArrayList<>();
+        int currentCalendarPriority;
+
         // get first day date of current week
         java.util.Calendar cal = java.util.Calendar.getInstance();
         cal.set(java.util.Calendar.DAY_OF_WEEK, cal.getActualMinimum(java.util.Calendar.DAY_OF_WEEK) + 1);
@@ -70,6 +75,7 @@ public class ConstraintService {
         // retrieve all events from calendars
         for(int i = 0 ; i < ids.length; i++) {
             Calendar calendar = calendarRepository.getById(ids[i]);
+            currentCalendarPriority = priorities.get(calendar.getName());
 
             newCalendarName.append(calendar.getName()).append("+");
             //TODO generate recurring entries
@@ -100,6 +106,7 @@ public class ConstraintService {
                             newEntry.setRecurring(false);
                             
                             calendarEntries.add(newEntry);
+                            eventsPriority.add(currentCalendarPriority);
                         } catch (ParseException e) {
                             System.out.println(e.getMessage());
                         }
@@ -110,7 +117,10 @@ public class ConstraintService {
                     }
                 }
             } else {
-                calendarEntries.addAll(calendarEntryRepository.getByCalendar(calendar));
+                for(CalendarEntry event : calendarEntryRepository.getByCalendar(calendar)) {
+                    calendarEntries.add(event);
+                    eventsPriority.add(currentCalendarPriority);
+                }
             }
         }
         //finalCalendar.setName(newCalendarName.substring(0, newCalendarName.length() - 1));
@@ -190,6 +200,9 @@ public class ConstraintService {
                 // inmultim fiecare occurrence cu 60 ca sa avem matricea in minute
                 for(int k = 0; k < occurrencesMatrix.length; k++) {
                     occurrencesMatrix[k] = Arrays.stream(occurrencesMatrix[k]).map(el -> el * 60).toArray();
+
+                    int lastIndex = occurrencesMatrix[k].length;
+                    occurrencesMatrix[k][lastIndex] = -1;
                 }
 
                 Model model = new Model("Scheduler");
@@ -199,12 +212,21 @@ public class ConstraintService {
                         .mapToObj(in -> model.intVar("task #" + in, occurrencesMatrix[in]))
                         .toArray(IntVar[]::new);
 
-                model.allDifferent(solution).post();
-
                 for(int j = 0; j < taskNumber - 1; j++) {
                     for(int k = j + 1; k < taskNumber; k++) {
                         model.or(model.arithm(solution[k], ">=", solution[j], "+", durations.get(j)),
                                 model.arithm(solution[j], ">=" , solution[k], "+", durations.get(k))).post();
+
+                        IntVar firstEventPriority = model.intVar(eventsPriority.get(j));
+                        IntVar secondEventPriority = model.intVar(eventsPriority.get(k));
+
+                        model.ifThenElse(
+                                model.and(model.not(model.arithm(solution[k], ">=", solution[j], "+", durations.get(j))),
+                                        model.arithm(solution[j], ">=" , solution[k], "+", durations.get(k)),
+                                        model.arithm(firstEventPriority, "<", secondEventPriority)),
+                                model.member(solution[j], -1, -1),
+                                model.member(solution[k], -1, -1)
+                        );
                     }
                 }
 

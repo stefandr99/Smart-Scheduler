@@ -6,16 +6,13 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
 import master.aset.smartscheduler.entities.calendar.Calendar;
 import master.aset.smartscheduler.entities.user.User;
-import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryRepository;
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import master.aset.smartscheduler.services.ConstraintService;
-
 
 @Named(value = "dropdownView")
 @ApplicationScoped
@@ -69,7 +66,8 @@ public class DropdownView implements Serializable {
     
     public String change(){
         for (Calendar c: selectedCalendars)
-        selectedCalendarsPriority.add(c.getName());
+            selectedCalendarsPriority.add(c.getName());
+
         return "change";
     }
     
