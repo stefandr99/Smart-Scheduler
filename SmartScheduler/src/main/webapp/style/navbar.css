@@ -12,6 +12,7 @@
     height: 100%;
     border-right: none;
     z-index: 9999;
+    width: 332px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 .ss-navbar__navbtns{
@@ -20,6 +21,8 @@
     flex-direction: column;
 }
 .ss-navbar__navbtn{
+    display: flex;
+    align-items: center;
     transition: 0.1s all ease-in-out;
     padding: 10px 15px;
     margin:10px 0;
@@ -29,37 +32,53 @@
     border-radius: 8px;
     border: none;
     cursor: pointer;
+    text-align: start;
+    text-decoration: none !important;
+    color: black !important;
+    font-size: 16px;
+}
+.ss-navbar__navbtn img{
+    margin-right: 12px;
+    width: 16px;
 }
 .ss-navbar__navbtn:hover{
     transition: 0.1s all ease-in-out;
     background-color: rgb(225 225 225);
-    padding: 11px 15px;
-    margin:9px 0;
 }
 .ss-navbar__logout{
     transition: 0.1s all ease-in-out !important;
     padding: 0px 10px !important;
-    background-color: #dcdcdc !important;
-    border: 1px solid #dcdcdc !important;
     color: #11142D !important;
+    background: none !important;
+    border: none !important;
     font-weight: 500 !important;
+    text-align: start !important;
 }
 .ss-navbar__logout:hover{
     transition: 0.1s all ease-in-out !important;
     padding: 0px 10px !important;
-    background-color: #930D24 !important;
-    border: 1px solid #930D24 !important;
+    background-color: #d3d3d3 !important;
+    border: none !important;
     color: white !important;
 }
 
 .ss-calendar_icon {
-    background: red;
+    background: url('./assets/icons/calendar-icon.svg');
     width: 50px;
     height: 50px;
 }
 
 .ss-active-navbtn {
     background-color: #4880FF;
+    color: white !important;
+}
+.ss-active-navbtn img {
+    filter: invert(1);
+}
+.ss-active-navbtn:hover {
+    background-color: #4880FF;
+    color: white;
+    border: none;
 }
 .ss-active-navbtn:before {
     content: ' ';
@@ -67,7 +86,7 @@
     height: 43px;
     background: #4880FF;
     position: absolute;
-    margin-left: -96px;
+    margin-left: -79px;
     border-radius: 10px;
-    margin-top: -10px;
+    margin-top: 0px;
 }

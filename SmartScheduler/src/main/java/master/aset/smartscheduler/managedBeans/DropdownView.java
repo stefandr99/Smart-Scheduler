@@ -61,7 +61,7 @@ public class DropdownView implements Serializable {
     public List<Calendar> getPublicCalendarsOptions() {
         return publicCalendarsOptions;
     }
-
+    
     public void setPublicCalendarsOptions(List<Calendar> publicCalendarsOptions) {
         this.publicCalendarsOptions = publicCalendarsOptions;
     }
@@ -115,6 +115,14 @@ public class DropdownView implements Serializable {
         this.selectedOptions = selectedOptions;
     }
   
+    public List<Calendar> getSelectedCalendars() {
+        return this.calendars;
+    }
+    
+      public void setSelectedCalendars(List<Calendar> calendars) {
+        this.calendars = calendars;
+    }
+    
     public List<Calendar> getCalendars() {
         return calendars;
     }

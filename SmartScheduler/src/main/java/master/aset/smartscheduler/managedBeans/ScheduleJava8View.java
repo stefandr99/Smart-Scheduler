@@ -1,7 +1,9 @@
 package master.aset.smartscheduler.managedBeans;
 
+import edu.emory.mathcs.backport.java.util.Arrays;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -20,6 +22,7 @@ import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryReposito
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import master.aset.smartscheduler.services.ExtenderService;
+import master.aset.smartscheduler.services.SelectedDayService;
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
@@ -130,7 +133,7 @@ public class ScheduleJava8View implements Serializable {
         if(event.getId() != null) {
             Date startDate = Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant());
             Date endDate = Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant());
-            List<Calendar> currentCalendars = dropdownView.getSelectedCalendars();
+            List<Calendar> currentCalendars = Arrays.asList(dropdownView.getSelectedOptions());
             for (Calendar c : currentCalendars) {
                 selectedCalendarEntry = c.getCalendarEntries()
                    .stream()
@@ -181,19 +184,11 @@ public class ScheduleJava8View implements Serializable {
         }
     }
     
-<<<<<<< HEAD
     public void onCalendarChange() {
         Calendar selectedCalendar = calendarRepository.getById(dropdownView.getSelectedCalendar().getId());
         this.eventModel.clear();
         this.eventModel = this.extenderService.updateCalendarInfo((List<Calendar>) selectedCalendar);
     }
-=======
-//    public void onCalendarChange() {
-//        Calendar selectedCalendar = calendarRepository.getById(dropdownView.getSelectedCalendar().getId());
-//        this.eventModel.clear();
-//        this.eventModel = this.extenderService.updateCalendarInfo(selectedCalendar);
-//    }
->>>>>>> dbc8ff392f95dcf9658ca34c1083d72124888068
     
     public Calendar getCalendar(String name) {
         if (name == null) {
@@ -247,6 +242,7 @@ public class ScheduleJava8View implements Serializable {
     public void updateSchedule() {
         this.eventModel.clear();
         this.eventModel = this.extenderService
-                .updateCalendarInfo(dropdownView.getSelectedCalendars());
+                .updateCalendarInfo(Arrays.asList(dropdownView.getSelectedOptions()));
+        
     }
 }
