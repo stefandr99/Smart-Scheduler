@@ -45,15 +45,27 @@ public class DropdownView implements Serializable {
     private User currentUser;
     
     private List<Calendar> calendarsOptions;
+        
+    private List<Calendar> selectedPublicCalendars;
 
-    public List<Calendar> getSelectedCalendars() {
-        return selectedCalendars;
+    public List<Calendar> getSelectedPublicCalendars() {
+        return selectedPublicCalendars;
     }
 
-    public void setSelectedCalendars(List<Calendar> selectedCalendars) {
-        this.selectedCalendars = selectedCalendars;
+    public void setSelectedPublicCalendars(List<Calendar> selectedPublicCalendars) {
+        this.selectedPublicCalendars = selectedPublicCalendars;
+    }
+    
+    private List<Calendar> publicCalendarsOptions;
+
+    public List<Calendar> getPublicCalendarsOptions() {
+        return publicCalendarsOptions;
     }
 
+    public void setPublicCalendarsOptions(List<Calendar> publicCalendarsOptions) {
+        this.publicCalendarsOptions = publicCalendarsOptions;
+    }
+    
     public List<Calendar> getCalendarsOptions() {
         return calendarsOptions;
     }
@@ -75,7 +87,8 @@ public class DropdownView implements Serializable {
         this.selectedCalendars = new ArrayList<>();
         this.selectedCalendars.add(calendars.get(0));
         this.calendarsOptions = currentUser.getCalendars();
-        this.calendarsOptions.addAll(calendarRepository.getPublicCalendars());
+
+        this.publicCalendarsOptions = calendarRepository.getPublicCalendars();
     }
     
     public void onCalendarCreated(@Observes Calendar calendar) {
@@ -112,5 +125,12 @@ public class DropdownView implements Serializable {
     
     public Calendar getSelectedCalendar() {
         return this.calendars.get(0);
+    }
+    
+    public void addPublicCalendarToUser() {
+        for (Calendar c : selectedPublicCalendars) {
+            this.currentUser.addCalendar(c);
+            this.userRepository.update(currentUser);
+        }
     }
 }

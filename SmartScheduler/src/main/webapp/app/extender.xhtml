@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="../../style/navbar.css"/>
         <link rel="stylesheet" href="../style/layout.css"/>
         <link rel="stylesheet" href="../style/schedule.css"/>
+        <link rel="stylesheet" href="../style/forms.css"/>
     </h:head>
 
     <h:body class="ss-body">
@@ -70,7 +71,12 @@
                     </h:panelGrid>
 
                     <div class="p-d-flex p-jc-between p-mt-3">
-                        <p:commandButton type="reset" value="Reset" styleClass="p-text-bold ui-button-outlined"/>
+                        <div>
+                            <p:commandButton type="reset" value="Reset" styleClass="p-text-bold ui-button-outlined"/>
+                            <p:commandButton value="Delete" style="margin-left: 1px" action="#{scheduleJava8View.deleteEvent}"
+                                             styleClass="p-text-bold ui-button-outlined ui-button-danger"
+                                             oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+                        </div>
                         <p:commandButton id="addButton" value="Save" action="#{scheduleJava8View.addEvent}"
                                          oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
                     </div>

@@ -16,6 +16,10 @@ import javax.enterprise.inject.Any;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -23,8 +27,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import org.primefaces.model.DefaultScheduleEvent;
 
 @ApplicationScoped
 public class ConstraintService {
@@ -65,7 +72,46 @@ public class ConstraintService {
             Calendar calendar = calendarRepository.getById(ids[i]);
 
             newCalendarName.append(calendar.getName()).append("+");
-            calendarEntries.addAll(calendarEntryRepository.getByCalendar(calendar));
+            //TODO generate recurring entries
+            
+            if (calendar.isIsPublic()) {
+                List<CalendarEntry> publicCalendarEntries = calendarEntryRepository.getByCalendar(calendar);
+                for (CalendarEntry entry : publicCalendarEntries) {
+                    //obtain the start date day of week as a number
+                    int startDay = getDayNumber(entry.getStartDate());
+                    int entryDay = mapEntryDayToCalendarFormat(entry.getDay());
+                    int offset = 0;
+                    if (startDay > entryDay) {
+                        offset = 7 - startDay + entryDay;
+                    } else {
+                        offset = entryDay - startDay;
+                    }
+                    java.util.Calendar c = java.util.Calendar.getInstance();
+                    c.setTime(entry.getStartDate());
+                    c.add(java.util.Calendar.DATE, offset);
+                    Date recurringStartDate = c.getTime();
+
+                    while (recurringStartDate.compareTo(entry.getFinishDate()) <= 0) {
+                        try {
+                            CalendarEntry newEntry = new CalendarEntry();
+                            newEntry.setName(entry.getName());
+                            newEntry.setStartDate(addTimeToDate(recurringStartDate, entry.getStartTime()));
+                            newEntry.setFinishDate(addTimeToDate(recurringStartDate, entry.getEndTime()));
+                            newEntry.setRecurring(false);
+                            
+                            calendarEntries.add(newEntry);
+                        } catch (ParseException e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                        c.setTime(recurringStartDate);
+                        c.add(java.util.Calendar.DATE, 7);
+                        recurringStartDate = c.getTime();
+                    }
+                }
+            } else {
+                calendarEntries.addAll(calendarEntryRepository.getByCalendar(calendar));
+            }
         }
         //finalCalendar.setName(newCalendarName.substring(0, newCalendarName.length() - 1));
         finalCalendar.setName("Merged: " + newCalendarName.toString() + "Last " + new Date());
@@ -253,5 +299,28 @@ public class ConstraintService {
         String username = securityContext.getCallerPrincipal().getName();
 
         return userRepository.getByEmail(username);
+    }
+    
+    private int getDayNumber(Date date) {
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(java.util.Calendar.DAY_OF_WEEK);
+    }
+    
+    private int mapEntryDayToCalendarFormat(int day) {
+        day += 2;
+        if (day > 7) return 1;
+        return day;
+    }
+    
+    private Date addTimeToDate(Date date, String time) throws ParseException{
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
+        DateFormat df2 = new SimpleDateFormat("MM/dd/yyyy");
+        String startDateString = df2.format(date);
+
+        startDateString = startDateString + " " + time + ":00";
+
+        return df.parse(startDateString);
     }
 }

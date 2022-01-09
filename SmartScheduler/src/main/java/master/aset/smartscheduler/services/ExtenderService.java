@@ -146,7 +146,8 @@ public class ExtenderService {
                                     .startDate(addTimeToDate(recurringStartDate, entry.getStartTime()))
                                     .endDate(addTimeToDate(recurringStartDate, entry.getEndTime()))
                                     .description(entry.getName())
-                                    .borderColor("orange")
+                                    .styleClass("calendar-" + String.valueOf(calendars.indexOf(calendar)))
+                                    .borderColor("red")
                                     .build();
                             eventModel.addEvent(event);
                         } catch (ParseException ex) {
@@ -162,6 +163,7 @@ public class ExtenderService {
                         .startDate(entry.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
                         .endDate(entry.getFinishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
                         .description(entry.getName())
+                        .styleClass("calendar-" + String.valueOf(calendars.indexOf(calendar)))
                         .borderColor("orange")
                         .build();
                     eventModel.addEvent(event);

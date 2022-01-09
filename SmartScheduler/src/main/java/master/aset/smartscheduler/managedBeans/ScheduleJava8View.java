@@ -119,6 +119,11 @@ public class ScheduleJava8View implements Serializable {
         selectedCalendarEntry.setFinishDate(Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant()));
         calendarEntryRepo.update(selectedCalendarEntry);
     }
+    
+    public void deleteEvent() {
+        eventModel.deleteEvent(event);
+        calendarEntryRepo.remove(selectedCalendarEntry);
+    }
 
     public void onEventSelect(SelectEvent<ScheduleEvent<?>> selectEvent) {
         event = selectEvent.getObject();
@@ -176,11 +181,19 @@ public class ScheduleJava8View implements Serializable {
         }
     }
     
+<<<<<<< HEAD
     public void onCalendarChange() {
         Calendar selectedCalendar = calendarRepository.getById(dropdownView.getSelectedCalendar().getId());
         this.eventModel.clear();
         this.eventModel = this.extenderService.updateCalendarInfo((List<Calendar>) selectedCalendar);
     }
+=======
+//    public void onCalendarChange() {
+//        Calendar selectedCalendar = calendarRepository.getById(dropdownView.getSelectedCalendar().getId());
+//        this.eventModel.clear();
+//        this.eventModel = this.extenderService.updateCalendarInfo(selectedCalendar);
+//    }
+>>>>>>> dbc8ff392f95dcf9658ca34c1083d72124888068
     
     public Calendar getCalendar(String name) {
         if (name == null) {

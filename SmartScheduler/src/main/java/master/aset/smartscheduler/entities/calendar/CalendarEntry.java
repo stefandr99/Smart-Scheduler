@@ -47,6 +47,7 @@ public class CalendarEntry implements Serializable {
     private Calendar calendar;
 
     public CalendarEntry() {
+        this.recurring = false;
     }
     
     public CalendarEntry(String name, Date startDate, Date finishDate) {

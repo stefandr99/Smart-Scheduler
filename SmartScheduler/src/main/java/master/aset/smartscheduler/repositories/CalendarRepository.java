@@ -110,4 +110,13 @@ public class CalendarRepository implements ICalendarRepository {
             em.remove(c);
         });
     }
+
+    @Transactional
+    @Override
+    public void remove(Calendar entity) {
+        if (!em.contains(entity)) {
+            entity = em.merge(entity);
+        }
+        em.remove(entity);
+    }
 }

@@ -22,22 +22,22 @@
             <div class="ss-body__center">
                 <h:form class="ss-form">
                     <div class="ss-form__header" style="margin-bottom: 20px;">
-                        <span>Merge multiple calendars</span>
+                        <span>Add faculty calendars</span>
                         <p:outputLabel id ="idEmptyLabel">
                                 <i style="font-size: 20px;color: #554f70;" class="far fa-question-circle"></i>
                                 </p:outputLabel>
-                        <p:tooltip for="idEmptyLabel" style="max-width: 300px;" value="Select multiple calendars that will be merged into a single calendar."/>
+                        <p:tooltip for="idEmptyLabel" style="max-width: 300px;" value="Select multiple calendars that will be displayed on your personal schedule."/>
                     </div>
                     <div class="ss-form__body" style="overflow-y:auto; height: 300px;">
-                            <p:selectManyMenu  style="width: 100%;" id="mergeOption" value="#{dropdownView.selectedCalendars}" var="c" filter="true" filterMatchMode="contains" showCheckbox="true">
-                                <f:selectItems value="#{dropdownView.calendars}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
+                            <p:selectManyMenu  style="width: 100%;" id="mergeOption" value="#{dropdownView.selectedPublicCalendars}" var="c" filter="true" filterMatchMode="contains" showCheckbox="true">
+                                <f:selectItems value="#{dropdownView.publicCalendarsOptions}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
                                 <p:column>
                                     <h:outputText value="#{c.name}"/>
                                 </p:column>
                             </p:selectManyMenu>
                     </div>
                     <div class="ss-form__footer" style="margin-top:20px;">
-                        <p:commandButton class="ss-form__footer__button" value="Merge" action="#{dropdownView.merge()}" ajax="false" />
+                        <p:commandButton class="ss-form__footer__button" value="Add" action="#{dropdownView.addPublicCalendarToUser()}" ajax="false" />
                     </div>
                     
                 </h:form>
@@ -47,4 +47,3 @@
 
     
 </html>
-

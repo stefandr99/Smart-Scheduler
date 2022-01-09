@@ -69,4 +69,13 @@ public class UserRepository implements IUserRepository {
         em.merge(entity);
         em.flush();
     }
+    
+    @Transactional
+    @Override
+    public void remove(User entity) {
+        if (!em.contains(entity)) {
+            entity = em.merge(entity);
+        }
+        em.remove(entity);
+    }
 }
