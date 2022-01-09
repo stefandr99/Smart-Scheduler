@@ -53,7 +53,7 @@ public class ConstraintService {
 
     private final int numberOfWeeks = 52;
 
-    public Calendar mergeCalendars(int[] ids) {
+    public Calendar mergeCalendars(int[] ids, Map<String, Integer> priorities) {
         // get first day date of current week
         java.util.Calendar cal = java.util.Calendar.getInstance();
         cal.set(java.util.Calendar.DAY_OF_WEEK, cal.getActualMinimum(java.util.Calendar.DAY_OF_WEEK) + 1);

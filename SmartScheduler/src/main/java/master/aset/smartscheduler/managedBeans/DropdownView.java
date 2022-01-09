@@ -1,9 +1,7 @@
 package master.aset.smartscheduler.managedBeans;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
@@ -33,20 +31,59 @@ public class DropdownView implements Serializable {
     
     private List<Calendar> selectedCalendars;
 
+    private List<String> selectedCalendarsPriority = new ArrayList<>();
+
+    private List<Calendar> calendars;
+
+    private User currentUser;
+
+    private List<Calendar> calendarsOptions;
+
+    private List<Calendar> selectedPublicCalendars;
+
     @Inject
     ICalendarRepository calendarRepository;
     
     @Inject
     SecurityContext securityContext;
 
-    
-    private List<Calendar> calendars;
-    
-    private User currentUser;
-    
-    private List<Calendar> calendarsOptions;
-        
-    private List<Calendar> selectedPublicCalendars;
+    public DropdownView() {
+    }
+
+    @PostConstruct
+    public void init() {
+        String username = securityContext.getCallerPrincipal().getName();
+        this.currentUser = userRepository.getByEmail(username);
+        this.calendars = currentUser.getCalendars();
+
+        this.selectedCalendars = new ArrayList<>();
+        this.selectedCalendars.add(calendars.get(0));
+        this.calendarsOptions = currentUser.getCalendars();
+
+        this.publicCalendarsOptions = calendarRepository.getPublicCalendars();
+    }
+
+    public void onCalendarCreated(@Observes Calendar calendar) {
+        this.init();
+    }
+
+    public void merge() {
+        Map<String, Integer> priorities = new HashMap<>();
+        int calendarsLen = selectedCalendars.size();
+        int[] calendarIds = new int[calendarsLen];
+        int i = 0;
+
+        for(Calendar c : selectedCalendars) {
+            calendarIds[i] = c.getId();
+            i++;
+        }
+
+        for(int j = 0; j < selectedCalendars.size(); j++) {
+            priorities.put(selectedCalendarsPriority.get(j), calendarsLen - j);
+        }
+
+        constraintService.mergeCalendars(calendarIds, priorities);
+    }
 
     public List<Calendar> getSelectedPublicCalendars() {
         return selectedPublicCalendars;
@@ -72,39 +109,6 @@ public class DropdownView implements Serializable {
 
     public void setCalendarsOptions(List<Calendar> calendarsOptions) {
         this.calendarsOptions = calendarsOptions;
-    }
-    
-    
-    public DropdownView() {
-    }
-    
-    @PostConstruct
-    public void init() {
-        String username = securityContext.getCallerPrincipal().getName();
-        this.currentUser = userRepository.getByEmail(username);
-        this.calendars = currentUser.getCalendars();
-        
-        this.selectedCalendars = new ArrayList<>();
-        this.selectedCalendars.add(calendars.get(0));
-        this.calendarsOptions = currentUser.getCalendars();
-
-        this.publicCalendarsOptions = calendarRepository.getPublicCalendars();
-    }
-    
-    public void onCalendarCreated(@Observes Calendar calendar) {
-        this.init();
-    }
-
-    public void merge() {
-        int[] calendarIds = new int[selectedCalendars.size()];
-        int i = 0;
-
-        for(Calendar c : selectedCalendars) {
-            calendarIds[i] = c.getId();
-            i++;
-        }
-
-        constraintService.mergeCalendars(calendarIds);
     }
     
     public Calendar[] getSelectedOptions() {
@@ -140,5 +144,13 @@ public class DropdownView implements Serializable {
             this.currentUser.addCalendar(c);
             this.userRepository.update(currentUser);
         }
+    }
+
+    public List<String> getSelectedCalendarsPriority() {
+        return selectedCalendarsPriority;
+    }
+
+    public void setSelectedCalendarsPriority(List<String> selectedCalendarsPriority) {
+        this.selectedCalendarsPriority = selectedCalendarsPriority;
     }
 }

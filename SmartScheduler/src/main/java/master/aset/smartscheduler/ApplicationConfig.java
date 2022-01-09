@@ -7,7 +7,7 @@ import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
 import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 
 @DatabaseIdentityStoreDefinition(
-        dataSourceLookup = "jdbc/lab3",
+        dataSourceLookup = "jdbc/Security",
         callerQuery = "select password from users where email = ?",
         groupsQuery = "select user_role from users where email = ?"
 )
