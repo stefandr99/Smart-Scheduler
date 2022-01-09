@@ -81,9 +81,9 @@ body .fc .fc-toolbar .fc-button:focus {
     box-shadow: 0 0 0 0.2em rgb(144, 133, 204);
 }
 body .fc .fc-event, body .fc .fc-event .fc-event-main {
-    background: rgb(108, 93, 211) !important;
+    /*background: rgb(108, 93, 211) !important;*/
     color: #ffffff;
-    border: 1px solid rgb(108, 93, 211) !important;
+    /*border: 1px solid rgb(108, 93, 211) !important;*/
 }
 .p-d-flex{
     display: flex;
@@ -94,4 +94,54 @@ body .fc .fc-event, body .fc .fc-event .fc-event-main {
     background: rgba(108, 93, 211, 1);
     border-radius: 10px;
     color: #ffffff;
+}
+.calendar-0 {
+    background-color: #6C5DD3 !important;
+    background: #6C5DD3 !important;
+    border: #6C5DD3 !important;
+}
+.calendar-1{
+    background-color: #1970FC !important;
+    background: #1970FC !important;
+    border: #1970FC !important;
+}
+.calendar-2{
+    background-color: #FFB200 !important;
+    background: #FFB200 !important;
+    border: #FFB200 !important;
+}
+.calendar-3{
+    background-color: #FF4E32 !important;
+    background: #FF4E32 !important;
+    border: #FF4E32 !important;
+}
+.calendar-4{
+    background-color: #54C62D !important;
+    background: #54C62D !important;
+    border: #54C62D !important;
+}
+.calendar-5{
+    background-color: #181165 !important;
+    background: #181165 !important;
+    border: #181165 !important;
+}
+.calendar-6 {
+    background-color: #041F78 !important;
+    background: #041F78 !important;
+    border: #041F78 !important;
+}
+.calendar-7 {
+    background-color: #7A4600 !important;
+    background: #7A4600 !important;
+    border: #7A4600 !important;
+}
+.calendar-8 {
+    background-color: #7A091D !important;
+    background: #7A091D !important;
+    border: #7A091D !important;
+}
+.calendar-9 {
+    background: #085F0A !important;
+    background-color: #085F0A !important;
+    border: #085F0A !important;
 }
