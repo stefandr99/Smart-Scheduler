@@ -24,6 +24,7 @@ import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
+import org.primefaces.model.ScheduleDisplayMode;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
@@ -103,13 +104,20 @@ public class ScheduleJava8View implements Serializable {
     }
 
     public void addNewEvent() {
-        eventModel.addEvent(event);
-        CalendarEntry calendarEntry = new CalendarEntry(event.getTitle(),
-                Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant()),
-                Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant()));
-        Calendar calendar = dropdownView.getSelectedCalendar();
-        calendar.addCalendarEntry(calendarEntry);
-        calendarRepository.update(calendar);
+        Calendar calendar = dropdownView.getSelectedCalendars().get(0);
+        if (calendar.isIsPublic()) {
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_WARN, 
+                        "You can't insert an event into a faculty calendar", 
+                        "the faculty calendar is shared across all students"));
+        } else {
+            eventModel.addEvent(event);
+            CalendarEntry calendarEntry = new CalendarEntry(event.getTitle(),
+                    Date.from(event.getStartDate().atZone(ZoneId.systemDefault()).toInstant()),
+                    Date.from(event.getEndDate().atZone(ZoneId.systemDefault()).toInstant()));
+            calendar.addCalendarEntry(calendarEntry);
+            calendarRepository.update(calendar);
+        }
     }
 
     public void updateEvent() {
@@ -158,6 +166,13 @@ public class ScheduleJava8View implements Serializable {
                 .startDate(selectEvent.getObject())
                 .endDate(selectEvent.getObject().plusHours(1))
                 .build();
+    }
+    
+    public void onDateSelectMultipleCalendars(SelectEvent<LocalDateTime> selectEvent) {
+        FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_WARN, 
+                        "You must choose only one calendar in order to insert an event", 
+                        "multiple calendars at event insertion"));
     }
 
     public void onEventMove(ScheduleEntryMoveEvent event) {

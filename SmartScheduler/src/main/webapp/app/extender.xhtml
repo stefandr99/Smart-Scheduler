@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+      xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <title>Calendar</title>
@@ -41,11 +42,16 @@
 
         <div class="ss-card">
             <h:form id="mainForm">
-                <p:growl id="messages" showDetail="true"/>
+                <p:growl id="messages"/>
 
                 <p:schedule class="ss-schedule" style="height: 80vh; width: 94%; margin-left: 20px;" id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule">
-                    <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelect}" update="eventDetails"
+                    <c:if test="#{dropdownView.selectedCalendars.size() eq 1}">
+                        <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelect}" update="eventDetails"
                             oncomplete="PF('eventDialog').show();"/>
+                    </c:if>
+                    <c:if test="#{dropdownView.selectedCalendars.size() != 1}">
+                        <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelectMultipleCalendars}" update="messages"/>
+                    </c:if>
                     <p:ajax event="eventSelect" listener="#{scheduleJava8View.onEventSelect}" update="eventDetails"
                             oncomplete="PF('eventDialog').show();"/>
                     <p:ajax event="eventMove" listener="#{scheduleJava8View.onEventMove}" update="messages"/>
