@@ -7,7 +7,7 @@
       xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
 
     <h:head>
-        <title>Facelet Title</title>
+        <title>Add faculty calendars</title>
         <link rel="stylesheet" href="../../style/navbar.css"/>
         <link rel="stylesheet" href="../style/layout.css"/>
         <link rel="stylesheet" href="../style/schedule.css"/>
@@ -29,15 +29,15 @@
                         <p:tooltip for="idEmptyLabel" style="max-width: 300px;" value="Select multiple calendars that will be displayed on your personal schedule."/>
                     </div>
                     <div class="ss-form__body" style="overflow-y:auto; height: 300px;">
-                            <p:selectManyMenu  style="width: 100%;" id="mergeOption" value="#{dropdownView.selectedPublicCalendars}" var="c" filter="true" filterMatchMode="contains" showCheckbox="true">
-                                <f:selectItems value="#{dropdownView.publicCalendarsOptions}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
+                            <p:selectManyMenu  style="width: 100%;" id="mergeOption" value="#{facultyCalendarsDropdown.selectedPublicCalendars}" var="c" filter="true" filterMatchMode="contains" showCheckbox="true">
+                                <f:selectItems value="#{facultyCalendarsDropdown.publicCalendarsOptions}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
                                 <p:column>
                                     <h:outputText value="#{c.name}"/>
                                 </p:column>
                             </p:selectManyMenu>
                     </div>
                     <div class="ss-form__footer" style="margin-top:20px;">
-                        <p:commandButton class="ss-form__footer__button" value="Add" action="#{dropdownView.addPublicCalendarToUser()}" ajax="false" />
+                        <p:commandButton class="ss-form__footer__button" value="Add" action="#{facultyCalendarsDropdown.addPublicCalendarToUser()}" ajax="false" />
                     </div>
                     
                 </h:form>
