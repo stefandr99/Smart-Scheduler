@@ -124,7 +124,8 @@ public class ConstraintService {
             }
         }
         //finalCalendar.setName(newCalendarName.substring(0, newCalendarName.length() - 1));
-        finalCalendar.setName("Merged: " + newCalendarName.toString() + "Last " + new Date());
+        newCalendarName.deleteCharAt(newCalendarName.length() - 1);
+        finalCalendar.setName(newCalendarName.toString());
         User user = getCurrentUser();
         finalCalendar.addUser(user);
         calendarRepository.create(finalCalendar);
