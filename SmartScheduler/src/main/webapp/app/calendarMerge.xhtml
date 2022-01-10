@@ -31,19 +31,19 @@
                 <div class="ss-form__body">
                     <div class="ss-form__body__input">
                         <p:outputLabel class="ss-form__body__input__label" value="Calendar name"/>
-                        <p:inputText class="ss-form__body__input__value" value="#{dropdownView.mergedCalendarName}" id="calendarName" styleClass="p-d-block" required="true"/>
+                        <p:inputText class="ss-form__body__input__value" value="#{mergeView.mergedCalendarName}" id="calendarName" styleClass="p-d-block" required="true"/>
                     </div>
                 </div>
                 <div class="ss-form__body" style="overflow-y:auto; height: 300px;">
-                    <p:selectManyMenu  style="width: 100%;" id="mergeOption" value="#{dropdownView.selectedCalendars}" var="c" filter="true" filterMatchMode="contains" showCheckbox="true">
-                        <f:selectItems value="#{dropdownView.calendars}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
+                    <p:selectManyMenu  style="width: 100%;" id="mergeOption" value="#{mergeView.selectedCalendars}" var="c" filter="true" filterMatchMode="contains" showCheckbox="true">
+                        <f:selectItems value="#{mergeView.calendars}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>
                         <p:column>
                             <h:outputText value="#{c.name}"/>
                         </p:column>
                     </p:selectManyMenu>
                 </div>
                 <div class="ss-form__footer" style="margin-top:20px;">
-                    <p:commandButton class="ss-form__footer__button" value="Merge" action="#{dropdownView.change()}" ajax="false" />
+                    <p:commandButton class="ss-form__footer__button" value="Merge" action="#{mergeView.change()}" ajax="false" />
                 </div>
 
             </h:form>
