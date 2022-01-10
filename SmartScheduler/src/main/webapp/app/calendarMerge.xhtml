@@ -28,6 +28,12 @@
                     </p:outputLabel>
                     <p:tooltip for="idEmptyLabel" style="max-width: 300px;" value="Select multiple calendars that will be merged into a single calendar."/>
                 </div>
+                <div class="ss-form__body">
+                    <div class="ss-form__body__input">
+                        <p:outputLabel class="ss-form__body__input__label" value="Calendar name"/>
+                        <p:inputText class="ss-form__body__input__value" value="#{dropdownView.mergedCalendarName}" id="calendarName" styleClass="p-d-block" required="true"/>
+                    </div>
+                </div>
                 <div class="ss-form__body" style="overflow-y:auto; height: 300px;">
                     <p:selectManyMenu  style="width: 100%;" id="mergeOption" value="#{dropdownView.selectedCalendars}" var="c" filter="true" filterMatchMode="contains" showCheckbox="true">
                         <f:selectItems value="#{dropdownView.calendars}" var="calendar" itemLabel="#{calendar.name}" itemValue="#{calendar}"/>

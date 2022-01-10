@@ -39,6 +39,8 @@ public class DropdownView implements Serializable {
 
     private List<Calendar> selectedPublicCalendars;
 
+    private String mergedCalendarName;
+
     @Inject
     ICalendarRepository calendarRepository;
     
@@ -88,7 +90,9 @@ public class DropdownView implements Serializable {
             priorities.put(selectedCalendarsPriority.get(j), calendarsLen - j);
         }
 
-        constraintService.mergeCalendars(calendarIds, priorities);
+        constraintService.mergeCalendars(calendarIds, priorities, mergedCalendarName);
+
+        mergedCalendarName = "";
 
         return "extender";
     }
@@ -160,5 +164,13 @@ public class DropdownView implements Serializable {
 
     public void setSelectedCalendarsPriority(List<String> selectedCalendarsPriority) {
         this.selectedCalendarsPriority = selectedCalendarsPriority;
+    }
+
+    public String getMergedCalendarName() {
+        return mergedCalendarName;
+    }
+
+    public void setMergedCalendarName(String mergedCalendarName) {
+        this.mergedCalendarName = mergedCalendarName;
     }
 }
