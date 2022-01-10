@@ -7,7 +7,7 @@ import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
 import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 
 @DatabaseIdentityStoreDefinition(
-        dataSourceLookup = "jdbc/Security",
+        dataSourceLookup = "jdbc/Smart-Scheduler",
         callerQuery = "select password from users where email = ?",
         groupsQuery = "select user_role from users where email = ?"
 )
