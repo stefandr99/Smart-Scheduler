@@ -54,7 +54,7 @@ public class ConstraintService {
 
     private final int numberOfWeeks = 52;
 
-    public Calendar mergeCalendars(int[] ids, Map<String, Integer> priorities) {
+    public Calendar mergeCalendars(int[] ids, Map<String, Integer> priorities, String newCalendarName) {
         // map with event index (eventIndex) as a key and its priority as a value
         List<Integer> eventsPriority = new ArrayList<>();
         int currentCalendarPriority;
@@ -71,13 +71,11 @@ public class ConstraintService {
         List<CalendarEntry> calendarEntries = new ArrayList<>();
         Calendar finalCalendar = new Calendar();
 
-        StringBuilder newCalendarName = new StringBuilder();
         // retrieve all events from calendars
         for(int i = 0 ; i < ids.length; i++) {
             Calendar calendar = calendarRepository.getById(ids[i]);
             currentCalendarPriority = priorities.get(calendar.getName());
 
-            newCalendarName.append(calendar.getName()).append("+");
             //TODO generate recurring entries
             
             if (calendar.isIsPublic()) {
@@ -123,9 +121,7 @@ public class ConstraintService {
                 }
             }
         }
-        //finalCalendar.setName(newCalendarName.substring(0, newCalendarName.length() - 1));
-        newCalendarName.deleteCharAt(newCalendarName.length() - 1);
-        finalCalendar.setName(newCalendarName.toString());
+        finalCalendar.setName(newCalendarName);
         User user = getCurrentUser();
         finalCalendar.addUser(user);
         calendarRepository.create(finalCalendar);
@@ -159,13 +155,23 @@ public class ConstraintService {
                 List<Integer> durations = new ArrayList<>();
                 int taskNumber = 0;
 
-                for (Map.Entry<String, List<CalendarEntry>> entry : groupedEvents.entrySet()) {
+                List<String> eventsName = new ArrayList<>();
+
+                for(CalendarEntry ce : calendarEntries) {
+                    if(!eventsName.contains(ce.getName())) {
+                        eventsName.add(ce.getName());
+                    }
+                }
+
+                for (String eventName : eventsName) {
                     // set index of every event
-                    index.put(taskNumber, entry.getKey());
+                    index.put(taskNumber, eventName);
                     taskNumber++;
 
+                    List<CalendarEntry> calendarEntryList = groupedEvents.get(eventName);
+
                     // get duration of every event
-                    long diff = entry.getValue().get(0).getFinishDate().getTime() - entry.getValue().get(0).getStartDate().getTime();
+                    long diff = calendarEntryList.get(0).getFinishDate().getTime() - calendarEntryList.get(0).getStartDate().getTime();
                     TimeUnit time = TimeUnit.MINUTES;
                     long duration = time.convert(diff, TimeUnit.MILLISECONDS);
                     durations.add((int) duration);
@@ -175,9 +181,10 @@ public class ConstraintService {
                 int[][] occurrencesMatrix = new int[taskNumber][];
                 int row = 0;
 
-                for (Map.Entry<String, List<CalendarEntry>> entry : groupedEvents.entrySet()) {
+
+                for (String eventName : eventsName) {
                     // get all occurrences of current event in week
-                    List<CalendarEntry> allTaskGrouped = entry.getValue();
+                    List<CalendarEntry> allTaskGrouped = groupedEvents.get(eventName);
 
                     // instantiate a new array representing matrix row
                     int[] currentTaskOcc = new int[allTaskGrouped.size() + 1];
@@ -272,59 +279,6 @@ public class ConstraintService {
         calendarEvent.fire(finalCalendar);
         return finalCalendar;
     }
-
-    /*public static void main(String[] args) {
-        // Smart scheduler
-
-        // task-urile mele in aceasta saptamana
-        int[] tasks = { 1, 2, 3, 4 };
-
-        // durata fiecarui task in minute
-        int[] durations = { 30, 120, 180, 60 };
-
-        int[][] occurrencesMatrix = {
-                {0 * 60, 18 * 60},
-                {0 * 60, 14 * 60},
-                {14 * 60},
-                {1 * 60, 3 * 60, 13 * 60, 17 * 60, 22 * 60}
-        };
-
-        Model model = new Model("Scheduler");
-
-        IntVar[] solution = IntStream
-                .range(0, 4)
-                .mapToObj(i -> model.intVar("task #" + i, occurrencesMatrix[i]))
-                .toArray(IntVar[]::new);
-
-        model.allDifferent(solution).post();
-
-        for(int i = 0; i < tasks.length - 1; i++) {
-            for(int j = i + 1; j < tasks.length; j++) {
-                model.or(model.arithm(solution[j], ">=", solution[i], "+", durations[i]),
-                        model.arithm(solution[i], ">=" , solution[j], "+", durations[j])).post();
-            }
-        }
-
-        System.out.println(model.getSolver().solve());
-
-        for (int i = 0; i < tasks.length; i++) {
-            System.out.printf("%s takes place at %d \n",
-                    solution[i].getName(),
-                    solution[i].getValue() / 60);
-        }
-
-        /**
-         * solution[i] != -1
-         * solution[i] ia exact o valoare din occVar[i]
-         * atLeastNValues(occ[i], 1, false) ? - probabil ca nu
-         * atMostNValues(occ[i], 1, false) ? - probabil ca nu
-         * solution[i] = occ[i][j], exista j - cumva satisfacut
-         *
-         *  pentru orice i, j in [0, 3] atunci [solution[i], solution[i] + duration[i]] not intersect [solution[j], solution[j] + duration[j]]
-         *
-         *  solution[j] >= solution[i] + duration[j] OR solution[j] + duration[j] <= solution[i]
-         */
-    //}
 
     public User getCurrentUser() {
         String username = securityContext.getCallerPrincipal().getName();

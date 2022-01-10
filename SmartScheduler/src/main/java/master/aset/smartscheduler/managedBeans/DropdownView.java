@@ -16,14 +16,11 @@ import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import master.aset.smartscheduler.services.ConstraintService;
 
 @Named(value = "dropdownView")
-@ApplicationScoped
+@ViewScoped
 public class DropdownView implements Serializable {
 
     @Inject
     IUserRepository userRepository;
-    
-    @Inject
-    ConstraintService constraintService;
     
     private Calendar[] selectedOptions;
     
@@ -38,6 +35,8 @@ public class DropdownView implements Serializable {
     private List<Calendar> calendarsOptions;
 
     private List<Calendar> selectedPublicCalendars;
+
+    private String mergedCalendarName;
 
     @Inject
     ICalendarRepository calendarRepository;
@@ -59,38 +58,6 @@ public class DropdownView implements Serializable {
         this.calendarsOptions = currentUser.getCalendars();
 
         this.publicCalendarsOptions = calendarRepository.getPublicCalendars();
-    }
-
-    public void onCalendarCreated(@Observes Calendar calendar) {
-        this.init();
-    }
-    
-    public String change(){
-        selectedCalendarsPriority = new ArrayList<>();
-        for (Calendar c: selectedCalendars)
-            selectedCalendarsPriority.add(c.getName());
-
-        return "change";
-    }
-    
-    public String merge() {
-        Map<String, Integer> priorities = new HashMap<>();
-        int calendarsLen = selectedCalendars.size();
-        int[] calendarIds = new int[calendarsLen];
-        int i = 0;
-
-        for(Calendar c : selectedCalendars) {
-            calendarIds[i] = c.getId();
-            i++;
-        }
-
-        for(int j = 0; j < selectedCalendars.size(); j++) {
-            priorities.put(selectedCalendarsPriority.get(j), calendarsLen - j);
-        }
-
-        constraintService.mergeCalendars(calendarIds, priorities);
-
-        return "extender";
     }
 
     public List<Calendar> getSelectedPublicCalendars() {
@@ -160,5 +127,13 @@ public class DropdownView implements Serializable {
 
     public void setSelectedCalendarsPriority(List<String> selectedCalendarsPriority) {
         this.selectedCalendarsPriority = selectedCalendarsPriority;
+    }
+
+    public String getMergedCalendarName() {
+        return mergedCalendarName;
+    }
+
+    public void setMergedCalendarName(String mergedCalendarName) {
+        this.mergedCalendarName = mergedCalendarName;
     }
 }

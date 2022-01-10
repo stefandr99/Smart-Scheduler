@@ -7,7 +7,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.event.Event;
 import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Any;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -32,6 +34,10 @@ public class FacultyCalendarsDropdown implements Serializable {
     
     @Inject
     SecurityContext securityContext;
+
+    @Inject
+    @Any
+    Event<Calendar> calendarEvent;
     
     private User currentUser;
     
@@ -76,6 +82,8 @@ public class FacultyCalendarsDropdown implements Serializable {
         for (Calendar c : selectedPublicCalendars) {
             this.currentUser.addCalendar(c);
             this.userRepository.update(currentUser);
+
+            calendarEvent.fire(c);
         }
     }
 }
