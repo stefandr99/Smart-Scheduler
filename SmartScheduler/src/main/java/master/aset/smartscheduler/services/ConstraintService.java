@@ -7,6 +7,7 @@ import master.aset.smartscheduler.repositories.interfaces.ICalendarEntryReposito
 import master.aset.smartscheduler.repositories.interfaces.ICalendarRepository;
 import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import org.chocosolver.solver.Model;
+import org.chocosolver.solver.variables.BoolVar;
 import org.chocosolver.solver.variables.IntVar;
 
 import javax.ejb.LocalBean;
@@ -53,7 +54,11 @@ public class ConstraintService {
 
     private final int numberOfWeeks = 52;
 
-    public Calendar mergeCalendars(int[] ids) {
+    public Calendar mergeCalendars(int[] ids, Map<String, Integer> priorities) {
+        // map with event index (eventIndex) as a key and its priority as a value
+        List<Integer> eventsPriority = new ArrayList<>();
+        int currentCalendarPriority;
+
         // get first day date of current week
         java.util.Calendar cal = java.util.Calendar.getInstance();
         cal.set(java.util.Calendar.DAY_OF_WEEK, cal.getActualMinimum(java.util.Calendar.DAY_OF_WEEK) + 1);
@@ -70,6 +75,7 @@ public class ConstraintService {
         // retrieve all events from calendars
         for(int i = 0 ; i < ids.length; i++) {
             Calendar calendar = calendarRepository.getById(ids[i]);
+            currentCalendarPriority = priorities.get(calendar.getName());
 
             newCalendarName.append(calendar.getName()).append("+");
             //TODO generate recurring entries
@@ -100,6 +106,7 @@ public class ConstraintService {
                             newEntry.setRecurring(false);
                             
                             calendarEntries.add(newEntry);
+                            eventsPriority.add(currentCalendarPriority);
                         } catch (ParseException e) {
                             System.out.println(e.getMessage());
                         }
@@ -110,11 +117,15 @@ public class ConstraintService {
                     }
                 }
             } else {
-                calendarEntries.addAll(calendarEntryRepository.getByCalendar(calendar));
+                for(CalendarEntry event : calendarEntryRepository.getByCalendar(calendar)) {
+                    calendarEntries.add(event);
+                    eventsPriority.add(currentCalendarPriority);
+                }
             }
         }
         //finalCalendar.setName(newCalendarName.substring(0, newCalendarName.length() - 1));
-        finalCalendar.setName("Merged: " + newCalendarName.toString() + "Last " + new Date());
+        newCalendarName.deleteCharAt(newCalendarName.length() - 1);
+        finalCalendar.setName(newCalendarName.toString());
         User user = getCurrentUser();
         finalCalendar.addUser(user);
         calendarRepository.create(finalCalendar);
@@ -169,7 +180,7 @@ public class ConstraintService {
                     List<CalendarEntry> allTaskGrouped = entry.getValue();
 
                     // instantiate a new array representing matrix row
-                    int[] currentTaskOcc = new int[allTaskGrouped.size()];
+                    int[] currentTaskOcc = new int[allTaskGrouped.size() + 1];
                     int j = 0;
 
                     // iterate over current event and get its occurrences in this week
@@ -184,6 +195,7 @@ public class ConstraintService {
                     }
 
                     occurrencesMatrix[row] = currentTaskOcc;
+                    occurrencesMatrix[row][currentTaskOcc.length - 1] = -1;
                     row++;
                 }
 
@@ -199,12 +211,31 @@ public class ConstraintService {
                         .mapToObj(in -> model.intVar("task #" + in, occurrencesMatrix[in]))
                         .toArray(IntVar[]::new);
 
-                model.allDifferent(solution).post();
+                int[] notMember = new int[]{-60};
 
                 for(int j = 0; j < taskNumber - 1; j++) {
                     for(int k = j + 1; k < taskNumber; k++) {
+
                         model.or(model.arithm(solution[k], ">=", solution[j], "+", durations.get(j)),
                                 model.arithm(solution[j], ">=" , solution[k], "+", durations.get(k))).post();
+
+                        IntVar firstEventPriority = model.intVar(eventsPriority.get(j));
+                        IntVar secondEventPriority = model.intVar(eventsPriority.get(k));
+
+                        model.ifThen(
+                                model.and(
+                                        model.not(model.or(model.arithm(solution[k], ">=", solution[j], "+", durations.get(j)),
+                                                model.arithm(solution[j], ">=" , solution[k], "+", durations.get(k)))),
+                                        model.arithm(firstEventPriority, "<", secondEventPriority)),
+                                model.arithm(solution[j], "=", -60)
+                        );
+
+                        model.ifThen(
+                                model.and(
+                                        model.not(model.or(model.arithm(solution[k], ">=", solution[j], "+", durations.get(j)),
+                                                model.arithm(solution[j], ">=" , solution[k], "+", durations.get(k)))),
+                                        model.arithm(firstEventPriority, ">", secondEventPriority)),
+                                model.arithm(solution[k], "=", -60));
                     }
                 }
 

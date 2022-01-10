@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../../style/navbar.css"/>
+        <link rel="stylesheet" href="../style/layout.css"/>
+        <link rel="stylesheet" href="../style/schedule.css"/>
+        <link rel="stylesheet" href="../style/forms.css"/>
+        <script src="https://kit.fontawesome.com/f50388bf20.js" crossorigin="anonymous"></script>
+    </h:head>
+    <h:body class="ss-body">
+
+        <ezcomp:navbar/>
+
+        <div class="ss-form--page" style="width: 100%; display: flex;">
+            <div class="ss-body__center">
+                <h:form class="ss-form">
+                    <div class="ss-form__header" style="margin-bottom: 20px;">
+                        <span>Select priority Order</span>
+                        <p:outputLabel id ="idEmptyLabel">
+                                <i style="font-size: 20px;color: #554f70;" class="far fa-question-circle"></i>
+                                </p:outputLabel>
+                        <p:tooltip for="idEmptyLabel" style="max-width: 300px;" value="Select multiple calendars that will be merged into a single calendar."/>
+                    </div>
+                    <div class="ss-form__body" style="overflow-y:auto; height: 300px;">
+                        <p:orderList value="#{dropdownView.selectedCalendarsPriority}" var="calendar" controlsLocation="none" itemLabel="#{calendar}" itemValue="#{calendar}" />
+                    </div>
+                    <div class="ss-form__footer" style="margin-top:20px;">
+                        <p:commandButton class="ss-form__footer__button" value="Merge" action="#{dropdownView.merge()}" />
+                    </div>
+                    
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+
+    
+</html>
+
