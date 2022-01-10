@@ -179,7 +179,7 @@ public class ConstraintService {
                     List<CalendarEntry> allTaskGrouped = entry.getValue();
 
                     // instantiate a new array representing matrix row
-                    int[] currentTaskOcc = new int[allTaskGrouped.size()];
+                    int[] currentTaskOcc = new int[allTaskGrouped.size() + 1];
                     int j = 0;
 
                     // iterate over current event and get its occurrences in this week
@@ -194,15 +194,13 @@ public class ConstraintService {
                     }
 
                     occurrencesMatrix[row] = currentTaskOcc;
+                    occurrencesMatrix[row][currentTaskOcc.length - 1] = -1;
                     row++;
                 }
 
                 // inmultim fiecare occurrence cu 60 ca sa avem matricea in minute
                 for(int k = 0; k < occurrencesMatrix.length; k++) {
                     occurrencesMatrix[k] = Arrays.stream(occurrencesMatrix[k]).map(el -> el * 60).toArray();
-
-                    int lastIndex = occurrencesMatrix[k].length;
-                    occurrencesMatrix[k][lastIndex] = -1;
                 }
 
                 Model model = new Model("Scheduler");
@@ -212,21 +210,31 @@ public class ConstraintService {
                         .mapToObj(in -> model.intVar("task #" + in, occurrencesMatrix[in]))
                         .toArray(IntVar[]::new);
 
+                int[] notMember = new int[]{-60};
+
                 for(int j = 0; j < taskNumber - 1; j++) {
                     for(int k = j + 1; k < taskNumber; k++) {
+
                         model.or(model.arithm(solution[k], ">=", solution[j], "+", durations.get(j)),
                                 model.arithm(solution[j], ">=" , solution[k], "+", durations.get(k))).post();
 
                         IntVar firstEventPriority = model.intVar(eventsPriority.get(j));
                         IntVar secondEventPriority = model.intVar(eventsPriority.get(k));
 
-                        model.ifThenElse(
-                                model.and(model.not(model.arithm(solution[k], ">=", solution[j], "+", durations.get(j))),
-                                        model.arithm(solution[j], ">=" , solution[k], "+", durations.get(k)),
+                        model.ifThen(
+                                model.and(
+                                        model.not(model.or(model.arithm(solution[k], ">=", solution[j], "+", durations.get(j)),
+                                                model.arithm(solution[j], ">=" , solution[k], "+", durations.get(k)))),
                                         model.arithm(firstEventPriority, "<", secondEventPriority)),
-                                model.member(solution[j], -1, -1),
-                                model.member(solution[k], -1, -1)
+                                model.arithm(solution[j], "=", -60)
                         );
+
+                        model.ifThen(
+                                model.and(
+                                        model.not(model.or(model.arithm(solution[k], ">=", solution[j], "+", durations.get(j)),
+                                                model.arithm(solution[j], ">=" , solution[k], "+", durations.get(k)))),
+                                        model.arithm(firstEventPriority, ">", secondEventPriority)),
+                                model.arithm(solution[k], "=", -60));
                     }
                 }
 

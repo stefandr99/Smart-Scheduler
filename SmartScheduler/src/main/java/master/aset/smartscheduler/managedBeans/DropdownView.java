@@ -5,6 +5,7 @@ import java.util.*;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
@@ -15,7 +16,7 @@ import master.aset.smartscheduler.repositories.interfaces.IUserRepository;
 import master.aset.smartscheduler.services.ConstraintService;
 
 @Named(value = "dropdownView")
-@ViewScoped
+@ApplicationScoped
 public class DropdownView implements Serializable {
 
     @Inject
@@ -28,7 +29,7 @@ public class DropdownView implements Serializable {
     
     private List<Calendar> selectedCalendars;
 
-    private List<String> selectedCalendarsPriority = new ArrayList<>();
+    private List<String> selectedCalendarsPriority;
 
     private List<Calendar> calendars;
 
@@ -65,13 +66,14 @@ public class DropdownView implements Serializable {
     }
     
     public String change(){
+        selectedCalendarsPriority = new ArrayList<>();
         for (Calendar c: selectedCalendars)
             selectedCalendarsPriority.add(c.getName());
 
         return "change";
     }
     
-    public void merge() {
+    public String merge() {
         Map<String, Integer> priorities = new HashMap<>();
         int calendarsLen = selectedCalendars.size();
         int[] calendarIds = new int[calendarsLen];
@@ -87,6 +89,8 @@ public class DropdownView implements Serializable {
         }
 
         constraintService.mergeCalendars(calendarIds, priorities);
+
+        return "extender";
     }
 
     public List<Calendar> getSelectedPublicCalendars() {
